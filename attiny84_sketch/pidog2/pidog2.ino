@@ -104,8 +104,7 @@ void doSecondWork() {
         }
     }
 
-    bool suppress = true;
-    if (!suppress) {
+    if (true) {
         digitalWrite(PIN_PWR,      s & _BV(STAT_PWR_ON));
 #ifndef SERIAL_DEBUG
         digitalWrite(PIN_LED_WARN, s & _BV(STAT_LED_WARN));
