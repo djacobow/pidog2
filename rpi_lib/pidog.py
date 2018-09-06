@@ -1,0 +1,368 @@
+#!/usr/bin/env python3
+
+import time
+import spidev
+import RPi.GPIO as GPIO
+import sys 
+import random
+import json
+
+pdelay = 0.0005
+
+class bbSPI:
+    def __init__(self):
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(19,GPIO.OUT) # MOSI
+        GPIO.setup(21,GPIO.IN)  # MISO
+        GPIO.setup(23,GPIO.OUT) # CK
+        GPIO.setup(24,GPIO.OUT) # SS
+
+    def xfer2(self, oblist):
+        iblist = []
+        GPIO.output(24,GPIO.LOW)
+        time.sleep(pdelay)
+        for obyte in oblist:
+            ibyte = self._xfer8(obyte)
+            if ibyte > 0xff:
+                print('ERROR byte is not a byte!')
+            iblist.append(ibyte)
+        GPIO.output(24,GPIO.HIGH)
+        time.sleep(5*pdelay)
+        # print('==> ' + ','.join([ '{0:x}'.format(x) for x in oblist]))
+        # print('<== ' + ','.join([ '{0:x}'.format(x) for x in iblist]))
+        return iblist
+
+    def _xfer8(self,obyte):
+        ibyte = 0
+        for i in range(8):
+            obit = obyte & 0x80
+            GPIO.output(19, GPIO.HIGH if obit else GPIO.LOW)
+            time.sleep(pdelay)
+            ibit = 1 if GPIO.input(21) else 0
+            GPIO.output(23, GPIO.HIGH)
+            GPIO.output(23, GPIO.LOW)
+            time.sleep(pdelay)
+            ibyte |= ibit
+            if i < 7:
+                obyte <<= 1
+                ibyte <<= 1
+        time.sleep(4*pdelay)
+        return ibyte
+
+
+    def close(self):
+        print('closing and setting as inputs');
+        GPIO.setup(19,GPIO.IN)
+        GPIO.setup(21,GPIO.IN)
+        GPIO.setup(23,GPIO.IN)
+        GPIO.setup(24,GPIO.IN)
+
+            
+class PiDog:
+    def __init__(self, bus = 0, device = 0):
+        self.bus = bus
+        self.device = device
+
+        spi = bbSPI()
+        #spi = spidev.SpiDev()
+        #spi.open(self.bus,self.device)
+        #spi.max_speed_hz = 500000
+        #spi.mode = 0x3
+        self.spi = spi
+
+        self.masks = {
+            'wdog_en'     : 0x01,
+            'wdog_fired'  : 0x02,
+            'wdog_soon'   : 0x04,
+            'wake_en'     : 0x08,
+            'wake_fired'  : 0x10,
+            'power_on'    : 0x20,
+            'led_warn_on' : 0x40,
+            'led_0_on'    : 0x80
+        }
+
+        self.regs_by_name = {
+            'status'           : {
+                'addr': 0,
+                'decode': {
+                    'wdog_en'     : lambda v: True if v & 0x1  else False,
+                    'wdog_fired'  : lambda v: True if v & 0x2  else False,
+                    'wdog_soon'   : lambda v: True if v & 0x4  else False,
+                    'wake_en  '   : lambda v: True if v & 0x8  else False,
+                    'wake_fired'  : lambda v: True if v & 0x10 else False,
+                    'power_on  '  : lambda v: True if v & 0x20 else False,
+                    'led_warn_on' : lambda v: True if v & 0x40 else False,
+                    'led_0_on'    : lambda v: True if v & 0x80 else False
+                },
+            },
+            'on_remaining'     : {
+                'addr': 1,
+                'decode': {
+                    'on_remaining': lambda v: v + 0,
+                },
+            },
+            'off_remaining'    : {
+                'addr': 2,
+                'decode': {
+                    'off_remaining': lambda v: v + 0,
+                },
+            },
+            'on_rem_resetval'  : {
+                'addr': 3,
+                'decode': {
+                    'on_rem_resetval': lambda v: v + 0,
+                },
+            },
+            'off_rem_resetval' : {
+                'addr': 4,
+                'decode': {
+                    'off_rem_resetval': lambda v: v + 0,
+                },
+            },
+            'temp'             : {
+                'addr': 5,
+                'decode': {
+                    # needs formula
+                    'temp_C': lambda v: (v & 0xffff) + 0,
+                },
+            },
+            'vbat_v5'          : {
+                'addr': 6,
+                'decode': {
+                    'vcc': lambda v: (v & 0xffff) / 1000.0,
+                    'vbatt': lambda v: ((v >> 16)& 0xffff) / 1000.0,
+                },
+            },
+            'vswch_v33'        : {
+                'addr': 7,
+                'decode': {
+                    'v33': lambda v: (v & 0xffff) / 1000.0,
+                    'vcc_swtch': lambda v: ((v >> 16)& 0xffff) / 1000.0,
+                },
+            },
+            'firecounts'       : {
+                'addr': 8,
+                'decode': {
+                    'wdog_events': lambda v: (v & 0xffff) + 0,
+                    'wake_events': lambda v: ((v >> 16)& 0xffff) + 0,
+                },
+            },
+            'hw_rev'           : {
+                'addr': 9,
+                'decode': {
+                    'version_minor': lambda v: (v & 0xff) + 0,
+                    'version_major': lambda v: ((v >> 8)& 0xff) + 0,
+                },
+            },
+        }
+
+    def __del__(self):
+        try:
+            self.deinit()
+        except Exception as e:
+            pass
+
+
+    def _inout(self,x,y):
+        i5 = [ x, 
+             (y >> 24) & 0xff,
+             (y >> 16) & 0xff,
+             (y >>  8) & 0xff,
+             y & 0xff ]
+
+        o5 = self.spi.xfer2(i5)
+        oc = o5.pop(0)
+        ov = 0
+        while len(o5):
+            ov <<= 8
+            ov |= o5.pop(0) & 0xff
+        return (oc, ov)
+
+    def _read_reg(self,idx):
+        r = self._inout(idx & 0xf, 0)
+        # print(' [read from {0:x}] r: {1:x}, c: {2:x}'.format(idx,r[1],r[0]))
+        r = self._inout(0, 0)
+        # print(' [read from {0:x}] r: {1:x}, c: {2:x}'.format(idx,r[1],r[0]))
+        return r[1]
+
+    def _half_read_reg(self,idx):
+        r = self._inout(idx & 0xf, 0)
+        print(' [read from {0:x}] r: {1:x}, c: {2:x}'.format(idx,r[1],r[0]))
+        return r[1]
+
+   
+    def _write_reg(self,idx,v,mode = 0x3):
+       
+        mode = (mode & 0x3) << 6
+        r = self._inout(mode | (idx & 0xf), v)
+        print(' [write {0:x} to {1:x} mode {2} ] result: {3:x}, result_cmd: {4:x}'.format(v,idx,mode,r[1],r[0]))
+        return r[1]
+
+    def fastGetList(self,l):
+        prev_i = None
+        o = []
+        for i in l:
+            val = self._half_read_reg(i)
+            if prev_i:
+                o.append(val)
+            prev_i = i
+        val = self._half_read_reg(i)
+        o.append(val)
+        return o
+
+    def _make_result(self, name, val):
+        reg = self.regs_by_name[name]
+
+        o = {
+            '__raw': val,
+            '__rawhex': '{0:x}_{1:x}'.format((val >> 16), val & 0xff),
+        }
+        for n in reg['decode']:
+            f = reg['decode'][n]
+            o[n] = f(val)
+        return o
+
+    def getAll(self):
+        res = {}
+        prev_rname = None
+        val = None
+        rnames = list(self.regs_by_name.keys())
+        rnames.sort()
+        for rname in rnames:
+            addr = self.regs_by_name[rname]['addr'];
+            val = self._half_read_reg(addr)
+            if prev_rname is not None:
+                res[prev_rname] = self._make_result(prev_rname,val)
+            prev_rname = rname
+        val = self._half_read_reg(0)
+        res[rnames[-1]] = self._make_result(rnames[-1],val)
+        return res
+
+    def get(self, name):
+        name = name.lower()
+        reg = self.regs_by_name.get(name,None)
+        if reg is not None:
+            addr = reg['addr']
+            return self._make_result(name, self._read_reg(addr))
+        return None
+
+    def mask(self,mname,invert = False):
+        m = self.masks.get(mname.lower(),None)
+        if m is None:
+            print('Warning: unknown bitmask: "' + mname + '"')
+        elif invert:
+            m = ~m
+        return m
+
+
+    def setBits(self, name, pattern):
+        return self.set(name,pattern, 1)
+       
+    def clearBits(self, name, pattern):
+        return self.set(name,~pattern, 2)
+
+    def feed(self):
+        self.set('on_remaining',self.get('on_rem_resetval')['__raw'])
+
+    def reset(self):
+        self.set('on_remaining',self.get('on_rem_resetval')['__raw'])
+        self.set('off_remaining',self.get('off_rem_resetval')['__raw'])
+        self.set('firecounts',0)
+        self.set('status',
+            self.mask('wdog_en') | 
+            self.mask('wake_en') | 
+            self.mask('power_on')
+        )
+
+    def set(self, name, val, mode = 3):
+        reg = None
+        addr = None
+        if type(name) == int:
+            addr = name & 0xf
+        else:
+            name = name.lower()
+            reg = self.regs_by_name.get(name,None)
+            if reg is not None:
+                addr = reg['addr']
+        if addr is not None:
+            v = self._write_reg(addr,val,mode)
+            if reg is not None:
+                return self._make_result(name, v)
+            else:
+                return v
+        return None
+
+    def deinit(self):
+        self.spi.close()
+
+        
+def crazy_testing_stuff():
+    pd = PiDog()
+
+    myregs = [0 for x in range(5)]
+
+    def setOne():
+        victim = random.randrange(5,10)
+        value = random.randint(0,256)
+        value <<= 8
+        value |= random.randint(0,256)
+        value <<= 8
+        value |= random.randint(0,256)
+        value <<= 8
+        value |= random.randint(0,256)
+        myregs[victim-5] = value
+        pd.set(victim,value)
+       
+    def compareArrays(a,b):
+        for i in range(len(a)):
+            av = a[i]
+            bv = b[i]
+            if av != bv:
+                print('ERR r{0:x} {1:x} != {2:x}'.format(i,av,bv))
+
+    if False:
+        while True:
+            for x in range(5):
+                setOne()
+            realregs = pd.fastGetList(list(range(5,10)))
+            compareArrays(realregs,myregs)
+
+ 
+    if False:
+        for x in range(10):
+            pd.set(x, x | x << 16)
+
+        count = 0
+        while count < 10:
+            x = pd.getAll()
+            print('\n'.join([ '{0}: {1:x}'.format(n,x[n]) for n in x]))
+            count += 1
+
+    if True:
+        def jsd(x):
+            print(json.dumps(x,indent=2,sort_keys=True))
+
+        x = pd.getAll()
+        jsd(x)
+
+        jsd(pd.get('status'))
+        time.sleep(2)
+
+        jsd(pd.setBits('status',pd.mask('wdog_en')))
+        time.sleep(2)
+
+        jsd(pd.get('status'))
+        time.sleep(2)
+
+        jsd(pd.clearBits('status',pd.mask('wdog_en')))
+        time.sleep(2)
+
+        jsd(pd.get('status'))
+        time.sleep(2)
+
+
+
+
+if __name__ == '__main__':
+    crazy_testing_stuff()
+
