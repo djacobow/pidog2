@@ -150,6 +150,7 @@ class PiDog:
             'hw_rev'           : {
                 'addr': 9,
                 'decode': {
+                    'device_id': lambda v: [ (v >> 24) & 0xff, (v >> 16) & 0xff ],
                     'version_minor': lambda v: (v & 0xff) + 0,
                     'version_major': lambda v: ((v >> 8)& 0xff) + 0,
                 },
@@ -265,14 +266,20 @@ class PiDog:
         self.set('on_remaining',self.get('on_rem_resetval')['__raw'])
 
     def reset(self):
-        self.set('on_remaining',self.get('on_rem_resetval')['__raw'])
-        self.set('off_remaining',self.get('off_rem_resetval')['__raw'])
-        self.set('firecounts',0)
-        self.set('status',
-            self.mask('wdog_en') | 
-            self.mask('wake_en') | 
-            self.mask('power_on')
-        )
+        hw = self.get('hw_rev')
+        if hw['device_id'][0] == 0x70 and hw['device_id'][1]  == 0x64 and hw['version_major'] == 2:
+            self.set('on_remaining',self.get('on_rem_resetval')['__raw'])
+            self.set('off_remaining',self.get('off_rem_resetval')['__raw'])
+            self.set('firecounts',0)
+            self.set('status',
+                self.mask('wdog_en') | 
+                self.mask('wake_en') | 
+                self.mask('power_on')
+            )
+            return True
+        print('PiDog2 initialization failed or device not present.')
+        print(hw)
+        return None
 
     def set(self, name, val, mode = 3):
         reg = None
