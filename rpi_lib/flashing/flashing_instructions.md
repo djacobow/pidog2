@@ -27,10 +27,10 @@ Raspberry Pi with no additional hardware (programmer, etc.)
 
     Copy your system avrdude.conf file to a working location:
 
-```
+    ```
     $ cd <some workdir>
     $ cp /etc/avrdude.conf avrdude-gpio.conf
-```
+    ```
 
     Then use your favorite text editor to edit the file you
     just created and add the following lines to it. You can do this
@@ -41,38 +41,37 @@ Raspberry Pi with no additional hardware (programmer, etc.)
     your system, in the case that it is already customized or 
     comes from a newer version of avrdude.
 
-```
-programmer
-  id    = "rpi_pidog_gpio";
-  desc  = "Program a PiDog from the RPi GPIO lines";
-  type  = "linuxgpio";
-  reset = 24;
-  sck   = 11;
-  mosi  = 10;
-  miso  = 9;
-;
-```
+    ```
+    programmer
+      id    = "rpi_pidog_gpio";
+      desc  = "Program a PiDog from the RPi GPIO lines";
+      type  = "linuxgpio";
+      reset = 24;
+      sck   = 11;
+      mosi  = 10;
+      miso  = 9;
+    ;
+    ```
 
  3. Check that the programmer can talk to the device
 
-```
+    ```
     $ sudo avrdude -C avrdude-gpio.conf -c rpi_pidog_gpio -p t84
-```
+    ```
 
     With any luck, you'll get a response like this one:
 
-```
-avrdude: AVR device initialized and ready to accept instructions
+    ```
+    avrdude: AVR device initialized and ready to accept instructions
 
-Reading | ################################################## | 100% 0.00s
+    Reading | ################################################## | 100% 0.00s
 
-avrdude: Device signature = 0x1e930c (probably t84)
+    avrdude: Device signature = 0x1e930c (probably t84)
 
-avrdude: safemode: Fuses OK (E:FF, H:DF, L:E2)
+    avrdude: safemode: Fuses OK (E:FF, H:DF, L:E2)
 
-avrdude done.  Thank you.
-```
-
+    avrdude done.  Thank you.
+    ```
 
     If so, you are ready to proceed to the programming step. If not,
     try re-running the command with `-v` added to the end to get more 
@@ -82,9 +81,10 @@ avrdude done.  Thank you.
     Intel .hex format (from the Arduinmo IDE: Sketch => Export Compiled Binary)
      and issue the command:
 
-```
+    ```
     $ avrdude -C avrdude-gpio.conf -c rpi_pidog_gpio -p t84 -v -U example_file.hex 
-```
+    ```
+
 
 That's it!
 
