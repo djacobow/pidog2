@@ -8,15 +8,16 @@ Raspberry Pi with no additional hardware (programmer, etc.)
  1. First, install the avrdude programmer. Starting from
     Raspbian OS, will need to install the following package:
 
-```
+    ```
     $ sudo apt install avrdude
-```
+    ```
+
     Optionally, if you want to actually build firmware images
     yourself on the RPi, you can install
 
-```
+    ```
     $ sudo apt install avr-gcc binutils-avr
-```
+    ```
 
     More optioanlly: if you want to run the Arduino IDE, it's probably
     best to get that from arduino.cc rather than get the
