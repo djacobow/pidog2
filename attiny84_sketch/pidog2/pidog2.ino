@@ -26,7 +26,11 @@ SoftwareSerialTX srl(PIN_LED_WARN);
 
 #define VERSION_MAJOR 0x02
 #define VERSION_MINOR 0x01
-const reg_t   HW_VERSION          = (VERSION_MAJOR << 8) | VERSION_MINOR;
+const reg_t   HW_VERSION        = 
+    ((reg_t)'p' << 24)   |
+    ((reg_t)'d' << 16)   |
+    (VERSION_MAJOR << 8) | 
+    VERSION_MINOR;
 
 const reg_t DEFAULT_ON_TIME     = 180;
 const reg_t DEFAULT_OFF_TIME    = 180;
