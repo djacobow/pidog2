@@ -32,8 +32,8 @@ const reg_t   HW_VERSION        =
     (VERSION_MAJOR << 8) | 
     VERSION_MINOR;
 
-const reg_t DEFAULT_ON_TIME     = 180;
-const reg_t DEFAULT_OFF_TIME    = 180;
+const reg_t DEFAULT_ON_TIME     = 300;
+const reg_t DEFAULT_OFF_TIME    = 300;
 const reg_t WARN_SECS           = 30;
 
 const size_t rf_size = 10;
@@ -108,15 +108,17 @@ void doSecondWork() {
         }
     }
 
+    rf.set(REG_STATUS,s);
+
     if (true) {
-        digitalWrite(PIN_PWR,      s & _BV(STAT_PWR_ON));
+        // NB the power pin has negative polarity
+        digitalWrite(PIN_PWR,      !(s & _BV(STAT_PWR_ON)));
 #ifndef SERIAL_DEBUG
         digitalWrite(PIN_LED_WARN, s & _BV(STAT_LED_WARN));
         digitalWrite(PIN_LED_0,    s & _BV(STAT_WDOG_FIRED));
 #endif
     }
 
-    rf.set(REG_STATUS,s);
     rf.dump();
 };
 
