@@ -46,14 +46,34 @@ Raspberry Pi with no additional hardware (programmer, etc.)
       id    = "rpi_pidog_gpio";
       desc  = "Program a PiDog from the RPi GPIO lines";
       type  = "linuxgpio";
-      reset = 24;
+      reset = ~24;
       sck   = 11;
       mosi  = 10;
       miso  = 9;
     ;
     ```
 
- 3. Check that the programmer can talk to the device
+ 3. Disable the actual power switching
+
+    The first step in programming an AVR chip is to reset it.
+    Unfortunately, that will result in the power being immediately
+    cut to the RPi.  That won't work at all!
+
+    We need to make sure that doesn't happen. There are two ways
+    to this:
+     
+        a. shutdown the RPi, remove the USB cable from the 
+           PiDog, and attach it instead to the RPi
+
+        b. attach a jumper on the power pins, bridging the VCC
+           and switched VCC pins. The power pins are the 2x2 
+           header in the upper left, and when the jumper is in
+           the correct position, it will be connecting the top
+           and bottom pins on the RIGHT side. (When not in use,
+           you can store the jumper on the left side.)
+
+
+ 4. Check that the programmer can talk to the device
 
     ```
     $ sudo avrdude -C avrdude-gpio.conf -c rpi_pidog_gpio -p t84
@@ -77,7 +97,7 @@ Raspberry Pi with no additional hardware (programmer, etc.)
     try re-running the command with `-v` added to the end to get more 
     verbose messages for diagnosis.
 
- 4. Now you are ready to reprogram the device. Get your firmware image in 
+ 5. Now you are ready to reprogram the device. Get your firmware image in 
     Intel .hex format (from the Arduinmo IDE: Sketch => Export Compiled Binary)
      and issue the command:
 
@@ -85,6 +105,9 @@ Raspberry Pi with no additional hardware (programmer, etc.)
     $ avrdude -C avrdude-gpio.conf -c rpi_pidog_gpio -p t84 -v -U example_file.hex 
     ```
 
+ 6. Remember that you removed removed the power from the PiDog or attached 
+    a jumper on the Vcc pins. Shutdown the Pi, remove the jumper (or reattach
+    the USB cable to the PiDog) and restart.
 
 That's it!
 
