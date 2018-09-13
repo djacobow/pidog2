@@ -195,7 +195,8 @@ void setup() {
 void loop() {
     static uint32_t last_time;
 
-    bool use_sleep = !(rf.get(REG_STATUS) & _BV(STAT_PWR_ON));
+    // bool use_sleep = !(rf.get(REG_STATUS) & _BV(STAT_PWR_ON));
+    bool use_sleep = false;
 
     bool second_elapsed = 
         use_sleep ? (!loop_count) :
@@ -204,7 +205,7 @@ void loop() {
     loop_count += 1;
 
     if (second_elapsed) {
-        last_time += MICROS_PER_TICK;
+        if (!use_sleep) last_time += MICROS_PER_TICK;
         doTickWork();
         loop_count = 0;
     }
