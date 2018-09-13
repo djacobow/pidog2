@@ -7,6 +7,7 @@
 #include "ema.h"
 #include "adcReader.h"
 #include "spi_reg_names.h"
+#include "sleepdelay.h"
 
 #define SERIAL_DEBUG 1
 
@@ -40,10 +41,10 @@ const size_t rf_size = 10;
 
 typedef regfile_c<reg_t, rf_size> myregfile_c;
 
+sleeper_c   sleeper;
 myregfile_c rf;
 adcReader_c <myregfile_c, 1, 16> adcreader(rf);
 
-uint32_t last_tick;
 uint32_t loop_count;
 
 reg_t handleCommand(uint8_t cmd, reg_t indata) {
@@ -123,10 +124,8 @@ void doSecondWork() {
 };
 
 
-const uint8_t TICKS_PER_SECOND = 16;
+const uint8_t TICKS_PER_SECOND = 4;
 const uint32_t MICROS_PER_TICK = (1e6 / TICKS_PER_SECOND);
-
-uint8_t floopy;
 
 void doTickWork() {
     static uint8_t tick_count;
@@ -154,7 +153,7 @@ void setup() {
     pinMode(PIN_LED_0,    OUTPUT);
 #endif
 
-    if (true) {
+    if (false) {
         for (uint8_t i=0;i<11;i++) {
             digitalWrite(PIN_LED_0,i&0x1);
             delay(i & 0x1 ? 10 : 20);
@@ -187,20 +186,34 @@ void setup() {
     spi.init();
     spi.setDebug(&srl);
     setupSPIInterrupts(&spi);
-
+    setupSleeperInterrupt(&sleeper);
     interrupts();
-    last_tick = millis();
     loop_count = 0;
 }
 
+
 void loop() {
     static uint32_t last_time;
-    if (micros() - last_time >= MICROS_PER_TICK) {
+
+    bool use_sleep = !(rf.get(REG_STATUS) & _BV(STAT_PWR_ON));
+
+    bool second_elapsed = 
+        use_sleep ? (!loop_count) :
+                    (micros() - last_time >= MICROS_PER_TICK);
+        
+    loop_count += 1;
+
+    if (second_elapsed) {
         last_time += MICROS_PER_TICK;
         doTickWork();
-        loop_count += 1;
+        loop_count = 0;
     }
-    delayMicroseconds(MICROS_PER_TICK / 10);
+
+    if (use_sleep) {
+        sleeper.sleepMillis(MICROS_PER_TICK / 1000);
+    } else {
+        delayMicroseconds(MICROS_PER_TICK);
+    }
 }
 
 
