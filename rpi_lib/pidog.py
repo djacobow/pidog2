@@ -129,15 +129,15 @@ class PiDog:
             'vbat_v5'          : {
                 'addr': 6,
                 'decode': {
-                    'vcc': lambda v: (v & 0xffff) / 1000.0,
-                    'vbatt': lambda v: ((v >> 16)& 0xffff) / 1000.0,
+                    'vcc': lambda v: (v & 0xffff), # already in mV
+                    'vbatt': lambda v: 13.8186 * ((v >> 16)& 0xffff)
                 },
             },
             'vswch_v33'        : {
                 'addr': 7,
                 'decode': {
-                    'v33': lambda v: (v & 0xffff) / 1000.0,
-                    'vcc_swtch': lambda v: ((v >> 16)& 0xffff) / 1000.0,
+                    'v33': lambda v: 3.3008 * (v & 0xffff),
+                    'vcc_swtch': lambda v: 5.4883 * ((v >> 16)& 0xffff),
                 },
             },
             'firecounts'       : {
