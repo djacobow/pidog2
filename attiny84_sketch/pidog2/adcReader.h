@@ -32,16 +32,12 @@ class adcReader_c {
                     h = register_top;
                     analogReference(INTERNAL1V1);
                     v = avg_vcc_sw.update(analogRead(A2));
-                    v *= 5620;
-                    v /= 1024;
                     break;
                 case 3 :
                     r = REG_VSWCH_V33;
                     h = register_bottom;
                     analogReference(INTERNAL1V1);
                     v = avg_vcc33.update(analogRead(A3));
-                    v *= 3380;
-                    v /= 1024;
                     break;
                 case 1 :
                     r = REG_TEMP;
@@ -53,8 +49,6 @@ class adcReader_c {
                     h = register_top;
                     analogReference(INTERNAL1V1);
                     v = avg_vbat.update(analogRead(A0));
-                    v *= 12180;
-                    v /= 882;
                     break;
                 case 0 :
                     r = REG_VBAT_V5;
