@@ -2,12 +2,12 @@
 #include <avr/wdt.h>
 #include <avr/sleep.h>
 #include <avr/power.h>
+#include <avr/interrupt.h>
 #include "regfile.h"
 #include "spislave.h"
 #include "ema.h"
 #include "adcReader.h"
 #include "spi_reg_names.h"
-#include "sleepdelay.h"
 
 #define SERIAL_DEBUG 1
 
@@ -20,6 +20,11 @@ typedef uint32_t reg_t;
 const uint8_t PIN_LED_WARN = 1;
 const uint8_t PIN_LED_0    = 2;
 const uint8_t PIN_PWR      = 3;
+
+uint32_t vhits;
+ISR(WDT_vect) { 
+    vhits++;
+}
 
 #ifdef SERIAL_DEBUG
 SoftwareSerialTX srl(PIN_LED_WARN);
@@ -41,11 +46,8 @@ const size_t rf_size = 10;
 
 typedef regfile_c<reg_t, rf_size> myregfile_c;
 
-sleeper_c   sleeper;
 myregfile_c rf;
 adcReader_c <myregfile_c, 1, 16> adcreader(rf);
-
-uint32_t loop_count;
 
 reg_t handleCommand(uint8_t cmd, reg_t indata) {
     reg_t odata = 0;
@@ -70,8 +72,6 @@ reg_t handleCommand(uint8_t cmd, reg_t indata) {
     // rf.dump();
     return odata;
 };
-
-spislave_c  spi(&handleCommand);
 
 
 
@@ -125,13 +125,13 @@ void doSecondWork() {
 
 
 const uint8_t TICKS_PER_SECOND = 4;
-const uint32_t MICROS_PER_TICK = (1e6 / TICKS_PER_SECOND);
+const uint32_t MILLIS_PER_TICK = (1e3 / TICKS_PER_SECOND);
+uint32_t next_tick;
 
 void doTickWork() {
     static uint8_t tick_count;
     bool second = ! (tick_count % TICKS_PER_SECOND);
     tick_count += 1;
-    wdt_reset();
 
     if (second) { 
         doSecondWork();
@@ -146,6 +146,11 @@ void doTickWork() {
 
 void setup() {
 
+    // disable the watchdog
+    MCUSR = 0;
+    wdt_enable(WDTO_2S);
+    wdt_reset();
+    // WDTCSR = _BV(WDCE) | _BV(WDIE);
 
     pinMode(PIN_PWR,      OUTPUT);
     pinMode(PIN_LED_WARN, OUTPUT);
@@ -166,7 +171,7 @@ void setup() {
     rf.clear();
 #ifdef SERIAL_DEBUG
     srl.begin(38400);
-    srl.print("hello!");
+    srl.println("hello!");
     rf.set_debug(&srl);
 #endif
     rf.set(rf_size - 1, HW_VERSION);
@@ -181,39 +186,47 @@ void setup() {
         _BV(STAT_PWR_ON)
     );
 
-    wdt_enable(WDTO_8S);
+    spislave_c *spi = spislave_c::getInstance();
+    spi->setCmdHandler(&handleCommand);
+    spi->init();
+    spi->setDebug(&srl);
 
-    spi.init();
-    spi.setDebug(&srl);
-    setupSPIInterrupts(&spi);
-    setupSleeperInterrupt(&sleeper);
     interrupts();
-    loop_count = 0;
+    srl.println("setup complete");
+    next_tick = millis();
+}
+
+
+
+void sleep250() {
+    uint8_t adcsra_was = ADCSRA;
+    ADCSRA = 0;
+
+    wdt_enable(WDTO_250MS);
+    wdt_reset();
+    WDTCSR |= _BV(WDIE);
+    set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+
+    sleep_mode();
+    
+    // and now we are awake again
+    ADCSRA = adcsra_was;
 }
 
 
 void loop() {
-    static uint32_t last_time;
-
-    // bool use_sleep = !(rf.get(REG_STATUS) & _BV(STAT_PWR_ON));
-    bool use_sleep = false;
-
-    bool second_elapsed = 
-        use_sleep ? (!loop_count) :
-                    (micros() - last_time >= MICROS_PER_TICK);
-        
-    loop_count += 1;
-
-    if (second_elapsed) {
-        if (!use_sleep) last_time += MICROS_PER_TICK;
-        doTickWork();
-        loop_count = 0;
-    }
-
+    bool use_sleep = !(rf.get(REG_STATUS) & _BV(STAT_PWR_ON));
     if (use_sleep) {
-        sleeper.sleepMillis(MICROS_PER_TICK / 1000);
+        sleep250();
+        doTickWork();      
     } else {
-        delayMicroseconds(MICROS_PER_TICK);
+        wdt_reset();
+        bool new_tick = (millis() >= next_tick);
+        if (new_tick) {
+            doTickWork();
+            next_tick += MILLIS_PER_TICK;
+        }
+        delay(MILLIS_PER_TICK / 10);
     }
 }
 
