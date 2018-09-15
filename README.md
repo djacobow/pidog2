@@ -109,6 +109,46 @@ an AtTiny (from a 328p) and switchign to SPI from i2c.
 
 
 
+### FAQ
+
+   1. What Raspberry Pi's does it work with?
+
+      So far, tested with the Pi3 and Pi Zero. I expect others
+      will work, too.
+
+   2. How much power does it consume?
+
+      It runs off the 5V rail. It draws about 14mA when the Pi
+      is on (plus the Pi power, of course) and 4mA when the Pi
+      is off. Some of that power is in the voltage dividers for
+      the voltage sensing, so you can remove those resistors if
+      you do not need the voltages, and some of the power is in
+      LEDs, which you can turn off.
+
+   3. How accurate is the timing?
+
+      There is no crystal on this board. The Attiny is using
+      its own internal 8 MHz clock, and everything timing-wise
+      is divided down from that. It is probably accurate to 
+      a few percent.
+
+      When the device is in Pi-off mode, it uses a different
+      low power oscillator that is part of the Attiny's own
+      watchdog circuit. This oscillator runs as 128 kHz and
+      is expected to be less accurate.
+
+      The long and the short of it is that if you want to 
+      turn off your Pi and expect to be woken 8 hours later,
+      it might be 7 hours and 45 minutes or 8 hours and 15 
+      minutes. You will have to do some experimentation, and 
+      consider using smaller intervals than you expect.
+
+   4. Where can I buy this?
+
+      Do not know yet. I'll update here when I have it worked
+      out.
+
+
 ### Author
 
    Dave Jacobowitz 
