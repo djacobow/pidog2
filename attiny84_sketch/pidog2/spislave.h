@@ -16,21 +16,24 @@ typedef reg_t (*cmdhandler_t)(uint8_t, reg_t);
 
 class spislave_c {
     private:
+        spislave_c() : psrl(0), bctr(0), dv_in(0), dv_out(0), cmd_in(0), cmd_out(0) {};
         cmdhandler_t ch;
         uint8_t bctr;
         uint8_t cmd_in, cmd_out;
         reg_t   dv_in, dv_out;
         Stream *psrl;
+
     public:
-        spislave_c(cmdhandler_t);
+        static spislave_c *getInstance() {
+            static spislave_c instance;
+            return &instance;
+        }
+        void setCmdHandler(cmdhandler_t ich) { ch = ich; }
         void setDebug(Stream *s) { psrl = s; };
         void init();
         void _ss_int();
         void _byte_int();
-        void docmd();
 };
-
-void setupSPIInterrupts(spislave_c *p);
 
 #endif
 

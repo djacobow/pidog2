@@ -3,15 +3,12 @@
 #include <avr/interrupt.h>
 #include <avr/io.h>
 
-spislave_c *spislave = 0;
-void setupSPIInterrupts(spislave_c *p) { spislave = p; };
-
 ISR(PCINT1_vect)  { 
-    if (spislave) spislave->_ss_int();
+    spislave_c::getInstance()->_ss_int();
 }
 
 ISR(USI_OVF_vect) { 
-    if (spislave) spislave->_byte_int();
+    spislave_c::getInstance()->_byte_int();
 }
 
 /*
@@ -20,20 +17,12 @@ ISR(USI_OVF_vect) {
  * USISR == status register
  */
 
-spislave_c::spislave_c(cmdhandler_t ich) : ch(ich), psrl(0) {};
-
-
 void
 spislave_c::init() {
-
     pinMode(PIN_MISO, OUTPUT);
     pinMode(PIN_MOSI, INPUT);
     pinMode(PIN_SCK,  INPUT);
     pinMode(PIN_SS ,  INPUT);
-
-    bctr = 0;;
-    dv_in = dv_out = 0;
-    cmd_in = cmd_out = 0;
 
     // three wire mode
     USICR = _BV(USIWM0) | _BV(USICS1);
@@ -99,7 +88,4 @@ spislave_c::_byte_int() {
 
     bctr += 1;
 };
-
-
-
 
