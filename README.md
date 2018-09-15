@@ -6,10 +6,19 @@ PiDog2 is a software + hardware project to make the Raspberry Pi *very* robust
 for applications where it will be deployed remotely, potentially with solar 
 and battery power, and with no human access or intervention for months or years.
 
-PiDog2 attached to the RPi's GPIO and acts as an SPI slave. Instead of connecting
-power to your RPi, you connect it to the PiDog. The PiDog has a switch that it 
-can use to power the RPi through the 5V pins, or, in the case that the Pi as
-become unresponsive, to shut it off.
+PiDog2 attached to the RPi's GPIO and acts as an SPI slave capable of powering
+and un-powering the Pi completely. Instead of connecting power to your RPi, 
+you connect it to the PiDog. The PiDog, in turn provides power to the Pi through
+the 5V GPIO pins.
+
+With this arrangement, the PiDog can "hard reboot" a Pi by "yanking the cord"
+if the dog had not been fed after a certain period. Later, the PiDog can
+re-apply power to the Pi and let the Pi boot again.
+
+Just summarily pulling the power is not very friendly, however, so that
+situation is to be avoided. The PiDog can help with that as well, allowing
+a Pi to bring itself to a halt before power-down and then expect to be 
+woken again after a period.
 
 
 
@@ -20,8 +29,8 @@ become unresponsive, to shut it off.
  * Wake-dog: wait a period of time and then turn the device back on again.
 
  * Provides voltage measurements to the Pi of the 5V input, the 5V output,
-   the Pi's 3.3V rail, and a separate measurement, intended for measurement
-   of a 12V battery.
+   the Pi's 3.3V rail, and up to do separate measurements, intended for 
+   measurement of a 12V battery and ... anything else that comes to mind.
 
 
 
@@ -39,18 +48,25 @@ become unresponsive, to shut it off.
    status, etc, and depending on conditions shut itself down again or
    continue normally.
 
- * monitor battery and charging system health
+ * monitor battery and charging system health. Provie that info to
+   a Pi so that it can decide to shut itself down, etc.
 
 
 
 ## Hardware
 
 The PiDog hardware is based on a small circuit board about the exact
-size of the Pi Zero. It contains a processor (AtTiny84) and a P-FET 
-power switch with ample capacity to power any RPi. There is also a
-micro USB port for power as well as 0.1" headers for power, a JST 
-connection for a 12V battery monitoring, and some debug headers and
-LEDs.
+size of the Pi Zero. (And yes, it works with Pi Zero.) It contains 
+a processor (AtTiny84) and a P-FET power switch with ample capacity 
+to power any RPi. There is also a micro USB port for power as well 
+as 0.1" headers for power, a JST connections for a 12V battery monitoring, 
+and some debug headers and LEDs.
+
+Power consumption for the PiDog is about 14 mA when operating with the
+Pi on. In this state, it will respond to SPI transactions. When the 
+Pi is off, the PiDog switches to lower-power mode, about 4mA including
+the LEDs. SPI transactions won't work in this mode, but then again,
+there is no RPi to make them, so it's probably OK.
 
 
 
@@ -64,10 +80,17 @@ and reading status.
 
 
 
-## Future Features
+## Firmware Updates
 
- * The hardware should be capable of programming the AtTiny *from*
-   the RPi. I have not tried this yet, but the hookups are there.
+You do not need an AVR device programmer to re-program the
+Attiny device. The RPi can do it directly! This allows 
+in-situ firmware updates, and even remote firmware updates if
+you dare!
+
+
+
+
+## Future Features
 
  * More cooked library support for the shutdown/wakeup use case,
    perhaps with awareness of weather and solar availability
@@ -96,9 +119,9 @@ an AtTiny (from a 328p) and switchign to SPI from i2c.
 
 ### License
 
-I have not completely decided yet. I will probably make the
-firmware and Python code open source, and will provide schematics
-for the hardware. I think I will withhold the artwork for the
-hardware.
+I have not completely decided yet. I will make the firmware and 
+Python code open source, and will provide schematics for the 
+hardware. I think I will withhold the artwork for the
+PCB hardware.
 
 
