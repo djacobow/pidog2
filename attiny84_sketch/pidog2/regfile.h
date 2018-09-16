@@ -52,7 +52,7 @@ class regfile_c {
             }
         }
 
-        void sethl(uint8_t addr, REGW i, register_half_t half) {
+        REGW sethl(uint8_t addr, REGW i, register_half_t half) {
             size_t sz = sizeof(REGW);
             REGW mask = ~0; // all ones
             mask >>= (sz * 4);

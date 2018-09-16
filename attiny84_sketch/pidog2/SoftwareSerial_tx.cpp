@@ -50,25 +50,6 @@ http://arduiniana.org.
 SoftwareSerialTX *SoftwareSerialTX::active_object = 0;
 
 //
-// Debugging
-//
-// This function generates a brief pulse
-// for debugging or measuring on an oscilloscope.
-inline void DebugPulse(uint8_t pin, uint8_t count)
-{
-#if _DEBUG
-  volatile uint8_t *pport = portOutputRegister(digitalPinToPort(pin));
-
-  uint8_t val = *pport;
-  while (count--)
-  {
-    *pport = val | digitalPinToBitMask(pin);
-    *pport = val;
-  }
-#endif
-}
-
-//
 // Private methods
 //
 
@@ -91,7 +72,6 @@ inline void SoftwareSerialTX::handle_interrupt()
 //
 SoftwareSerialTX::SoftwareSerialTX(uint8_t transmitPin, bool inverse_logic /* = false */) : 
   _tx_delay(0),
-  _buffer_overflow(false),
   _inverse_logic(inverse_logic)
 {
   setTX(transmitPin);

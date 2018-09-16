@@ -52,7 +52,7 @@ adcReader_c <myregfile_c, 1, 16> adcreader(rf);
 reg_t handleCommand(uint8_t cmd, reg_t indata) {
     reg_t odata = 0;
     uint8_t insn = (cmd & 0xc0) >> 6;
-    reg_names_t reg = cmd & 0xf;
+    reg_names_t reg = (reg_names_t)(cmd & 0xf);
 
     if (reg >= rf_size - 1) insn = 0;
     switch (insn) {

@@ -19,9 +19,8 @@ private:
   uint8_t _transmitBitMask;
   volatile uint8_t *_transmitPortRegister;
 
-  uint16_t _buffer_overflow:1;
-  uint16_t _inverse_logic:1;
   uint16_t _tx_delay;
+  uint16_t _inverse_logic:1;
 
   // static data
   static SoftwareSerialTX *active_object;
@@ -43,7 +42,7 @@ public:
   ~SoftwareSerialTX();
   void begin(long speed);
   void end();
-  bool overflow() { bool ret = _buffer_overflow; if (ret) _buffer_overflow = false; return ret; }
+  bool overflow() { return false; };
   int peek() { return 0; };
   virtual int read() { return 0; };
   virtual int available() { return 0; };
