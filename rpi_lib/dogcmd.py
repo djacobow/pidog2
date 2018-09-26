@@ -21,9 +21,9 @@ usage = """
         off_remaining
         on_rem_resetval
         off_rem_resetval
-        temp
-        vbat_v5
-        vswch_v33
+        temp_v33
+        vsensa_vsensb
+        v5_v5swtch
         firecounts
         hw_rev
 

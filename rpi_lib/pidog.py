@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import time
-import spidev
+# import spidev
 import RPi.GPIO as GPIO
 import sys 
 import random
@@ -9,55 +9,24 @@ import json
 
 pdelay = 0.0005
 
-class bbSPI:
-    def __init__(self):
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(19,GPIO.OUT) # MOSI
-        GPIO.setup(21,GPIO.IN)  # MISO
-        GPIO.setup(23,GPIO.OUT) # CK
-        GPIO.setup(24,GPIO.OUT) # SS
+resistors = {
+    'v5swtch' : [ 2.4, 9.1 ],
+    'v33'     : [ 3.9, 9.1 ],
+    'vsensa'  : [ 6.8, 91.0 ],
+    'vsensb'  : [ 6.8, 91.0 ], # not fitted
+}
 
-    def xfer2(self, oblist):
-        iblist = []
-        GPIO.output(24,GPIO.LOW)
-        time.sleep(pdelay)
-        for obyte in oblist:
-            ibyte = self._xfer8(obyte)
-            if ibyte > 0xff:
-                print('ERROR byte is not a byte!')
-            iblist.append(ibyte)
-        GPIO.output(24,GPIO.HIGH)
-        time.sleep(5*pdelay)
-        # print('==> ' + ','.join([ '{0:x}'.format(x) for x in oblist]))
-        # print('<== ' + ','.join([ '{0:x}'.format(x) for x in iblist]))
-        return iblist
+def top16(v):
+    return ((v >> 16) & 0xffff) + 0
+def bot16(v):
+    return (v & 0xffff) + 0
 
-    def _xfer8(self,obyte):
-        ibyte = 0
-        for i in range(8):
-            obit = obyte & 0x80
-            GPIO.output(19, GPIO.HIGH if obit else GPIO.LOW)
-            time.sleep(pdelay)
-            ibit = 1 if GPIO.input(21) else 0
-            GPIO.output(23, GPIO.HIGH)
-            GPIO.output(23, GPIO.LOW)
-            time.sleep(pdelay)
-            ibyte |= ibit
-            if i < 7:
-                obyte <<= 1
-                ibyte <<= 1
-        time.sleep(4*pdelay)
-        return ibyte
+def mulRatio(name,value):
+    # internal attiny reference is 1.1V
+    # ADC is 10b (0-1023)
+    # we want result in mV
+    return (1000 * 1.1 * value) / (1024 * resistors[name][0] / sum(resistors[name]))
 
-
-    def close(self):
-        print('closing and setting as inputs');
-        GPIO.setup(19,GPIO.IN)
-        GPIO.setup(21,GPIO.IN)
-        GPIO.setup(23,GPIO.IN)
-        GPIO.setup(24,GPIO.IN)
-
-            
 class PiDog:
     def __init__(self, bus = 0, device = 0):
         self.bus = bus
@@ -77,8 +46,8 @@ class PiDog:
             'wake_en'     : 0x08,
             'wake_fired'  : 0x10,
             'power_on'    : 0x20,
-            'led_warn_on' : 0x40,
-            'led_0_on'    : 0x80
+            'led_0_on'    : 0x40,
+            'led_1_on'    : 0x80
         }
 
         self.regs_by_name = {
@@ -91,8 +60,8 @@ class PiDog:
                     'wake_en  '   : lambda v: True if v & 0x8  else False,
                     'wake_fired'  : lambda v: True if v & 0x10 else False,
                     'power_on  '  : lambda v: True if v & 0x20 else False,
-                    'led_warn_on' : lambda v: True if v & 0x40 else False,
-                    'led_0_on'    : lambda v: True if v & 0x80 else False
+                    'led_0_on'    : lambda v: True if v & 0x40 else False,
+                    'led_1_on'    : lambda v: True if v & 0x80 else False
                 },
             },
             'on_remaining'     : {
@@ -119,32 +88,36 @@ class PiDog:
                     'off_rem_resetval': lambda v: v + 0,
                 },
             },
-            'temp'             : {
+            'temp_v33'             : {
                 'addr': 5,
                 'decode': {
                     # needs formula
-                    'temp_C': lambda v: (v & 0xffff) + 0,
+                    'temp_C': lambda v: top16(v) + 0,
+                    'v33': lambda v: mulRatio('v33',bot16(v)),
                 },
             },
-            'vbat_v5'          : {
+            'vsensa_vsensb'          : {
                 'addr': 6,
                 'decode': {
-                    'vcc': lambda v: (v & 0xffff), # already in mV
-                    'vbatt': lambda v: 13.8186 * ((v >> 16)& 0xffff)
+                    # Vcc is measured internally relative to 1.1V 
+                    # reference. No divider
+                    'vsensa': lambda v: mulRatio('vsensa',top16(v)),
+                    'vsensb': lambda v: mulRatio('vsensa',bot16(v)),
                 },
             },
-            'vswch_v33'        : {
+            'v5_v5swtch'        : {
                 'addr': 7,
                 'decode': {
-                    'v33': lambda v: 3.3008 * (v & 0xffff),
-                    'vcc_swtch': lambda v: 5.4883 * ((v >> 16)& 0xffff),
+                    'v5'     : lambda v: top16(v),
+                    'v5swtch': lambda v: mulRatio('v5swtch',bot16(v)),
                 },
             },
+
             'firecounts'       : {
                 'addr': 8,
                 'decode': {
-                    'wdog_events': lambda v: (v & 0xffff) + 0,
-                    'wake_events': lambda v: ((v >> 16)& 0xffff) + 0,
+                    'wdog_events': lambda v: bot16(v),
+                    'wake_events': lambda v: top16(v),
                 },
             },
             'hw_rev'           : {
@@ -368,6 +341,54 @@ def crazy_testing_stuff():
         time.sleep(2)
 
 
+
+class bbSPI:
+    def __init__(self):
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(19,GPIO.OUT) # MOSI
+        GPIO.setup(21,GPIO.IN)  # MISO
+        GPIO.setup(23,GPIO.OUT) # CK
+        GPIO.setup(24,GPIO.OUT) # SS
+
+    def xfer2(self, oblist):
+        iblist = []
+        GPIO.output(24,GPIO.LOW)
+        time.sleep(pdelay)
+        for obyte in oblist:
+            ibyte = self._xfer8(obyte)
+            if ibyte > 0xff:
+                print('ERROR byte is not a byte!')
+            iblist.append(ibyte)
+        GPIO.output(24,GPIO.HIGH)
+        time.sleep(5*pdelay)
+        # print('==> ' + ','.join([ '{0:x}'.format(x) for x in oblist]))
+        # print('<== ' + ','.join([ '{0:x}'.format(x) for x in iblist]))
+        return iblist
+
+    def _xfer8(self,obyte):
+        ibyte = 0
+        for i in range(8):
+            obit = obyte & 0x80
+            GPIO.output(19, GPIO.HIGH if obit else GPIO.LOW)
+            time.sleep(pdelay)
+            ibit = 1 if GPIO.input(21) else 0
+            GPIO.output(23, GPIO.HIGH)
+            GPIO.output(23, GPIO.LOW)
+            time.sleep(pdelay)
+            ibyte |= ibit
+            if i < 7:
+                obyte <<= 1
+                ibyte <<= 1
+        time.sleep(4*pdelay)
+        return ibyte
+
+
+    def close(self):
+        print('closing and setting as inputs');
+        GPIO.setup(19,GPIO.IN)
+        GPIO.setup(21,GPIO.IN)
+        GPIO.setup(23,GPIO.IN)
+        GPIO.setup(24,GPIO.IN)
 
 
 if __name__ == '__main__':
