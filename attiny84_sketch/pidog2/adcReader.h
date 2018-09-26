@@ -23,39 +23,41 @@ class adcReader_c {
             reg_names_t r = _REG_INVALID;
             reg_t v       = 0xdeadbeef;
             register_half_t h = register_bottom;
-            switch (next % 5) {
+            switch (next % 6) {
                  
-                // All these magic numbers come from resistor dividers numbers
-                // and measurements made on one board :-(
-                case 2 :
-                    r = REG_VSWCH_V33;
+                case 0 :
+                    r = REG_TEMP_V33;
                     h = register_top;
-                    analogReference(INTERNAL1V1);
-                    v = avg_vcc_sw.update(analogRead(A2));
-                    break;
-                case 3 :
-                    r = REG_VSWCH_V33;
-                    h = register_bottom;
-                    analogReference(INTERNAL1V1);
-                    v = avg_vcc33.update(analogRead(A3));
-                    break;
-                case 1 :
-                    r = REG_TEMP;
-                    h = register_bottom;
                     v = avg_temp.update(readOwnTemp());
                     break;
-                case 4 :
-                    r = REG_VBAT_V5;
+                case 1 :
+                    r = REG_TEMP_V33;
+                    h = register_bottom;
+                    analogReference(INTERNAL1V1);
+                    v = avg_vcc_sw.update(analogRead(A3));
+                    break;
+                case 2 :
+                    r = REG_VSENSA_VSENSB;
                     h = register_top;
                     analogReference(INTERNAL1V1);
                     v = avg_vbat.update(analogRead(A0));
                     break;
-                case 0 :
-                    r = REG_VBAT_V5;
+                case 3 :
+                    r = REG_VSENSA_VSENSB;
                     h = register_bottom;
+                    analogReference(INTERNAL1V1);
+                    v = avg_vbat.update(analogRead(A1));
+                    break;
+                case 4 :
+                    r = REG_V5_V5SWTCH;
+                    h = register_top;
                     v = avg_vcc.update(readOwnVCC());
-                    v *= 5078;
-                    v /= 5239;
+                    break;
+                case 5 :
+                    r = REG_V5_V5SWTCH;
+                    h = register_bottom;
+                    analogReference(INTERNAL1V1);
+                    v = avg_vcc_sw.update(analogRead(A2));
                     break;
             } 
             

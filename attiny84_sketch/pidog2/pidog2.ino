@@ -17,8 +17,8 @@
 
 typedef uint32_t reg_t;
 
-const uint8_t PIN_LED_WARN = 1;
-const uint8_t PIN_LED_0    = 2;
+const uint8_t PIN_LED_0    = 1;
+const uint8_t PIN_LED_1    = 2;
 const uint8_t PIN_PWR      = 3;
 
 uint32_t vhits;
@@ -27,11 +27,11 @@ ISR(WDT_vect) {
 }
 
 #ifdef SERIAL_DEBUG
-SoftwareSerialTX srl(PIN_LED_WARN);
+SoftwareSerialTX srl(PIN_LED_0);
 #endif
 
 #define VERSION_MAJOR 0x02
-#define VERSION_MINOR 0x01
+#define VERSION_MINOR 0x04
 const reg_t   HW_VERSION        = 
     ((reg_t)'p' << 24)   |
     ((reg_t)'d' << 16)   |
@@ -87,7 +87,7 @@ void doSecondWork() {
             rf.sethl(REG_FIRECOUNTS,rf.gethl(REG_FIRECOUNTS,register_bottom)+1,register_bottom);
         } else {
             if (on_rem < WARN_SECS) {
-                s |= _BV(STAT_LED_WARN);
+                s |= _BV(STAT_LED_0);
             }
             rf.set(REG_ON_REMAINING,on_rem-1);
         }
@@ -97,13 +97,13 @@ void doSecondWork() {
         if (!off_rem) {
             s |= _BV(STAT_WAKE_FIRED);
             s |= _BV(STAT_PWR_ON);
-            s &= ~_BV(STAT_LED_WARN);
+            s &= ~_BV(STAT_LED_0);
             s &= ~_BV(STAT_WDOG_FIRED);
             rf.set(REG_ON_REMAINING,rf.get(REG_ON_REM_RESETVAL));
             rf.sethl(REG_FIRECOUNTS,rf.gethl(REG_FIRECOUNTS,register_top)+1,register_top);
         } else {
             if (off_rem < WARN_SECS) {
-                s |= _BV(STAT_LED_WARN);
+                s |= _BV(STAT_LED_0);
             }
             rf.set(REG_OFF_REMAINING,off_rem-1);
         }
@@ -115,8 +115,8 @@ void doSecondWork() {
         // NB the power pin has negative polarity
         digitalWrite(PIN_PWR,      !(s & _BV(STAT_PWR_ON)));
 #ifndef SERIAL_DEBUG
-        digitalWrite(PIN_LED_WARN, s & _BV(STAT_LED_WARN));
-        digitalWrite(PIN_LED_0,    s & _BV(STAT_WDOG_FIRED));
+        digitalWrite(PIN_LED_0,    s & _BV(STAT_LED_0));
+        digitalWrite(PIN_LED_1,    s & _BV(STAT_WDOG_FIRED));
 #endif
     }
 
@@ -153,14 +153,14 @@ void setup() {
     // WDTCSR = _BV(WDCE) | _BV(WDIE);
 
     pinMode(PIN_PWR,      OUTPUT);
-    pinMode(PIN_LED_WARN, OUTPUT);
-#ifndef SERIAL_DEBUG
     pinMode(PIN_LED_0,    OUTPUT);
+#ifndef SERIAL_DEBUG
+    pinMode(PIN_LED_1,    OUTPUT);
 #endif
 
     if (false) {
         for (uint8_t i=0;i<11;i++) {
-            digitalWrite(PIN_LED_0,i&0x1);
+            digitalWrite(PIN_LED_1,i&0x1);
             delay(i & 0x1 ? 10 : 20);
         }
     }
