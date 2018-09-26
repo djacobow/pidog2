@@ -99,11 +99,16 @@ Raspberry Pi with no additional hardware (programmer, etc.)
 
  5. Now you are ready to reprogram the device. Get your firmware image in 
     Intel .hex format (from the Arduinmo IDE: Sketch => Export Compiled Binary)
-     and issue the command:
+     and issue the commands:
 
     ```
+    $ avrdude -C avrdude-gpio.conf -c rpi_pidog_gpio -p t84 -v -U lfuse:w:0xe2:m -U hfuse:w:0xdf:m -U efuse:w:0xff:m
     $ avrdude -C avrdude-gpio.conf -c rpi_pidog_gpio -p t84 -v -U example_file.hex 
     ```
+
+    The first command adjusts the "fuse" bytes and primarily sets the clock to 8 MHz.
+    The second command stores the firmware. On subsequent firmware updates, only 
+    the first command is needed.
 
  6. Remember that you removed removed the power from the PiDog or attached 
     a jumper on the Vcc pins. Shutdown the Pi, remove the jumper (or reattach
