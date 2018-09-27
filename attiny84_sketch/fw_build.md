@@ -46,7 +46,9 @@ generate warnings that you can see.
 ## Programming the firmware
 
 I recommend you use your Raspberry Pi to flash the AVR firmware.
-See instructions in rpi_lib/flashing for help on that.
+See instructions in rpi_lib/flashing for help on that. You will need
+the actually firmware hex file for programming. To get that, compile
+the sketch normally, and then choose Sketch => Export Compiled Binary.
 
 However, if you have an AVR programmer and have soldered the 
 ICSP header onto the PiDog, you can program the chip directly,
