@@ -2,18 +2,17 @@
 
 import time
 # import spidev
-import RPi.GPIO as GPIO
-import sys 
 import random
 import json
+import RPi.GPIO as GPIO
 
-pdelay = 0.0005
+PDELAY = 0.0005
 
-resistors = {
-    'v5swtch' : [ 2.4, 9.1 ],
-    'v33'     : [ 3.9, 9.1 ],
-    'vsensa'  : [ 6.8, 91.0 ],
-    'vsensb'  : [ 6.8, 91.0 ], # not fitted
+RESISTORS = {
+    'v5swtch' : [2.4, 9.1],
+    'v33'     : [3.9, 9.1],
+    'vsensa'  : [6.8, 91.0],
+    'vsensb'  : [6.8, 91.0], # not fitted
 }
 
 def top16(v):
@@ -21,11 +20,11 @@ def top16(v):
 def bot16(v):
     return (v & 0xffff) + 0
 
-def mulRatio(name,value):
+def mulRatio(name, value):
     # internal attiny reference is 1.1V
     # ADC is 10b (0-1023)
     # we want result in mV
-    return (1000 * 1.1 * value) / (1024 * resistors[name][0] / sum(resistors[name]))
+    return (1000 * 1.1 * value) / (1024 * RESISTORS[name][0] / sum(RESISTORS[name]))
 
 class PiDog:
     def __init__(self, bus = 0, device = 0):
@@ -353,14 +352,14 @@ class bbSPI:
     def xfer2(self, oblist):
         iblist = []
         GPIO.output(24,GPIO.LOW)
-        time.sleep(pdelay)
+        time.sleep(PDELAY)
         for obyte in oblist:
             ibyte = self._xfer8(obyte)
             if ibyte > 0xff:
                 print('ERROR byte is not a byte!')
             iblist.append(ibyte)
         GPIO.output(24,GPIO.HIGH)
-        time.sleep(5*pdelay)
+        time.sleep(5*PDELAY)
         # print('==> ' + ','.join([ '{0:x}'.format(x) for x in oblist]))
         # print('<== ' + ','.join([ '{0:x}'.format(x) for x in iblist]))
         return iblist
@@ -370,16 +369,16 @@ class bbSPI:
         for i in range(8):
             obit = obyte & 0x80
             GPIO.output(19, GPIO.HIGH if obit else GPIO.LOW)
-            time.sleep(pdelay)
+            time.sleep(PDELAY)
             ibit = 1 if GPIO.input(21) else 0
             GPIO.output(23, GPIO.HIGH)
             GPIO.output(23, GPIO.LOW)
-            time.sleep(pdelay)
+            time.sleep(PDELAY)
             ibyte |= ibit
             if i < 7:
                 obyte <<= 1
                 ibyte <<= 1
-        time.sleep(4*pdelay)
+        time.sleep(4*PDELAY)
         return ibyte
 
 
