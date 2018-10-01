@@ -16,10 +16,10 @@ typedef reg_t (*cmdhandler_t)(uint8_t, reg_t);
 
 class spislave_c {
     private:
-        spislave_c() : psrl(0), bctr(0), dv_in(0), dv_out(0), cmd_in(0), cmd_out(0) {};
+        spislave_c() : psrl(0), bctr(-1), dv_in(0), dv_out(0), cmd_in(0), cmd_out(0) {};
         cmdhandler_t ch;
         Stream *psrl;
-        uint8_t bctr;
+        int8_t bctr;
         reg_t   dv_in, dv_out;
         uint8_t cmd_in, cmd_out;
 

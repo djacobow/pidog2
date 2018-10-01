@@ -47,6 +47,7 @@ spislave_c::_ss_int() {
     } else {
         USICR &= ~_BV(USIOIE);
         USISR = 0;
+        bctr = -1;
         // if (psrl) psrl->println("T_end");
     } 
 
@@ -60,11 +61,15 @@ spislave_c::_byte_int() {
     USISR = _BV(USIOIF);
     USIDR = 0xff & (dv_out >> 24);
 
+    // do not do anythign at all if the SS is not low
+    if (digitalRead(PIN_SS) || (bctr < 0)) return; 
+
     if (!bctr) {
         cmd_in = newbyte;
     } else {
         dv_in = (dv_in << 8) | newbyte;
     }
+
     if (false && psrl) {
         psrl->print("counter: ");
         psrl->print(bctr);
@@ -84,6 +89,7 @@ spislave_c::_byte_int() {
         reg_t rv = ch(cmd_in, dv_in);
         dv_out = rv;
         cmd_out = cmd_in | 0x40;
+        bctr = -1;
     }
 
     bctr += 1;
