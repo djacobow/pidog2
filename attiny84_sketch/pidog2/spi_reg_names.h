@@ -23,8 +23,7 @@ typedef enum status_bits_t {
     STAT_WAKE_EN    = 3,
     STAT_WAKE_FIRED = 4,
     STAT_PWR_ON     = 5,
-    STAT_LED_0      = 6,
-    STAT_LED_1      = 7,
+    STAT_LED_WARN   = 6,
 } status_bits_t;
 
 #endif

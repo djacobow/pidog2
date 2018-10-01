@@ -10,6 +10,7 @@
 #include "spi_reg_names.h"
 
 #define SERIAL_DEBUG 1
+// #define NO_PATIENCE_DEBUG 1
 
 #ifdef SERIAL_DEBUG
   #include "SoftwareSerial_tx.h"
@@ -38,9 +39,16 @@ const reg_t   HW_VERSION        =
     (VERSION_MAJOR << 8) | 
     VERSION_MINOR;
 
+
+#ifdef NO_PATIENCE_DEBUG
+const reg_t DEFAULT_ON_TIME     = 30;
+const reg_t DEFAULT_OFF_TIME    = 30;
+const reg_t WARN_SECS           = 10;
+#else
 const reg_t DEFAULT_ON_TIME     = 300;
 const reg_t DEFAULT_OFF_TIME    = 300;
 const reg_t WARN_SECS           = 30;
+#endif
 
 const size_t rf_size = 10;
 
@@ -83,12 +91,11 @@ void doSecondWork() {
             s |=  _BV(STAT_WDOG_FIRED);
             s &= ~_BV(STAT_WAKE_FIRED);
             s &= ~_BV(STAT_PWR_ON);
+            s &= ~_BV(STAT_LED_WARN);
             rf.set(REG_OFF_REMAINING,rf.get(REG_OFF_REM_RESETVAL));
             rf.sethl(REG_FIRECOUNTS,rf.gethl(REG_FIRECOUNTS,register_bottom)+1,register_bottom);
         } else {
-            if (on_rem < WARN_SECS) {
-                s |= _BV(STAT_LED_0);
-            }
+            if (on_rem < WARN_SECS) s |= _BV(STAT_LED_WARN);
             rf.set(REG_ON_REMAINING,on_rem-1);
         }
     }
@@ -97,14 +104,12 @@ void doSecondWork() {
         if (!off_rem) {
             s |= _BV(STAT_WAKE_FIRED);
             s |= _BV(STAT_PWR_ON);
-            s &= ~_BV(STAT_LED_0);
+            s &= ~_BV(STAT_LED_WARN);
             s &= ~_BV(STAT_WDOG_FIRED);
             rf.set(REG_ON_REMAINING,rf.get(REG_ON_REM_RESETVAL));
             rf.sethl(REG_FIRECOUNTS,rf.gethl(REG_FIRECOUNTS,register_top)+1,register_top);
         } else {
-            if (off_rem < WARN_SECS) {
-                s |= _BV(STAT_LED_0);
-            }
+            if (off_rem < WARN_SECS) s |= _BV(STAT_LED_WARN);
             rf.set(REG_OFF_REMAINING,off_rem-1);
         }
     }
@@ -115,8 +120,8 @@ void doSecondWork() {
         // NB the power pin has negative polarity
         digitalWrite(PIN_PWR,      !(s & _BV(STAT_PWR_ON)));
 #ifndef SERIAL_DEBUG
-        digitalWrite(PIN_LED_0,    s & _BV(STAT_LED_0));
-        digitalWrite(PIN_LED_1,    s & _BV(STAT_WDOG_FIRED));
+        digitalWrite(PIN_LED_0,    s & _BV(STAT_LED_WARN));
+        digitalWrite(PIN_LED_1,    rf.gethl(REG_FIRECOUNTS,register_bottom) > 0);
 #endif
     }
 
@@ -189,10 +194,14 @@ void setup() {
     spislave_c *spi = spislave_c::getInstance();
     spi->setCmdHandler(&handleCommand);
     spi->init();
+#ifdef SERIAL_DEBUG
     spi->setDebug(&srl);
+#endif
 
     interrupts();
+#ifdef SERIAL_DEBUG
     srl.println("setup complete");
+#endif
     next_tick = millis();
 }
 
