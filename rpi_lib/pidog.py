@@ -45,8 +45,7 @@ class PiDog:
             'wake_en'     : 0x08,
             'wake_fired'  : 0x10,
             'power_on'    : 0x20,
-            'led_0_on'    : 0x40,
-            'led_1_on'    : 0x80
+            'led_led_warn': 0x40,
         }
 
         self.regs_by_name = {
@@ -59,8 +58,7 @@ class PiDog:
                     'wake_en  '   : lambda v: True if v & 0x8  else False,
                     'wake_fired'  : lambda v: True if v & 0x10 else False,
                     'power_on  '  : lambda v: True if v & 0x20 else False,
-                    'led_0_on'    : lambda v: True if v & 0x40 else False,
-                    'led_1_on'    : lambda v: True if v & 0x80 else False
+                    'led_warn'    : lambda v: True if v & 0x40 else False,
                 },
             },
             'on_remaining'     : {
@@ -188,7 +186,7 @@ class PiDog:
 
         o = {
             '__raw': val,
-            '__rawhex': '{0:x}_{1:x}'.format((val >> 16), val & 0xff),
+            '__rawhex': '{0:x}_{1:x}'.format((val >> 16), val & 0xffff),
         }
         for n in reg['decode']:
             f = reg['decode'][n]
