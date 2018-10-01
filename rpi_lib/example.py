@@ -13,9 +13,11 @@ if __name__ == '__main__':
     if ok:
         while True:
             pd.feed()    
-            rv = pd.get('vsensa_vsensb')
+            rv = pd.get('status')
             print(json.dumps(rv,indent=2,sort_keys=True))
-            time.sleep(10)
+            rv = pd.get('v5_v5swtch')
+            print(json.dumps(rv,indent=2,sort_keys=True))
+            time.sleep(2)
     else:
         print('Uh-oh. Missing PiDog?')
 
