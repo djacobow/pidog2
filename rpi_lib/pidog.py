@@ -253,6 +253,7 @@ class PiDog:
         print(hw)
         return None
 
+    # modes: 0 = read, 1 = logical_OR (set bits), 2 = logical_AND (for clearing bits), 0x3 = set
     def set(self, name, val, mode = 3):
         reg = None
         addr = None
