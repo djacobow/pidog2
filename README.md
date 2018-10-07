@@ -2,20 +2,35 @@
 
 Hardware monitoring and external watchdog support for the Raspberry Pi
 
-PiDog2 is a software + hardware project to make the Raspberry Pi *very* robust
+PiDog2 is a software + hardware device to make the Raspberry Pi *very* robust
 for applications where it will be deployed remotely, potentially with solar 
-and battery power, and with no human access or intervention for months or years.
+and battery power, and with out human access or intervention for months or years.
 
-PiDog2 attached to the RPi's GPIO and acts as an SPI slave capable of powering
-and un-powering the Pi completely. Instead of connecting power to your RPi, 
-you connect it to the PiDog. The PiDog, in turn provides power to the Pi through
-the 5V GPIO pins.
+It is designed to deal with the scenarios like:
+
+    * what if the application on my Raspberry Pi locks up?
+    * what if the Raspberry Pi itself locks up?
+    * what if my power source fails or a battery is depleted?
+    * what if the power source recharges?
+
+Furthermore, PiDog2 can really help save power when the system only needs
+to operate for part of the day. If you need a sensor read or a photo taken
+a few times day, or maybe even less frequently, then why leave the Pi powered
+at all times? Instead, the PiDog2 makes it easy to wake the Pi, run your app,
+then have the Pi shutdown again for a wakeup at a (potentially much) later
+time. The result: power saved, letting you get by with perhaps a smaller 
+battery and solar system than you would need for continuous 24x7 operation.
+
+PiDog2 attaches to the RPi's GPIO header and acts as an SPI slave capable 
+of powering and un-powering the Pi completely. Instead of connecting power 
+to your RPi, you connect it to the PiDog. The PiDog, in turn provides 
+power to the Pi through the 5V GPIO pins.
 
 With this arrangement, the PiDog can "hard reboot" a Pi by "yanking the cord"
 if the dog had not been fed after a certain period. Later, the PiDog can
 re-apply power to the Pi and let the Pi boot again.
 
-Just summarily pulling the power is not very friendly, however, so that
+Just summarily pulling the power is notfriendly, however, so that
 situation is to be avoided. The PiDog can help with that as well, allowing
 a Pi to bring itself to a halt before power-down and then expect to be 
 woken again after a period.
