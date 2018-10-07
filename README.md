@@ -84,7 +84,7 @@ supply.
 
 The PiDog has the following connectors:
 
-    0. The 2x20 pin connector for the Raspberry Pi (JRPI)
+    1. The 2x20 pin connector for the Raspberry Pi (JRPI)
 
        The PiDog connects the following pins on the RPi;
            - all grounds
@@ -93,9 +93,9 @@ The PiDog has the following connectors:
            - MISO,MOSI,SCK,and CS0 (for the SPI interface and
              programming)
 
-    1. a micro-USB connector (JUSB). You can connect any USB power supply here.
+    2. a micro-USB connector (JUSB). You can connect any USB power supply here.
 
-    2. A 2x2 0.1" header for power (JPWR). With the text upright, the left 
+    3. A 2x2 0.1" header for power (JPWR). With the text upright, the left 
        two pins on this header are both grounds. The lower pin is the 
        input 5V line (the same as the 5V line on the USB connector) and 
        the upper right pin is the switched 5V line. This is the 5V that 
@@ -106,12 +106,12 @@ The PiDog has the following connectors:
        status. This is convenient for firmware updates and while experimenting
        with the PiDog's firmware and output registers.
 
-    3. a 2x3 AVR-style programming header (JICSP). If you want to use 
+    4. a 2x3 AVR-style programming header (JICSP). If you want to use 
        an AVR programmer, you can do so from this connector, though you 
        probably will never need to, since the firmware can be upgraded 
        from the Pi itself.
 
-    4. A debug header (JDBG). The output pins that drive the two programmable
+    5. A debug header (JDBG). The output pins that drive the two programmable
        LEDs (D30_1 and D30_2) can double as serial debug pins. This is 
        enabled by setting a macro in the firmware sketch, recompiling, 
        and reprogramming. Obviously, the LEDs will no longer function 
@@ -121,7 +121,7 @@ The PiDog has the following connectors:
        Of course, you can use these pins for anything else you want, too,
        if you are willing to change the firmware.
 
-    5. The voltage measuring ports: JSENSA and JSENSB. This 2-pin JST
+    6. The voltage measuring ports: JSENSA and JSENSB. This 2-pin JST
        connectors have voltage dividers between them and the attiny, so
        that you can safely measure any voltage up to about 16V. You can,
        of course, change those resistors to different values for
