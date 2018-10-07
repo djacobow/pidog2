@@ -68,6 +68,66 @@ Pi is off, the PiDog switches to lower-power mode, about 4mA including
 the LEDs. SPI transactions won't work in this mode, but then again,
 there is no RPi to make them, so it's probably OK.
 
+The PiDog2 can easily switch on and off any Raspberry Pi, be it a 
+zero through 3B+. It can also switch on any peripherals you may
+have connected through the USB ports. Attention was paid to using
+wide power traces on the circuit board and using a transistor with a 
+lower on-resistance so that the voltage drop from input to output 
+while on would be as low as possible. Even up to 2.5A draw, the voltage
+drop on the switched 5V node should not be more than 100mV lower than
+the input. (Note that the PiDog cannot do anything about the voltage 
+drop at the input under load. If you see a significant voltage drop
+from your power supply, you may want to investigate a beefier 5V
+supply.
+
+### Hookups and Headers
+
+The PiDog has the following connectors:
+
+    0. The 2x20 pin connector for the Raspberry Pi (JRPI)
+
+       The PiDog connects the following pins on the RPi;
+           - all grounds
+           - The 5V pins
+           - The 3V3 pins
+           - MISO,MOSI,SCK,and CS0 (for the SPI interface and
+             programming)
+
+    1. a micro-USB connector (JUSB). You can connect any USB power supply here.
+
+    2. A 2x2 0.1" header for power (JPWR). With the text upright, the left 
+       two pins on this header are both grounds. The lower pin is the 
+       input 5V line (the same as the 5V line on the USB connector) and 
+       the upper right pin is the switched 5V line. This is the 5V that 
+       the Pi sees.
+
+       You can temporarily jumper the upper and lower right pins so that the
+       Pi's 5V line is always powered regardless of the PiDog's on/off 
+       status. This is convenient for firmware updates and while experimenting
+       with the PiDog's firmware and output registers.
+
+    3. a 2x3 AVR-style programming header (JICSP). If you want to use 
+       an AVR programmer, you can do so from this connector, though you 
+       probably will never need to, since the firmware can be upgraded 
+       from the Pi itself.
+
+    4. A debug header (JDBG). The output pins that drive the two programmable
+       LEDs (D30_1 and D30_2) can double as serial debug pins. This is 
+       enabled by setting a macro in the firmware sketch, recompiling, 
+       and reprogramming. Obviously, the LEDs will no longer function 
+       normally in this mode. This can be very useful for firmware
+       development.
+
+       Of course, you can use these pins for anything else you want, too,
+       if you are willing to change the firmware.
+
+    5. The voltage measuring ports: JSENSA and JSENSB. This 2-pin JST
+       connectors have voltage dividers between them and the attiny, so
+       that you can safely measure any voltage up to about 16V. You can,
+       of course, change those resistors to different values for
+       different ranges. My intentino was that these would be used to 
+       monitor a battery voltage, but they can be used for other
+       purposes as well.
 
 
 ## Software

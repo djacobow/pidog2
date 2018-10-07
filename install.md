@@ -22,7 +22,7 @@ So, anyway, log onto your RPi and:
         ```
 
 
-## Update the firmware
+## Update the firmware (optional)
 
     I'm always tinkering with the firmware, so it may
 have improved since I shipped your PiDog. If so, the
@@ -36,6 +36,6 @@ on updating the firmware
 
 ## Using the PiDog
 
-See the install,md in the `rpi_lib` folder for installation
+See the install.md in the `rpi_lib` folder for installation
 and use information.
 
