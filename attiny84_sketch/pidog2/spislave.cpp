@@ -19,7 +19,7 @@ ISR(USI_OVF_vect) {
 
 void
 spislave_c::init() {
-    pinMode(PIN_MISO, OUTPUT);
+    pinMode(PIN_MISO, INPUT); // do not switch to output unless /CS
     pinMode(PIN_MOSI, INPUT);
     pinMode(PIN_SCK,  INPUT);
     pinMode(PIN_SS ,  INPUT);
@@ -35,6 +35,7 @@ spislave_c::init() {
 void
 spislave_c::_ss_int() {
     if (!digitalRead(PIN_SS)) {
+        pinMode(PIN_MISO, OUTPUT);
         if (false && psrl) {
             psrl->println("T_start");
             // psrl->print("last USIDR ");
@@ -48,6 +49,7 @@ spislave_c::_ss_int() {
         USICR &= ~_BV(USIOIE);
         USISR = 0;
         bctr = -1;
+        pinMode(PIN_MISO, INPUT);
         // if (psrl) psrl->println("T_end");
     } 
 
