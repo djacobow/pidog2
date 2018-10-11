@@ -9,7 +9,7 @@
 #include "adcReader.h"
 #include "spi_reg_names.h"
 
-#define SERIAL_DEBUG 1
+// #define SERIAL_DEBUG 1
 // #define NO_PATIENCE_DEBUG 1
 
 #ifdef SERIAL_DEBUG
@@ -32,7 +32,7 @@ SoftwareSerialTX srl(PIN_LED_0);
 #endif
 
 #define VERSION_MAJOR 0x02
-#define VERSION_MINOR 0x04
+#define VERSION_MINOR 0x05
 const reg_t   HW_VERSION        = 
     ((reg_t)'p' << 24)   |
     ((reg_t)'d' << 16)   |
@@ -45,8 +45,8 @@ const reg_t DEFAULT_ON_TIME     = 30;
 const reg_t DEFAULT_OFF_TIME    = 30;
 const reg_t WARN_SECS           = 10;
 #else
-const reg_t DEFAULT_ON_TIME     = 300;
-const reg_t DEFAULT_OFF_TIME    = 300;
+const reg_t DEFAULT_ON_TIME     = 900;
+const reg_t DEFAULT_OFF_TIME    = 900;
 const reg_t WARN_SECS           = 30;
 #endif
 
