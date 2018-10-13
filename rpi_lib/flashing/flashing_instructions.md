@@ -3,6 +3,12 @@
 You can upgrade the firmware on the PiDog2 directly from a
 Raspberry Pi with no additional hardware (programmer, etc.)
 
+You can get a firmware image directly form this repo (in
+`firmware_images/`, or you can create your own by building 
+the sketch in this repo with the Arduino environment 
+(see `attiny84_sketch/fw_build.md`), or, of course, you can
+build your own firmware if you like.
+
 ## Instructions
 
  1. First, install the avrdude programmer. Starting from
