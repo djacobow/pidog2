@@ -32,6 +32,7 @@ Once the ATTinyCore is installed:
     1. Set the Board to Attiny 24/44/84
     2. Set chip to Attiny 84
     3. Set Clock to 8 MHz internal
+    4. Set the pin mapping to "counter clockwise like old AttinyCore..."
     
 
 ## Build the sketch
