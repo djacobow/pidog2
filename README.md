@@ -234,9 +234,11 @@ an AtTiny (from a 328p) and switchign to SPI from i2c.
 
 ### License
 
-I have not completely decided yet. I will make the firmware and 
-Python code open source, and will provide schematics for the 
-hardware. I think I will withhold the artwork for the
-PCB hardware.
+The code and files contained in this repository are subject to the 
+GPLv3, a copy of which is included in the repository as well.
+
+Artwork (gerbers) for the PCB itself is not included in this 
+repository and is not licensed.
+
 
 
