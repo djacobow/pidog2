@@ -178,9 +178,7 @@ deployed in various remote sensing applications. The main change
 with this version is adding voltage measurement, switching to
 an AtTiny (from a 328p) and switchign to SPI from i2c.
 
- * Current Version: 0.0.1
-
- * This is all very preliminary
+ * HW version v0.7, SW version : 0.0.1
 
 
 
@@ -220,23 +218,26 @@ an AtTiny (from a 328p) and switchign to SPI from i2c.
 
    4. Where can I buy this?
 
-      Do not know yet. I'll update here when I have it worked
-      out.
+      Tindie!
+
+      https://www.tindie.com/products/djacobow/pidog2/
 
 
 ### Author
 
    Dave Jacobowitz 
 
-   djacobow at github dot com
+   dave -at- southberkeleyelectronics.com
 
 
 
 ### License
 
-I have not completely decided yet. I will make the firmware and 
-Python code open source, and will provide schematics for the 
-hardware. I think I will withhold the artwork for the
-PCB hardware.
+The code and files contained in this repository are subject to the 
+GPLv3, a copy of which is included in the repository as well.
+
+Artwork (gerbers) for the PCB itself is not included in this 
+repository and is not licensed.
+
 
 
