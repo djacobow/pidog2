@@ -18,7 +18,7 @@ So, anyway, log onto your RPi and:
     1. Install git if you have to
     2. Clone the repo
         ```
-        git clone https://github.com/djacobow/pidoog2
+        git clone https://github.com/djacobow/pidog2
         ```
 
 
