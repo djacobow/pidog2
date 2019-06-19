@@ -140,7 +140,7 @@ The PiDog has the following connectors:
        connectors have voltage dividers between them and the attiny, so
        that you can safely measure any voltage up to about 16V. You can,
        of course, change those resistors to different values for
-       different ranges. My intentino was that these would be used to 
+       different ranges. My intention was that these would be used to 
        monitor a battery voltage, but they can be used for other
        purposes as well.
 
