@@ -18,13 +18,13 @@ So, anyway, log onto your RPi and:
     1. Install git if you have to
     2. Clone the repo
         ```
-        git clone https://github.com/djacobow/pidoog2
+        git clone https://github.com/djacobow/pidog2
         ```
 
 
 ## Update the firmware (optional)
 
-    I'm always tinkering with the firmware, so it may
+    I am m always tinkering with the firmware, so it may
 have improved since I shipped your PiDog. If so, the
 current version will be in the repo you just cloned.
 (And you can always get the most current by running a 
