@@ -24,13 +24,13 @@ So, anyway, log onto your RPi and:
 
 ## Update the firmware (optional)
 
-    I am m always tinkering with the firmware, so it may
+I am always tinkering with the firmware, so it may
 have improved since I shipped your PiDog. If so, the
 current version will be in the repo you just cloned.
 (And you can always get the most current by running a 
 git pull)
 
-    Look in the `rpi_lib/flashing` folder for information
+Look in the `rpi_lib/flashing` folder for information
 on updating the firmware
 
 
