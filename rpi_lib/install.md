@@ -36,31 +36,31 @@ special dependencies, but it has two:
 ## Running
 
 
-    `pidog.py` is the main library. It includes routines for
-a simple bit-banged SPI implementation and wrappers for 
-accessign the PiDog registers. The wrappers will also convert
+`pidog.py` is the main library. It includes routines for
+a simple bit-banged SPI implementation (bbSPI) and wrappers for 
+accessing the PiDog registers. The wrappers will also convert
 register contents into more friendly representations for you
 and return them as little JSON structs.
 
-   `example.py` is a very simple example that initializez
-   a PiDog object (which also initializes the actual PiDog),
-   resets it to the default reset values, and then in a loop
-   calls `feed()` which is just a wrapper that reset ths
-   countdown timer.
+`example.py` is a very simple example that uses pidog.py to
+initialize a PiDog object (and which also initializes the actual 
+PiDog), resets it to the default reset values, and then,
+ in a loop calls feed()`which is just a wrapper that reset ths
+countdown timer.
 
-   `dogcmd.py` is a very simple command-line utility that 
-   also allows accessing the pidog.py setter/getters from the 
-   command line. This should make it easy to "feed" the dog
-   or make other adjustments from shell scripts.
+`dogcmd.py` is a very simple command-line utility that 
+also allows accessing the pidog.py setter/getters from the 
+command line. This should make it easy to "feed" the dog
+or make other adjustments from shell scripts.
    
 
-   Speaking of shell scripts, `shutdown_example.sh` is an
-   example of a script that uses `dogcmd.py` to set up the 
-   PiDog to shutdown and wakeup after a certain period, then
-   it shuts down the Pi gracefully before the PiDog cuts the 
-   power.
+Speaking of shell scripts,`shutdown_example.sh` is an
+example of a script that uses`dogcmd.py to set up the 
+PiDog to shutdown and wakeup after a certain period, then
+it shuts down the Pi gracefully before the PiDog cuts the 
+power.
 
-   I know this documentation is minimal, but the code is 
-   pretty small, too. It was my intention to keep it very 
-   simple so that it could also be reliable.
+I know this documentation is minimal, but the code is 
+pretty small, too. It was my intention to keep it very 
+simple so that it could also be reliable.
 
