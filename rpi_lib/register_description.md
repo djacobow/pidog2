@@ -121,3 +121,22 @@ might print:
 ```
 This is telling you that the register value was 40 (decimal), 0x28 (hexadecimal) and the watchdog is current *not* enabled.
 
+Or,
+```python
+    rv = pd.get('v5_v5swtch')
+    print(json.dumps(rv,indent=2,sort_keys=True))
+```
+
+might return:
+
+```json
+{
+  "__raw": 343344127,
+  "__rawhex": "1477_3ff",
+  "v5": 5239,
+  "v5swtch": 5265.68603515625
+}
+
+```
+
+Which is telling you that the input voltage and output voltages are approximately 5.2V. This is consistent with the Pi being "on".
