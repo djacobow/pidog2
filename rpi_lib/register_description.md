@@ -2,25 +2,13 @@
 
 The PiDog behaves like a SPI slave with a 5 byte (40b) register.
 
-The PiDog has 10 accessible registers. Each time the Pi accesses the
-PiDog, it shifts in 5 bytes and simultaneously shifts out 5 bytes. The
-first byte shifted in contains the register address (4b) as well as
-bits to indicate the action (write the register, set bits, clear bits,
-or read). The remaining four bytes shifted in are the bits to be written,
-set, or cleared. In the case of a read, they are ignored.
+The PiDog has 10 accessible registers. Each time the Pi accesses the PiDog, it shifts in 5 bytes and simultaneously shifts out 5 bytes. The first byte shifted in contains the register address (4b) as well as bits to indicate the action (write the register, set bits, clear bits, or read). The remaining four bytes shifted in are the bits to be written, set, or cleared. In the case of a read, they are ignored.
 
-Five bytes are also shifted out. The first byte is the register that
-was read or written. The remaining four are the register value.
+Five bytes are also shifted out. The first byte is the register that was read or written. The remaining four are the register value.
 
-Note that the 5 bytes that are shifted out while you shift in 5 bytes
-contain any result from the *previous* 5 bytes shifted in. That is,
-the output is always one action behind the input.
+Note that the 5 bytes that are shifted out while you shift in 5 bytes contain any result from the *previous* 5 bytes shifted in. That is, the output is always one action behind the input.
 
-If you use the pidog.py library, this is handled for you.  The Pidog
-library also "decodes" register values for you where appropriate. For the
-status register, this means separating bits into a named dictionary. For
-the voltages, it means converting 10b ADC values into actual mV, based
-on the resistors on the board.
+If you use the pidog.py library, this is handled for you.  The Pidog library also "decodes" register values for you where appropriate. For the status register, this means separating bits into a named dictionary. For the voltages, it means converting 10b ADC values into actual mV, based on the resistors on the board.
 
 # Register Descriptions
 
@@ -140,3 +128,4 @@ might return:
 ```
 
 Which is telling you that the input voltage and output voltages are approximately 5.2V. This is consistent with the Pi being "on".
+

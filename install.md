@@ -1,6 +1,5 @@
 # How to set up PiDog2
 
-
 Setting up a PiDog2 is easy (I hope)
 
 ## Clone the repository
@@ -15,27 +14,20 @@ itself for this, but you do not have to.
 
 So, anyway, log onto your RPi and:
 
-    1. Install git if you have to
-    2. Clone the repo
-        ```
-        git clone https://github.com/djacobow/pidog2
-        ```
+1. Install git if you have to:
+	`sudo apt-get git	`
+2. Clone the repo:
+    `git clone https://github.com/djacobow/pidog2`
 
 
 ## Update the firmware (optional)
 
-I am always tinkering with the firmware, so it may
-have improved since I shipped your PiDog. If so, the
-current version will be in the repo you just cloned.
-(And you can always get the most current by running a 
-git pull)
+I sometimes improve the firmware. If there is a specific issue you have experienced that you think a firmware update will fix, you can update the firmware. The current version will be in the repo you just cloned. (And you can always get the most current by running a git pull)
 
-Look in the `rpi_lib/flashing` folder for information
-on updating the firmware
+Look in the `rpi_lib/flashing` folder for information on updating the firmware
 
 
 ## Using the PiDog
 
-See the install.md in the `rpi_lib` folder for installation
-and use information.
+See the install.md in the `rpi_lib` folder for installation and use information.
 
