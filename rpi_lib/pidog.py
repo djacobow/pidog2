@@ -117,8 +117,14 @@ class PiDog:
                     'wake_events': lambda v: top16(v),
                 },
             },
-            'hw_rev'           : {
+            'vsensa_on_threshold'       : {
                 'addr': 9,
+                'decode': {
+                    'vsensa_on_threshold': lambda v: v + 0,
+                },
+            },
+            'hw_rev'           : {
+                'addr': 10,
                 'decode': {
                     'device_id': lambda v: [ (v >> 24) & 0xff, (v >> 16) & 0xff ],
                     'version_minor': lambda v: (v & 0xff) + 0,
