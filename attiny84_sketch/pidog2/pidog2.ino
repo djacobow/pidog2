@@ -32,7 +32,7 @@ SoftwareSerialTX srl(PIN_LED_0);
 #endif
 
 #define VERSION_MAJOR 0x02
-#define VERSION_MINOR 0x05
+#define VERSION_MINOR 0x06
 const reg_t   HW_VERSION        = 
     ((reg_t)'p' << 24)   |
     ((reg_t)'d' << 16)   |
@@ -44,13 +44,15 @@ const reg_t   HW_VERSION        =
 const reg_t DEFAULT_ON_TIME     = 30;
 const reg_t DEFAULT_OFF_TIME    = 30;
 const reg_t WARN_SECS           = 10;
+const reg_t VSENSA_ON_THRESHOLD = 0; //Disables this function
 #else
 const reg_t DEFAULT_ON_TIME     = 900;
 const reg_t DEFAULT_OFF_TIME    = 900;
 const reg_t WARN_SECS           = 30;
+const reg_t VSENSA_ON_THRESHOLD = 0; //Disables this function
 #endif
 
-const size_t rf_size = 10;
+const size_t rf_size = 11;
 
 typedef regfile_c<reg_t, rf_size> myregfile_c;
 
@@ -102,12 +104,16 @@ void doSecondWork() {
     if ((s & _BV(STAT_WAKE_EN)) && (~s & _BV(STAT_PWR_ON))) {
         reg_t off_rem = rf.get(REG_OFF_REMAINING);
         if (!off_rem) {
-            s |= _BV(STAT_WAKE_FIRED);
-            s |= _BV(STAT_PWR_ON);
-            s &= ~_BV(STAT_LED_WARN);
-            s &= ~_BV(STAT_WDOG_FIRED);
-            rf.set(REG_ON_REMAINING,rf.get(REG_ON_REM_RESETVAL));
-            rf.sethl(REG_FIRECOUNTS,rf.gethl(REG_FIRECOUNTS,register_top)+1,register_top);
+            if (rf.gethl(REG_VSENSA_VSENSB,register_top) >= VSENSA_ON_THRESHOLD) {
+              s |= _BV(STAT_WAKE_FIRED);
+              s |= _BV(STAT_PWR_ON);
+              s &= ~_BV(STAT_LED_WARN);
+              s &= ~_BV(STAT_WDOG_FIRED);
+              rf.set(REG_ON_REMAINING,rf.get(REG_ON_REM_RESETVAL));
+              rf.sethl(REG_FIRECOUNTS,rf.gethl(REG_FIRECOUNTS,register_top)+1,register_top);
+            } else {
+              rf.set(REG_OFF_REMAINING,rf.get(REG_OFF_REM_RESETVAL));
+            }
         } else {
             if (off_rem < WARN_SECS) s |= _BV(STAT_LED_WARN);
             rf.set(REG_OFF_REMAINING,off_rem-1);
@@ -190,6 +196,7 @@ void setup() {
         _BV(STAT_WAKE_EN) |
         _BV(STAT_PWR_ON)
     );
+    rf.set(REG_VSENSA_ON_THRESHOLD,VSENSA_ON_THRESHOLD);
 
     spislave_c *spi = spislave_c::getInstance();
     spi->setCmdHandler(&handleCommand);
