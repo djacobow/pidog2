@@ -12,10 +12,11 @@ if __name__ == '__main__':
 
     if ok:
         # modes: 0 = read, 1 = logical_OR (set bits), 2 = logical_AND (for clearing bits), 0x3 = set
-        pd.set(name='vsensa_on_threshold', val=13000, mode=3)
-        pd.set(name='on_rem_resetval', val=60, mode=3)
+        #((v >> 16) & 0xffff) + 0
+        pd.set(name='vsense_on_threshold', val=(pd.adcValue('vsensa', 13000) << 16 | 0x0), mode=3)
+        pd.set(name='on_rem_resetval', val=30, mode=3)
         pd.set(name='off_rem_resetval', val=30, mode=3)
-        pd.set(name='on_remaining', val=60, mode=3)
+        pd.set(name='on_remaining', val=30, mode=3)
         pd.set(name='off_remaining', val=30, mode=3)
     
         while True:
@@ -39,7 +40,7 @@ if __name__ == '__main__':
             print(json.dumps(rv,indent=2,sort_keys=True))
             rv = pd.get('hw_rev')
             print(json.dumps(rv,indent=2,sort_keys=True))
-            rv = pd.get('vsensa_on_threshold')
+            rv = pd.get('vsense_on_threshold')
             print(json.dumps(rv,indent=2,sort_keys=True))            
             time.sleep(5)
             #pd.feed()    
