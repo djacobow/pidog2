@@ -18,10 +18,8 @@ selected with the following considerations:
 
 | STATE | VSENSA |VSENSB|BOTH|
 |---|---|---|---|
-| ON (12.3v)|0x3200000|0x320|0x3200320|
-| | 52428800d|800d|52429600d|
-|OFF (10.0v)|0x2870000|0x287|0x2870287|
-||42401792d|647d|42402439d
+|ON (12.3v)|0x3200000 (52428800d)|0x320 (800d)|0x3200320 (52429600d)|
+|OFF (10.0v)|0x2870000 (42401792d)|0x287 (647d)|0x2870287 (42402439d)|
 
 > *Note* All test cases performed with the rpi jumper in place and the following constants defined in the sketch: 
 	*SERIAL_DEBUG 1
