@@ -9,8 +9,8 @@
 #include "adcReader.h"
 #include "spi_reg_names.h"
 
-// #define SERIAL_DEBUG 1
-// #define NO_PATIENCE_DEBUG 1
+#define SERIAL_DEBUG 1
+#define NO_PATIENCE_DEBUG 1
 
 #ifdef SERIAL_DEBUG
   #include "SoftwareSerial_tx.h"
@@ -32,7 +32,7 @@ SoftwareSerialTX srl(PIN_LED_0);
 #endif
 
 #define VERSION_MAJOR 0x02
-#define VERSION_MINOR 0x05
+#define VERSION_MINOR 0x06
 const reg_t   HW_VERSION        = 
     ((reg_t)'p' << 24)   |
     ((reg_t)'d' << 16)   |
@@ -41,16 +41,20 @@ const reg_t   HW_VERSION        =
 
 
 #ifdef NO_PATIENCE_DEBUG
-const reg_t DEFAULT_ON_TIME     = 30;
-const reg_t DEFAULT_OFF_TIME    = 30;
-const reg_t WARN_SECS           = 10;
+const reg_t DEFAULT_ON_TIME       = 30;
+const reg_t DEFAULT_OFF_TIME      = 30;
+const reg_t WARN_SECS             = 10;
+const reg_t VSENSE_ON_THRESHOLD   = 0;
+const reg_t VSENSE_OFF_THRESHOLD  = 0;
 #else
-const reg_t DEFAULT_ON_TIME     = 900;
-const reg_t DEFAULT_OFF_TIME    = 900;
-const reg_t WARN_SECS           = 30;
+const reg_t DEFAULT_ON_TIME       = 900;
+const reg_t DEFAULT_OFF_TIME      = 900;
+const reg_t WARN_SECS             = 30;
+const reg_t VSENSE_ON_THRESHOLD   = 0; //Disables this function
+const reg_t VSENSE_OFF_THRESHOLD  = 0; //Disables this function
 #endif
 
-const size_t rf_size = 10;
+const size_t rf_size = 12;
 
 typedef regfile_c<reg_t, rf_size> myregfile_c;
 
@@ -84,10 +88,34 @@ reg_t handleCommand(uint8_t cmd, reg_t indata) {
 
 
 void doSecondWork() {
+    #ifdef SERIAL_DEBUG
+    srl.print("VSENSA: ");
+    srl.print(rf.get(REG_VSENSA_VSENSB) >> 16 & 0xffff);
+    srl.print(" VSENSB: ");
+    srl.print(rf.get(REG_VSENSA_VSENSB) & 0xffff);
+    srl.println(" ");
+    #endif
     uint32_t s = rf.get(REG_STATUS);
     if ((s & _BV(STAT_WDOG_EN)) && (s & _BV(STAT_PWR_ON))) {
         reg_t on_rem = rf.get(REG_ON_REMAINING);
-        if (!on_rem) {
+        //reg_t a_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_top); <-- This always works.
+        //reg_t b_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_bottom);<-- This only works when the top 16 bits are 0. Otherwise, this call returns all 32 bits.
+        reg_t a_off_thresh = (rf.get(REG_VSENSE_OFF_THRESHOLD) >> 16) & 0xffff;
+        reg_t b_off_thresh = rf.get(REG_VSENSE_OFF_THRESHOLD) & 0xffff;
+        #ifdef SERIAL_DEBUG
+        srl.print("AOFFT: ");
+        srl.print(a_off_thresh);
+        srl.print(" BOFFT: ");
+        srl.print(b_off_thresh);
+        srl.println(" ");
+        #endif
+        if ( !on_rem ||
+             (a_off_thresh && ((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) < a_off_thresh) || 
+             (b_off_thresh && (rf.get(REG_VSENSA_VSENSB) & 0xffff) < b_off_thresh)) {
+        //if ( !on_rem ) {
+            #ifdef SERIAL_DEBUG
+            srl.println("Powering off pi.");
+            #endif
             s |=  _BV(STAT_WDOG_FIRED);
             s &= ~_BV(STAT_WAKE_FIRED);
             s &= ~_BV(STAT_PWR_ON);
@@ -102,12 +130,49 @@ void doSecondWork() {
     if ((s & _BV(STAT_WAKE_EN)) && (~s & _BV(STAT_PWR_ON))) {
         reg_t off_rem = rf.get(REG_OFF_REMAINING);
         if (!off_rem) {
-            s |= _BV(STAT_WAKE_FIRED);
-            s |= _BV(STAT_PWR_ON);
-            s &= ~_BV(STAT_LED_WARN);
-            s &= ~_BV(STAT_WDOG_FIRED);
-            rf.set(REG_ON_REMAINING,rf.get(REG_ON_REM_RESETVAL));
-            rf.sethl(REG_FIRECOUNTS,rf.gethl(REG_FIRECOUNTS,register_top)+1,register_top);
+            //reg_t a_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_top); <-- This always works.
+            //reg_t b_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_bottom); <-- This only works when the top 16 bits are 0. Otherwise, this call returns all 32 bits.
+            reg_t a_on_thresh = (rf.get(REG_VSENSE_ON_THRESHOLD) >> 16) & 0xffff;
+            reg_t b_on_thresh = rf.get(REG_VSENSE_ON_THRESHOLD) & 0xffff;
+            #ifdef SERIAL_DEBUG
+            srl.print("AONT: ");
+            srl.print(a_on_thresh);
+            srl.print(" BONT: ");
+            srl.print(b_on_thresh);
+            srl.println(" ");
+            #endif
+            bool enable = false;
+            if ( ! ( a_on_thresh || b_on_thresh ) ) {
+                enable = true;
+            } else if ( a_on_thresh && b_on_thresh && (((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) >= a_on_thresh ) &&
+                                                       ((rf.get(REG_VSENSA_VSENSB) & 0xffff) >= b_on_thresh) ) {
+                enable = true;
+            } else if ( a_on_thresh && ! b_on_thresh && (((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) >= a_on_thresh ) ) {
+                enable = true;
+            } else if ( ! a_on_thresh && b_on_thresh && ((rf.get(REG_VSENSA_VSENSB) & 0xffff) >= b_on_thresh) ) {
+                enable = true;
+            }
+
+            if (enable == true) {
+                #ifdef SERIAL_DEBUG
+                srl.println("Powering on pi.");
+                #endif
+                s |= _BV(STAT_WAKE_FIRED);
+                s |= _BV(STAT_PWR_ON);
+                s &= ~_BV(STAT_LED_WARN);
+                s &= ~_BV(STAT_WDOG_FIRED);
+                rf.set(REG_ON_REMAINING,rf.get(REG_ON_REM_RESETVAL));
+                rf.sethl(REG_FIRECOUNTS,rf.gethl(REG_FIRECOUNTS,register_top)+1,register_top);
+            } else if ( a_on_thresh || b_on_thresh ) {
+              #ifdef SERIAL_DEBUG
+              srl.println("VSENSA and/or VSENSB are below threshold, restarting timer.");
+              #endif
+              s |=  _BV(STAT_WDOG_FIRED);
+              s &= ~_BV(STAT_WAKE_FIRED);
+              s &= ~_BV(STAT_PWR_ON);
+              s &= ~_BV(STAT_LED_WARN);
+              rf.set(REG_OFF_REMAINING,rf.get(REG_OFF_REM_RESETVAL));
+            }
         } else {
             if (off_rem < WARN_SECS) s |= _BV(STAT_LED_WARN);
             rf.set(REG_OFF_REMAINING,off_rem-1);
@@ -190,6 +255,8 @@ void setup() {
         _BV(STAT_WAKE_EN) |
         _BV(STAT_PWR_ON)
     );
+    rf.set(REG_VSENSE_ON_THRESHOLD,VSENSE_ON_THRESHOLD);
+    rf.set(REG_VSENSE_OFF_THRESHOLD,VSENSE_OFF_THRESHOLD);
 
     spislave_c *spi = spislave_c::getInstance();
     spi->setCmdHandler(&handleCommand);
