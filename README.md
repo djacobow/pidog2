@@ -66,21 +66,6 @@ woken again after a period.
  * monitor battery and charging system health. Provie that info to
    a Pi so that it can decide to shut itself down, etc.
 
- NEW IN VERSION 2.6 - High Voltage Reconnect
- * power on a pi when the voltage on vsensa is greater than or equal to
-   the user-programmed threshold voltage and the 'off_remaining' timer 
-   has expired. Typical use would be to have the battery that powers the
-   system connected to vsensa and the rpi code moniotring this value
-   periodically. If the battery voltage falls below a safe level, the rpi
-   code would then perform a graceful shutdown. Because it is no longer 
-   feeding the pidog, the on timer will expire causing power disconnect to the
-   pi and the start of the off timer. When the off timer expires, the pidog
-   will check if the battery voltage is greater than, or equal to, the prescribed 
-   threshold voltage. If so it will connect power to the rpi. Otherwise it will
-   restart the off timer and repeat this process. By default this threshold 
-   value is set to zero, which disables this feature thereby preserving existing
-   pidog behavior and use-cases.
-
 ## Hardware
 
 The PiDog hardware is based on a small circuit board about the exact
