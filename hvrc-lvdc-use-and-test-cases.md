@@ -33,29 +33,29 @@ selected with the following considerations:
 ##TC-1 Verify LVDC & HVRC due to voltage changes on VSENSA only.
 
 	1. Set VSENSA, VSENSB levels to (12v, 0v).
-	1. Reset pidog using hw switch.
-	1. Before 'off-timer' expires, use dogcmd to set 'vsense_off_threshold' register to 42401792 (10v) and 'vsense_on_threshold' to 52428800 (12.3v). 
+	2. Reset pidog using hw switch.
+	3. Before 'off-timer' expires, use dogcmd to set 'vsense_off_threshold' register to 42401792 (10v) and 'vsense_on_threshold' to 52428800 (12.3v). 
 			./dogcmd.py set vsense_off_threshold 42401792; ./dogcmd.py set vsense_on_threshold 52428800
-	1. Verify that pidog remains on until the on_remaining timer expires. Once the timer expires, verify that pidog switches off and remains off through successive off_remaining timer expiration/reset cycles.
-	1. Reset pidog using hw switch.
-	1. Before 'off-timer' expires, use dogcmd to set 'vsense_off_threshold' register to 42401792 (10v) and 'vsense_on_threshold' to 52428800 (12.3v). 
+	4. Verify that pidog remains on until the on_remaining timer expires. Once the timer expires, verify that pidog switches off and remains off through successive off_remaining timer expiration/reset cycles.
+	5. Reset pidog using hw switch.
+	6. Before 'off-timer' expires, use dogcmd to set 'vsense_off_threshold' register to 42401792 (10v) and 'vsense_on_threshold' to 52428800 (12.3v). 
 			./dogcmd.py set vsense_off_threshold 42401792; ./dogcmd.py set vsense_on_threshold 52428800
-	1. Set VSENSA level = 9v. Verify that pidog switches off immediately when voltage drops bellow 10v, before on-remaining timer expires.
-	1. Set VSENSA level = 12v. Verify that when off-remaining timer expires, pidog restarts off-timer.
-	1.  Set VSENSA level = 13v. Verify that when off-remaining timer expires, pidog switches on.
+	7. Set VSENSA level = 9v. Verify that pidog switches off immediately when voltage drops bellow 10v, before on-remaining timer expires.
+	8. Set VSENSA level = 12v. Verify that when off-remaining timer expires, pidog restarts off-timer.
+	9.  Set VSENSA level = 13v. Verify that when off-remaining timer expires, pidog switches on.
 	
 ##TC-2 Verify LVDC & HVRC due to voltage changes on VSENSB only. 
-	a) Set VSENSA, VSENSB levels to (0v, 12v).
-	b) Reset pidog using hw switch.
-	c) Before 'off-timer' expires, use dogcmd to set 'vsense_off_threshold' register to 647 (10v) and 'vsense_on_threshold' to 800 (12.3v). 
+	1. Set VSENSA, VSENSB levels to (0v, 12v).
+	2. Reset pidog using hw switch.
+	3. Before 'off-timer' expires, use dogcmd to set 'vsense_off_threshold' register to 647 (10v) and 'vsense_on_threshold' to 800 (12.3v). 
 			./dogcmd.py set vsense_off_threshold 647; ./dogcmd.py set vsense_on_threshold 800
-	d) Verify that pidog remains on until the on_remaining timer expires. Once the timer expires, verify that pidog switches off and remains off through successive off_remaining timer expiration/reset cycles.
-	e) Reset pidog using hw switch.
-	f) Before 'off-timer' expires, use dogcmd to set 'vsense_off_threshold' register to 647 (10v) and 'vsense_on_threshold' to 800 (12.3v). 
+	4. Verify that pidog remains on until the on_remaining timer expires. Once the timer expires, verify that pidog switches off and remains off through successive off_remaining timer expiration/reset cycles.
+	5. Reset pidog using hw switch.
+	6. Before 'off-timer' expires, use dogcmd to set 'vsense_off_threshold' register to 647 (10v) and 'vsense_on_threshold' to 800 (12.3v). 
 			./dogcmd.py set vsense_off_threshold 647; ./dogcmd.py set vsense_on_threshold 800
-	g) Set VSENSB level = 9v. Verify that pidog switches off immediately when voltage drops bellow 10v, before on-remaining timer expires.
-	h) Set VSENSB level = 12v. Verify that when off-remaining timer expires, pidog restarts off-timer.
-	i)  Set VSENSB level = 13v. Verify that when off-remaining timer expires, pidog switches on.
+	7. Set VSENSB level = 9v. Verify that pidog switches off immediately when voltage drops bellow 10v, before on-remaining timer expires.
+	8. Set VSENSB level = 12v. Verify that when off-remaining timer expires, pidog restarts off-timer.
+	9.  Set VSENSB level = 13v. Verify that when off-remaining timer expires, pidog switches on.
 	
 ##TC-3 Verify LVDC & HVRC due to voltage changes on VSENSA or VSENSB. 
 	a) Set VSENSA, VSENSB levels to (12v, 12v).
