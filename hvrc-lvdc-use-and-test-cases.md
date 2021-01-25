@@ -1,4 +1,4 @@
-#LVDC and HVDC USE CASE OVERVIEW
+# LVDC and HVDC USE CASE OVERVIEW
 The application behind this use case is to have the pidog act not only as a hardware watchdog, protecting against rpi lockups, but to also monitor the the supply voltage that keeps the pidog and rpi running. To suport this capability, two new features have been added to pidog: Low-Voltage Disconnect (LVDC) and High-Voltage Reconnect (HVRC).
 
 Supporting these feaures are two new user-configurable registers, 'vsense_on_threshold' and 'vsense_off_threshold'. Each is a 32-bit register where the upper 16 bits define thresholds for vsensa and the lower 16 bits define threholds for vsensb. The 'vsense_on_threshold' thresholds specify voltage levels that when the monitored voltage level(s) (vsensa or vsensb) are greater or equal to the threshold then the pidog will reconnect power to the rpi after the off-remaining timer expires. The 'vsense_off_threshold' thresholds specify voltage levels that when the monitored voltage level(s) (vsensa or vsensb) are less than the threshold then the pidog will immediately disconnect power from the rpi.
@@ -12,7 +12,7 @@ selected with the following considerations:
 		low-voltage cutoff.
 	c)	Software on the rpi should use the supplied pidog/rpi library to monitor the battery voltage and detect when it is less than the high-voltage reconnect threshold and greater than the low-voltage disconnect threshold. The rpi should check the level often enough that it will have time to perform a safe shutdown before the disconnect threshold is reached. Note that once the rpi shuts down, the load on the battery will drop. This might well mean that the battery voltage	never drops down to bellow the disconnect threshold. Fortunately, once the rpi shuts itself down, it will stop feeding the pidog and eventually have the power disconnected. 
 
-##LVDC-HVRC TEST CASE PARAMETERS
+## LVDC-HVRC TEST CASE PARAMETERS
 | STATE | VSENSA |VSENSB|BOTH|
 |---|---|---|---|
 |ON (12.3v)|0x3200000 (52428800d)|0x320 (800d)|0x3200320 (52429600d)|
@@ -23,9 +23,9 @@ selected with the following considerations:
 	*SERIAL_DEBUG 1*
 	*NO_PATIENCE_DEBUG 1*
 
-#TEST CASES
+# TEST CASES
 
-##TC-1 Verify LVDC & HVRC due to voltage changes on VSENSA only.
+## TC-1 Verify LVDC & HVRC due to voltage changes on VSENSA only.
 
 	1. Set VSENSA, VSENSB levels to (12v, 0v).
 	2. Reset pidog using hw switch.
@@ -39,7 +39,7 @@ selected with the following considerations:
 	8. Set VSENSA level = 12v. Verify that when off-remaining timer expires, pidog restarts off-timer.
 	9. Set VSENSA level = 13v. Verify that when off-remaining timer expires, pidog switches on.
 	
-##TC-2 Verify LVDC & HVRC due to voltage changes on VSENSB only. 
+## TC-2 Verify LVDC & HVRC due to voltage changes on VSENSB only. 
 
 	1. Set VSENSA, VSENSB levels to (0v, 12v).
 	2. Reset pidog using hw switch.
@@ -53,7 +53,7 @@ selected with the following considerations:
 	8. Set VSENSB level = 12v. Verify that when off-remaining timer expires, pidog restarts off-timer.
 	9. Set VSENSB level = 13v. Verify that when off-remaining timer expires, pidog switches on.
 	
-##TC-3 Verify LVDC & HVRC due to voltage changes on VSENSA or VSENSB.
+## TC-3 Verify LVDC & HVRC due to voltage changes on VSENSA or VSENSB.
  
 	1. Set VSENSA, VSENSB levels to (12v, 12v).
 	2. Reset pidog using hw switch.
@@ -69,7 +69,7 @@ selected with the following considerations:
 	10. Set VSENSA and VSENSB levels to 12v, 13v. Verify that when off-remaining timer expires, pidog restarts off-timer.
 	11. Set VSENSA and VSENSB levels to 13v, 13v. Verify that when off-remaining timer expires, pidog switches on.
 	
-##TC-4 Verify LVDC & HVRC due to voltage changes on VSENSA or VSENSB (reversed manipulations of VSENSA and VSENSB)
+## TC-4 Verify LVDC & HVRC due to voltage changes on VSENSA or VSENSB (reversed manipulations of VSENSA and VSENSB)
 
 	1. Set VSENSA, VSENSB levels to (12v, 12v).
 	2. Reset pidog using hw switch.
