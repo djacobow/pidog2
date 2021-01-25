@@ -120,15 +120,15 @@ class PiDog:
             'vsense_on_threshold'       : {
                 'addr': 9,
                 'decode': {
-                    'vsensa_on_threshold': lambda v: top16(v),
-                    'vsensb_on_threshold': lambda v: bot16(v),
+                    'vsensa_on_threshold': lambda v: mulRatio('vsensa',top16(v)),
+                    'vsensb_on_threshold': lambda v: mulRatio('vsensb',bot16(v)),
                 },
             },
             'vsense_off_threshold'       : {
                 'addr': 10,
                 'decode': {
-                    'vsensa_off_threshold': lambda v: top16(v),
-                    'vsensb_off_threshold': lambda v: bot16(v),
+                    'vsensa_off_threshold': lambda v: mulRatio('vsensa',top16(v)),
+                    'vsensb_off_threshold': lambda v: mulRatio('vsensb',bot16(v)),
                 },
             },
             'hw_rev'           : {
@@ -284,7 +284,7 @@ class PiDog:
                 return v
         return None
 
-    def adcValue(self, name, value):
+    def getAdcValue(self, name, value):
         return round((1024 * RESISTORS[name][0] / sum(RESISTORS[name])) * value / (1000 * 1.1))
 
     def deinit(self):

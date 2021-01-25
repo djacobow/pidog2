@@ -11,14 +11,18 @@ if __name__ == '__main__':
     ok = pd.reset()
 
     if ok:
-        # modes: 0 = read, 1 = logical_OR (set bits), 2 = logical_AND (for clearing bits), 0x3 = set
-        #((v >> 16) & 0xffff) + 0
-        pd.set(name='vsense_on_threshold', val=(pd.adcValue('vsensa', 13000) << 16 | 0x0), mode=3)
-        pd.set(name='on_rem_resetval', val=30, mode=3)
-        pd.set(name='off_rem_resetval', val=30, mode=3)
-        pd.set(name='on_remaining', val=30, mode=3)
-        pd.set(name='off_remaining', val=30, mode=3)
+        pd.set(name='vsense_on_threshold', val=(pd.getAdcValue('vsensa', 13000) << 16 | 0x0), mode=1)
+        ##pd.set(name='vsense_on_threshold', val=(pd.getAdcValue('vsensb', 13000) & 0xffff), mode=1)
+        pd.set(name='vsense_off_threshold', val=(pd.getAdcValue('vsensa', 10000) << 16 | 0x0), mode=1)
+        ##pd.set(name='vsense_off_threshold', val=(pd.getAdcValue('vsensb', 10000) & 0xffff), mode=1)
+        pd.set(name='on_rem_resetval', val=60, mode=3)
+        pd.set(name='off_rem_resetval', val=60, mode=3)
+        pd.set(name='on_remaining', val=60, mode=3)
+        pd.set(name='off_remaining', val=60, mode=3)
     
+        rv = pd.get('hw_rev')
+        print(json.dumps(rv,indent=2,sort_keys=True))
+        skip_feed = 0
         while True:
             rv = pd.get('status')
             print(json.dumps(rv,indent=2,sort_keys=True))
@@ -28,22 +32,30 @@ if __name__ == '__main__':
             print(json.dumps(rv,indent=2,sort_keys=True))
             rv = pd.get('off_remaining')
             print(json.dumps(rv,indent=2,sort_keys=True))
+            """
             rv = pd.get('on_rem_resetval')
             print(json.dumps(rv,indent=2,sort_keys=True))
             rv = pd.get('off_rem_resetval')
             print(json.dumps(rv,indent=2,sort_keys=True))
+            """
             rv = pd.get('temp_v33')
             print(json.dumps(rv,indent=2,sort_keys=True))
             rv = pd.get('vsensa_vsensb')
             print(json.dumps(rv,indent=2,sort_keys=True))
             rv = pd.get('firecounts')
             print(json.dumps(rv,indent=2,sort_keys=True))
-            rv = pd.get('hw_rev')
-            print(json.dumps(rv,indent=2,sort_keys=True))
             rv = pd.get('vsense_on_threshold')
-            print(json.dumps(rv,indent=2,sort_keys=True))            
+            print(json.dumps(rv,indent=2,sort_keys=True))
+            rv = pd.get('vsense_off_threshold')
+            print(json.dumps(rv,indent=2,sort_keys=True)) 
+
+            if skip_feed == 8:
+                pd.feed()
+                skip_feed = 0
+            else:
+                skip_feed += 1
+            
             time.sleep(5)
-            #pd.feed()    
 
     else:
         print('Uh-oh. Missing PiDog?')
