@@ -9,8 +9,8 @@
 #include "adcReader.h"
 #include "spi_reg_names.h"
 
-#define SERIAL_DEBUG 1
-#define NO_PATIENCE_DEBUG 1
+//#define SERIAL_DEBUG 0
+//#define NO_PATIENCE_DEBUG 0
 
 #ifdef SERIAL_DEBUG
   #include "SoftwareSerial_tx.h"
@@ -88,13 +88,6 @@ reg_t handleCommand(uint8_t cmd, reg_t indata) {
 
 
 void doSecondWork() {
-    #ifdef SERIAL_DEBUG
-    srl.print("VSENSA: ");
-    srl.print(rf.get(REG_VSENSA_VSENSB) >> 16 & 0xffff);
-    srl.print(" VSENSB: ");
-    srl.print(rf.get(REG_VSENSA_VSENSB) & 0xffff);
-    srl.println(" ");
-    #endif
     uint32_t s = rf.get(REG_STATUS);
     if ((s & _BV(STAT_WDOG_EN)) && (s & _BV(STAT_PWR_ON))) {
         reg_t on_rem = rf.get(REG_ON_REMAINING);
@@ -102,17 +95,9 @@ void doSecondWork() {
         //reg_t b_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_bottom);<-- This only works when the top 16 bits are 0. Otherwise, this call returns all 32 bits.
         reg_t a_off_thresh = (rf.get(REG_VSENSE_OFF_THRESHOLD) >> 16) & 0xffff;
         reg_t b_off_thresh = rf.get(REG_VSENSE_OFF_THRESHOLD) & 0xffff;
-        #ifdef SERIAL_DEBUG
-        srl.print("AOFFT: ");
-        srl.print(a_off_thresh);
-        srl.print(" BOFFT: ");
-        srl.print(b_off_thresh);
-        srl.println(" ");
-        #endif
         if ( !on_rem ||
              (a_off_thresh && ((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) < a_off_thresh) || 
              (b_off_thresh && (rf.get(REG_VSENSA_VSENSB) & 0xffff) < b_off_thresh)) {
-        //if ( !on_rem ) {
             #ifdef SERIAL_DEBUG
             srl.println("Powering off pi.");
             #endif
@@ -134,13 +119,6 @@ void doSecondWork() {
             //reg_t b_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_bottom); <-- This only works when the top 16 bits are 0. Otherwise, this call returns all 32 bits.
             reg_t a_on_thresh = (rf.get(REG_VSENSE_ON_THRESHOLD) >> 16) & 0xffff;
             reg_t b_on_thresh = rf.get(REG_VSENSE_ON_THRESHOLD) & 0xffff;
-            #ifdef SERIAL_DEBUG
-            srl.print("AONT: ");
-            srl.print(a_on_thresh);
-            srl.print(" BONT: ");
-            srl.print(b_on_thresh);
-            srl.println(" ");
-            #endif
             bool enable = false;
             if ( ! ( a_on_thresh || b_on_thresh ) ) {
                 enable = true;
@@ -164,13 +142,6 @@ void doSecondWork() {
                 rf.set(REG_ON_REMAINING,rf.get(REG_ON_REM_RESETVAL));
                 rf.sethl(REG_FIRECOUNTS,rf.gethl(REG_FIRECOUNTS,register_top)+1,register_top);
             } else if ( a_on_thresh || b_on_thresh ) {
-              #ifdef SERIAL_DEBUG
-              srl.println("VSENSA and/or VSENSB are below threshold, restarting timer.");
-              #endif
-              s |=  _BV(STAT_WDOG_FIRED);
-              s &= ~_BV(STAT_WAKE_FIRED);
-              s &= ~_BV(STAT_PWR_ON);
-              s &= ~_BV(STAT_LED_WARN);
               rf.set(REG_OFF_REMAINING,rf.get(REG_OFF_REM_RESETVAL));
             }
         } else {
