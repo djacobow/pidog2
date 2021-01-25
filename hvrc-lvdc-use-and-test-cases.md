@@ -16,6 +16,10 @@ selected with the following considerations:
 
 ##LVDC-HVRC TEST CASE PARAMETERS
 
+| foo | bar |
+| --- | --- |
+| baz | bim |
+
 ##STATE			VSENSA				VSENSB				BOTH
 ON (12.3v)		0x3200000			0x320					0x3200320
 					52428800d			800d					52429600d
