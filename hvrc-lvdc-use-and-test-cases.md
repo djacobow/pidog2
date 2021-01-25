@@ -11,6 +11,7 @@ selected with the following considerations:
 	b) High-voltage reconnect should be set high enough that when the load is reconnected the voltage drop that might result does not drop back down below the
 		low-voltage cutoff.
 	c)	Software on the rpi should use the supplied pidog/rpi library to monitor the battery voltage and detect when it is less than the high-voltage reconnect threshold and greater than the low-voltage disconnect threshold. The rpi should check the level often enough that it will have time to perform a safe shutdown before the disconnect threshold is reached. Note that once the rpi shuts down, the load on the battery will drop. This might well mean that the battery voltage	never drops down to bellow the disconnect threshold. Fortunately, once the rpi shuts itself down, it will stop feeding the pidog and eventually have the power disconnected. 
+# TEST CASES
 
 ## LVDC-HVRC TEST CASE PARAMETERS
 | STATE | VSENSA |VSENSB|BOTH|
@@ -22,8 +23,6 @@ selected with the following considerations:
  
 	*SERIAL_DEBUG 1*
 	*NO_PATIENCE_DEBUG 1*
-
-# TEST CASES
 
 ## TC-1 Verify LVDC & HVRC due to voltage changes on VSENSA only.
 
