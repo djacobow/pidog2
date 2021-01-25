@@ -43,7 +43,7 @@ selected with the following considerations:
 	1. Set VSENSA, VSENSB levels to (0v, 12v).
 	2. Reset pidog using hw switch.
 	3. Before 'off-timer' expires, use dogcmd to set 'vsense_off_threshold' register to 647 (10v) and 'vsense_on_threshold' to 800 (12.3v). 
-		*./dogcmd.py set vsense_off_threshold 647; ./dogcmd.py set vsense_on_threshold 800*
+		*./dogcmd.py set vsense_off_threshold 647;* *./dogcmd.py set vsense_on_threshold 800*
 	4. Verify that pidog remains on until the on_remaining timer expires. Once the timer expires, verify that pidog switches off and remains off through successive off_remaining timer expiration/reset cycles.
 	5. Reset pidog using hw switch.
 	6. Before 'off-timer' expires, use dogcmd to set 'vsense_off_threshold' register to 647 (10v) and 'vsense_on_threshold' to 800 (12.3v). 
