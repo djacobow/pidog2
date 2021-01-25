@@ -45,6 +45,7 @@ selected with the following considerations:
 	9.  Set VSENSA level = 13v. Verify that when off-remaining timer expires, pidog switches on.
 	
 ##TC-2 Verify LVDC & HVRC due to voltage changes on VSENSB only. 
+
 	1. Set VSENSA, VSENSB levels to (0v, 12v).
 	2. Reset pidog using hw switch.
 	3. Before 'off-timer' expires, use dogcmd to set 'vsense_off_threshold' register to 647 (10v) and 'vsense_on_threshold' to 800 (12.3v). 
