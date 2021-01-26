@@ -26,6 +26,8 @@ usage = """
         v5_v5swtch
         firecounts
         hw_rev
+        vsense_on_threshold
+        vsense_off_threshold
 
     If the command was "set", then a value to write must also
     be specified.

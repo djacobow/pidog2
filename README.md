@@ -66,8 +66,6 @@ woken again after a period.
  * monitor battery and charging system health. Provie that info to
    a Pi so that it can decide to shut itself down, etc.
 
-
-
 ## Hardware
 
 The PiDog hardware is based on a small circuit board about the exact

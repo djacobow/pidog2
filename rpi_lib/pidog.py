@@ -46,6 +46,7 @@ class PiDog:
             'wake_fired'  : 0x10,
             'power_on'    : 0x20,
             'led_led_warn': 0x40,
+            'fire_code'     : 0x180,
         }
 
         self.regs_by_name = {
@@ -59,6 +60,7 @@ class PiDog:
                     'wake_fired'  : lambda v: True if v & 0x10 else False,
                     'power_on  '  : lambda v: True if v & 0x20 else False,
                     'led_warn'    : lambda v: True if v & 0x40 else False,
+                    'fire_code'    : lambda v: (v & 0x180) + 0,
                 },
             },
             'on_remaining'     : {
@@ -99,7 +101,7 @@ class PiDog:
                     # Vcc is measured internally relative to 1.1V 
                     # reference. No divider
                     'vsensa': lambda v: mulRatio('vsensa',top16(v)),
-                    'vsensb': lambda v: mulRatio('vsensa',bot16(v)),
+                    'vsensb': lambda v: mulRatio('vsensb',bot16(v)),
                 },
             },
             'v5_v5swtch'        : {
@@ -117,8 +119,22 @@ class PiDog:
                     'wake_events': lambda v: top16(v),
                 },
             },
-            'hw_rev'           : {
+            'vsense_on_threshold'       : {
                 'addr': 9,
+                'decode': {
+                    'vsensa_on_threshold': lambda v: mulRatio('vsensa',top16(v)),
+                    'vsensb_on_threshold': lambda v: mulRatio('vsensb',bot16(v)),
+                },
+            },
+            'vsense_off_threshold'       : {
+                'addr': 10,
+                'decode': {
+                    'vsensa_off_threshold': lambda v: mulRatio('vsensa',top16(v)),
+                    'vsensb_off_threshold': lambda v: mulRatio('vsensb',bot16(v)),
+                },
+            },
+            'hw_rev'           : {
+                'addr': 11,
                 'decode': {
                     'device_id': lambda v: [ (v >> 24) & 0xff, (v >> 16) & 0xff ],
                     'version_minor': lambda v: (v & 0xff) + 0,
@@ -270,9 +286,11 @@ class PiDog:
                 return v
         return None
 
+    def getAdcValue(self, name, value):
+        return round((1024 * RESISTORS[name][0] / sum(RESISTORS[name])) * value / (1000 * 1.1))
+
     def deinit(self):
         self.spi.close()
-
         
 def crazy_testing_stuff():
     pd = PiDog()
