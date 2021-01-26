@@ -46,6 +46,7 @@ class PiDog:
             'wake_fired'  : 0x10,
             'power_on'    : 0x20,
             'led_led_warn': 0x40,
+            'fire_code'     : 0x180,
         }
 
         self.regs_by_name = {
@@ -59,6 +60,7 @@ class PiDog:
                     'wake_fired'  : lambda v: True if v & 0x10 else False,
                     'power_on  '  : lambda v: True if v & 0x20 else False,
                     'led_warn'    : lambda v: True if v & 0x40 else False,
+                    'fire_code'    : lambda v: (v & 0x180) + 0,
                 },
             },
             'on_remaining'     : {
