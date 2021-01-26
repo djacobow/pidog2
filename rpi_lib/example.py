@@ -11,7 +11,7 @@ if __name__ == '__main__':
     ok = pd.reset()
 
     if ok:
-        pd.set(name='vsense_on_threshold', val=(pd.getAdcValue('vsensa', 13000) << 16 | 0x0), mode=1)
+        pd.set(name='vsense_on_threshold', val=(pd.getAdcValue('vsensa', 12000) << 16 | 0x0), mode=1)
         ##pd.set(name='vsense_on_threshold', val=(pd.getAdcValue('vsensb', 13000) & 0xffff), mode=1)
         pd.set(name='vsense_off_threshold', val=(pd.getAdcValue('vsensa', 10000) << 16 | 0x0), mode=1)
         ##pd.set(name='vsense_off_threshold', val=(pd.getAdcValue('vsensb', 10000) & 0xffff), mode=1)
