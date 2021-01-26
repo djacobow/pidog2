@@ -3,6 +3,12 @@ The requirement behind this use case is to have the pidog act not only as a time
 
 Supporting these features are two new user-configurable registers, 'vsense_on_threshold' and 'vsense_off_threshold'. Each is a 32-bit register where the upper 16 bits define thresholds for vsensa and the lower 16 bits define threholds for vsensb. The 'vsense_on_threshold' thresholds specify voltage levels that when the monitored voltage level(s) (vsensa or vsensb) are greater or equal to the threshold then the pidog will reconnect power to the rpi after the off-remaining timer expires. The 'vsense_off_threshold' thresholds specify voltage levels that when the monitored voltage level(s) (vsensa or vsensb) are less than the threshold then the pidog will immediately disconnect power from the rpi.
 
+The status register has been expanded to include fire_code, a 2-bit register used to indicate why the watchdog last fired. Codes are: 
+	*0 - on-remaining timer expired
+	*1 - vsensa dropped below threshold
+	*2 - vesensb dropped below threshold
+	*3 - both vsensa and vsensb dropped below threshold
+
 The LVDC and HVRC features are mutually exclusive and are disabled when the thresholds are set to zero (default). When LVDC and HVRC are disabled, the pidog power state changes are driven by the timers only. If either feature is enabled for both vsensa or vsensb, the pidog state changes will occur if either vsensa or vsensb crosses the associated feature threshold. That is, if both vsensa and vsensb are being monitored for LVDC and either voltage drops below the defined threshold, the pidog would power of the pi immediately. In practice there is probably no good reason to use one feature and not the other, but the flexibility exists nonetheless. More likely, you would use both features to control the on/off states of the rpi based on only one of the voltage levels and not both. 
 
 A remote rpi installation might use a solar panel and battery charger to power the system. Typical solar panel arrays output voltages in the range of 0-30v and the storage battery is most commonly 12v, although some installations will series connect batteries for 48v operation. The intent is to use the pidog to monitor a 12v battery with vsensa and the solar array with vsensb. Note that this will require changing the pidog voltage divider circuit for vsensb as the 0.7 hardware revision maxes out the ADC at 16v. The values used for the low-voltage disconnect and high-voltage reconnect should be

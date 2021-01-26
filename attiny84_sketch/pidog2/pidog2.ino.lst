@@ -1,5 +1,5 @@
 
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465/pidog2.ino.elf:     file format elf32-avr
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670/pidog2.ino.elf:     file format elf32-avr
 
 
 Disassembly of section .text:
@@ -9,20 +9,20 @@ __vectors():
    0:	2d c0       	rjmp	.+90     	; 0x5c <__ctors_end>
    2:	51 c0       	rjmp	.+162    	; 0xa6 <__bad_interrupt>
    4:	50 c0       	rjmp	.+160    	; 0xa6 <__bad_interrupt>
-   6:	4d c5       	rjmp	.+2714   	; 0xaa2 <__vector_3>
-   8:	92 c5       	rjmp	.+2852   	; 0xb2e <__vector_4>
+   6:	68 c5       	rjmp	.+2768   	; 0xad8 <__vector_3>
+   8:	ad c5       	rjmp	.+2906   	; 0xb64 <__vector_4>
    a:	4d c0       	rjmp	.+154    	; 0xa6 <__bad_interrupt>
    c:	4c c0       	rjmp	.+152    	; 0xa6 <__bad_interrupt>
    e:	4b c0       	rjmp	.+150    	; 0xa6 <__bad_interrupt>
   10:	4a c0       	rjmp	.+148    	; 0xa6 <__bad_interrupt>
   12:	49 c0       	rjmp	.+146    	; 0xa6 <__bad_interrupt>
   14:	48 c0       	rjmp	.+144    	; 0xa6 <__bad_interrupt>
-  16:	8c c4       	rjmp	.+2328   	; 0x930 <__vector_11>
+  16:	a7 c4       	rjmp	.+2382   	; 0x966 <__vector_11>
   18:	46 c0       	rjmp	.+140    	; 0xa6 <__bad_interrupt>
   1a:	45 c0       	rjmp	.+138    	; 0xa6 <__bad_interrupt>
   1c:	44 c0       	rjmp	.+136    	; 0xa6 <__bad_interrupt>
   1e:	43 c0       	rjmp	.+134    	; 0xa6 <__bad_interrupt>
-  20:	d1 c4       	rjmp	.+2466   	; 0x9c4 <__vector_16>
+  20:	ec c4       	rjmp	.+2520   	; 0x9fa <__vector_16>
 
 00000022 <__trampolines_end>:
 __trampolines_start():
@@ -47,7 +47,7 @@ __trampolines_start():
 
 0000005a <__ctors_start>:
 __ctors_start():
-  5a:	bc 06       	cpc	r11, r28
+  5a:	d7 06       	cpc	r13, r23
 
 0000005c <__ctors_end>:
 __dtors_end():
@@ -90,9 +90,9 @@ __do_copy_data():
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2411
   7c:	b0 e0       	ldi	r27, 0x00	; 0
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2412
-  7e:	ec ef       	ldi	r30, 0xFC	; 252
+  7e:	e2 e3       	ldi	r30, 0x32	; 50
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2413
-  80:	fd e0       	ldi	r31, 0x0D	; 13
+  80:	fe e0       	ldi	r31, 0x0E	; 14
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2414
   82:	02 c0       	rjmp	.+4      	; 0x88 <__do_copy_data+0x10>
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2417
@@ -121,19 +121,19 @@ __do_global_ctors():
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2480
   98:	fe 01       	movw	r30, r28
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2481
-  9a:	a8 d6       	rcall	.+3408   	; 0xdec <__tablejump2__>
+  9a:	c3 d6       	rcall	.+3462   	; 0xe22 <__tablejump2__>
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2483
   9c:	cd 32       	cpi	r28, 0x2D	; 45
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2484
   9e:	d1 07       	cpc	r29, r17
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2489
   a0:	d1 f7       	brne	.-12     	; 0x96 <__do_global_ctors+0x8>
-  a2:	6a d5       	rcall	.+2772   	; 0xb78 <main>
-  a4:	a9 c6       	rjmp	.+3410   	; 0xdf8 <_exit>
+  a2:	85 d5       	rcall	.+2826   	; 0xbae <main>
+  a4:	c4 c6       	rjmp	.+3464   	; 0xe2e <_exit>
 
 000000a6 <__bad_interrupt>:
 __vector_1():
-  a6:	39 c5       	rjmp	.+2674   	; 0xb1a <__vector_default>
+  a6:	54 c5       	rjmp	.+2728   	; 0xb50 <__vector_default>
 
 000000a8 <digitalRead.constprop.0>:
 digitalRead.constprop.0():
@@ -238,8 +238,8 @@ C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:70
   f2:	81 30       	cpi	r24, 0x01	; 1
   f4:	91 f0       	breq	.+36     	; 0x11a <handleCommand(unsigned char, unsigned long)+0x40>
 _ZN9regfile_cImLj12EE3getEh():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:85
-            v &= ~(0x0) >> (sz * 4);
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:87
+            v &= halfmask;
             return v;
         }
 
@@ -247,7 +247,7 @@ C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch
             return registers[addr % REG_COUNT];
   f6:	8e 2f       	mov	r24, r30
   f8:	6c e0       	ldi	r22, 0x0C	; 12
-  fa:	4a d6       	rcall	.+3220   	; 0xd90 <__udivmodqi4>
+  fa:	65 d6       	rcall	.+3274   	; 0xdc6 <__udivmodqi4>
   fc:	e9 2f       	mov	r30, r25
   fe:	f0 e0       	ldi	r31, 0x00	; 0
  100:	ee 0f       	add	r30, r30
@@ -272,7 +272,7 @@ C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:86
  116:	ba 01       	movw	r22, r20
  118:	08 95       	ret
 _ZN9regfile_cImLj12EE5setOrEhm():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:89
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:91
         }
 
         REGW setOr(uint8_t addr, REGW val) {
@@ -293,7 +293,7 @@ C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch
  134:	6a 2b       	or	r22, r26
  136:	7b 2b       	or	r23, r27
 _ZN9regfile_cImLj12EE3setEhm():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:97
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:99
         REGW setAnd(uint8_t addr, REGW val) {
             registers[addr % REG_COUNT] &= val;
             return get(addr);
@@ -306,7 +306,7 @@ C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch
  13e:	73 83       	std	Z+3, r23	; 0x03
  140:	e9 cf       	rjmp	.-46     	; 0x114 <handleCommand(unsigned char, unsigned long)+0x3a>
 _ZN9regfile_cImLj12EE6setAndEhm():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:93
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:95
         REGW setOr(uint8_t addr, REGW val) {
             registers[addr % REG_COUNT] |= val;
             return get(addr);
@@ -330,7 +330,7 @@ C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch
  15e:	7b 23       	and	r23, r27
  160:	eb cf       	rjmp	.-42     	; 0x138 <handleCommand(unsigned char, unsigned long)+0x5e>
 _ZN9regfile_cImLj12EE3setEhm():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:97
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:99
             return get(addr);
         }
         REGW set(uint8_t addr, REGW val) {
@@ -855,7 +855,7 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
 
 00000308 <spislave_c::getInstance()>:
 _ZN10spislave_c11getInstanceEv():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.h:28
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.h:28
         reg_t   dv_in, dv_out;
         uint8_t cmd_in, cmd_out;
 
@@ -866,7 +866,7 @@ C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch
  30c:	81 11       	cpse	r24, r1
  30e:	1e c0       	rjmp	.+60     	; 0x34c <spislave_c::getInstance()+0x44>
 __base_ctor ():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.h:19
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.h:19
 typedef uint32_t reg_t;
 typedef reg_t (*cmdhandler_t)(uint8_t, reg_t);
 
@@ -888,7 +888,7 @@ class spislave_c {
  33e:	10 92 7b 00 	sts	0x007B, r1	; 0x80007b <__data_end+0xd>
  342:	10 92 7c 00 	sts	0x007C, r1	; 0x80007c <__data_end+0xe>
 _ZN10spislave_c11getInstanceEv():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.h:28
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.h:28
         reg_t   dv_in, dv_out;
         uint8_t cmd_in, cmd_out;
 
@@ -897,7 +897,7 @@ C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch
             static spislave_c instance;
  346:	81 e0       	ldi	r24, 0x01	; 1
  348:	80 93 7d 00 	sts	0x007D, r24	; 0x80007d <guard variable for spislave_c::getInstance()::instance>
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.h:30
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.h:30
             return &instance;
         }
  34c:	8e e6       	ldi	r24, 0x6E	; 110
@@ -931,7 +931,7 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
 
 00000370 <doTickWork()>:
 _Z10doTickWorkv():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:172
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:167
 
 const uint8_t TICKS_PER_SECOND = 4;
 const uint32_t MILLIS_PER_TICK = (1e3 / TICKS_PER_SECOND);
@@ -962,24 +962,24 @@ void doTickWork() {
  39a:	de bf       	out	0x3e, r29	; 62
  39c:	0f be       	out	0x3f, r0	; 63
  39e:	cd bf       	out	0x3d, r28	; 61
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:174
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:169
     static uint8_t tick_count;
     bool second = ! (tick_count % TICKS_PER_SECOND);
  3a0:	80 91 89 00 	lds	r24, 0x0089	; 0x800089 <doTickWork()::tick_count>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:175
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:170
     tick_count += 1;
  3a4:	91 e0       	ldi	r25, 0x01	; 1
  3a6:	98 0f       	add	r25, r24
  3a8:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <doTickWork()::tick_count>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:177
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:172
 
     if (second) { 
  3ac:	83 70       	andi	r24, 0x03	; 3
  3ae:	09 f0       	breq	.+2      	; 0x3b2 <doTickWork()+0x42>
- 3b0:	0d c2       	rjmp	.+1050   	; 0x7cc <__LOCK_REGION_LENGTH__+0x3cc>
+ 3b0:	28 c2       	rjmp	.+1104   	; 0x802 <__LOCK_REGION_LENGTH__+0x402>
 _ZN9regfile_cImLj12EE3getEh():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:85
-            v &= ~(0x0) >> (sz * 4);
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:87
+            v &= halfmask;
             return v;
         }
 
@@ -1007,388 +1007,514 @@ void doSecondWork() {
  3d0:	a1 05       	cpc	r26, r1
  3d2:	b1 05       	cpc	r27, r1
  3d4:	09 f0       	breq	.+2      	; 0x3d8 <doTickWork()+0x68>
- 3d6:	75 c0       	rjmp	.+234    	; 0x4c2 <__LOCK_REGION_LENGTH__+0xc2>
+ 3d6:	89 c0       	rjmp	.+274    	; 0x4ea <__LOCK_REGION_LENGTH__+0xea>
 _ZN9regfile_cImLj12EE3getEh():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:85
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:87
  3d8:	80 91 b3 00 	lds	r24, 0x00B3	; 0x8000b3 <rf+0x4>
  3dc:	90 91 b4 00 	lds	r25, 0x00B4	; 0x8000b4 <rf+0x5>
  3e0:	a0 91 b5 00 	lds	r26, 0x00B5	; 0x8000b5 <rf+0x6>
  3e4:	b0 91 b6 00 	lds	r27, 0x00B6	; 0x8000b6 <rf+0x7>
-doSecondWork():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:99
-        //reg_t a_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_top); <-- This always works.
-        //reg_t b_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_bottom);<-- This only works when the top 16 bits are 0. Otherwise, this call returns all 32 bits.
-        reg_t a_off_thresh = (rf.get(REG_VSENSE_OFF_THRESHOLD) >> 16) & 0xffff;
-        reg_t b_off_thresh = rf.get(REG_VSENSE_OFF_THRESHOLD) & 0xffff;
-        if ( !on_rem ||
-             (a_off_thresh && ((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) < a_off_thresh) || 
- 3e8:	00 97       	sbiw	r24, 0x00	; 0
- 3ea:	a1 05       	cpc	r26, r1
- 3ec:	b1 05       	cpc	r27, r1
- 3ee:	c1 f1       	breq	.+112    	; 0x460 <__LOCK_REGION_LENGTH__+0x60>
-_ZN9regfile_cImLj12EE3getEh():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:85
- 3f0:	40 91 d7 00 	lds	r20, 0x00D7	; 0x8000d7 <rf+0x28>
- 3f4:	50 91 d8 00 	lds	r21, 0x00D8	; 0x8000d8 <rf+0x29>
- 3f8:	60 91 d9 00 	lds	r22, 0x00D9	; 0x8000d9 <rf+0x2a>
- 3fc:	70 91 da 00 	lds	r23, 0x00DA	; 0x8000da <rf+0x2b>
-doSecondWork():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:96
-    uint32_t s = rf.get(REG_STATUS);
-    if ((s & _BV(STAT_WDOG_EN)) && (s & _BV(STAT_PWR_ON))) {
-        reg_t on_rem = rf.get(REG_ON_REMAINING);
-        //reg_t a_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_top); <-- This always works.
-        //reg_t b_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_bottom);<-- This only works when the top 16 bits are 0. Otherwise, this call returns all 32 bits.
-        reg_t a_off_thresh = (rf.get(REG_VSENSE_OFF_THRESHOLD) >> 16) & 0xffff;
- 400:	2b 01       	movw	r4, r22
- 402:	66 24       	eor	r6, r6
- 404:	77 24       	eor	r7, r7
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:98
-        reg_t b_off_thresh = rf.get(REG_VSENSE_OFF_THRESHOLD) & 0xffff;
-        if ( !on_rem ||
- 406:	41 14       	cp	r4, r1
- 408:	51 04       	cpc	r5, r1
- 40a:	61 04       	cpc	r6, r1
- 40c:	71 04       	cpc	r7, r1
- 40e:	81 f0       	breq	.+32     	; 0x430 <__LOCK_REGION_LENGTH__+0x30>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:99
-             (a_off_thresh && ((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) < a_off_thresh) || 
- 410:	80 90 c7 00 	lds	r8, 0x00C7	; 0x8000c7 <rf+0x18>
- 414:	90 90 c8 00 	lds	r9, 0x00C8	; 0x8000c8 <rf+0x19>
- 418:	a0 90 c9 00 	lds	r10, 0x00C9	; 0x8000c9 <rf+0x1a>
- 41c:	b0 90 ca 00 	lds	r11, 0x00CA	; 0x8000ca <rf+0x1b>
- 420:	45 01       	movw	r8, r10
- 422:	aa 24       	eor	r10, r10
- 424:	bb 24       	eor	r11, r11
- 426:	84 14       	cp	r8, r4
- 428:	95 04       	cpc	r9, r5
- 42a:	a6 04       	cpc	r10, r6
- 42c:	b7 04       	cpc	r11, r7
- 42e:	c0 f0       	brcs	.+48     	; 0x460 <__LOCK_REGION_LENGTH__+0x60>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:97
-    if ((s & _BV(STAT_WDOG_EN)) && (s & _BV(STAT_PWR_ON))) {
-        reg_t on_rem = rf.get(REG_ON_REMAINING);
-        //reg_t a_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_top); <-- This always works.
-        //reg_t b_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_bottom);<-- This only works when the top 16 bits are 0. Otherwise, this call returns all 32 bits.
-        reg_t a_off_thresh = (rf.get(REG_VSENSE_OFF_THRESHOLD) >> 16) & 0xffff;
-        reg_t b_off_thresh = rf.get(REG_VSENSE_OFF_THRESHOLD) & 0xffff;
- 430:	66 27       	eor	r22, r22
- 432:	77 27       	eor	r23, r23
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:99
-        if ( !on_rem ||
-             (a_off_thresh && ((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) < a_off_thresh) || 
- 434:	41 15       	cp	r20, r1
- 436:	51 05       	cpc	r21, r1
- 438:	61 05       	cpc	r22, r1
- 43a:	71 05       	cpc	r23, r1
- 43c:	09 f4       	brne	.+2      	; 0x440 <__LOCK_REGION_LENGTH__+0x40>
- 43e:	6a c1       	rjmp	.+724    	; 0x714 <__LOCK_REGION_LENGTH__+0x314>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:100
-             (b_off_thresh && (rf.get(REG_VSENSA_VSENSB) & 0xffff) < b_off_thresh)) {
- 440:	80 90 c7 00 	lds	r8, 0x00C7	; 0x8000c7 <rf+0x18>
- 444:	90 90 c8 00 	lds	r9, 0x00C8	; 0x8000c8 <rf+0x19>
- 448:	a0 90 c9 00 	lds	r10, 0x00C9	; 0x8000c9 <rf+0x1a>
- 44c:	b0 90 ca 00 	lds	r11, 0x00CA	; 0x8000ca <rf+0x1b>
- 450:	aa 24       	eor	r10, r10
- 452:	bb 24       	eor	r11, r11
- 454:	84 16       	cp	r8, r20
- 456:	95 06       	cpc	r9, r21
- 458:	a6 06       	cpc	r10, r22
- 45a:	b7 06       	cpc	r11, r23
- 45c:	08 f0       	brcs	.+2      	; 0x460 <__LOCK_REGION_LENGTH__+0x60>
- 45e:	5a c1       	rjmp	.+692    	; 0x714 <__LOCK_REGION_LENGTH__+0x314>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:107
-            srl.println("Powering off pi.");
-            #endif
-            s |=  _BV(STAT_WDOG_FIRED);
-            s &= ~_BV(STAT_WAKE_FIRED);
-            s &= ~_BV(STAT_PWR_ON);
-            s &= ~_BV(STAT_LED_WARN);
- 460:	2f e8       	ldi	r18, 0x8F	; 143
- 462:	c2 22       	and	r12, r18
- 464:	68 94       	set
- 466:	c1 f8       	bld	r12, 1
-_ZN9regfile_cImLj12EE3setEhm():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:97
-        REGW setAnd(uint8_t addr, REGW val) {
-            registers[addr % REG_COUNT] &= val;
-            return get(addr);
-        }
-        REGW set(uint8_t addr, REGW val) {
-            registers[addr % REG_COUNT] = val;
- 468:	80 91 bf 00 	lds	r24, 0x00BF	; 0x8000bf <rf+0x10>
- 46c:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <rf+0x11>
- 470:	a0 91 c1 00 	lds	r26, 0x00C1	; 0x8000c1 <rf+0x12>
- 474:	b0 91 c2 00 	lds	r27, 0x00C2	; 0x8000c2 <rf+0x13>
- 478:	80 93 b7 00 	sts	0x00B7, r24	; 0x8000b7 <rf+0x8>
- 47c:	90 93 b8 00 	sts	0x00B8, r25	; 0x8000b8 <rf+0x9>
- 480:	a0 93 b9 00 	sts	0x00B9, r26	; 0x8000b9 <rf+0xa>
- 484:	b0 93 ba 00 	sts	0x00BA, r27	; 0x8000ba <rf+0xb>
 _ZN9regfile_cImLj12EE5gethlEh15register_half_t():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:75
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:75
             registers[addr % REG_COUNT] = o;
             return o;
         }
 
         REGW gethl(uint8_t addr, register_half_t half) {
             REGW v = registers[addr % REG_COUNT];
- 488:	80 91 cf 00 	lds	r24, 0x00CF	; 0x8000cf <rf+0x20>
- 48c:	90 91 d0 00 	lds	r25, 0x00D0	; 0x8000d0 <rf+0x21>
- 490:	a0 91 d1 00 	lds	r26, 0x00D1	; 0x8000d1 <rf+0x22>
- 494:	b0 91 d2 00 	lds	r27, 0x00D2	; 0x8000d2 <rf+0x23>
+ 3e8:	40 91 d7 00 	lds	r20, 0x00D7	; 0x8000d7 <rf+0x28>
+ 3ec:	50 91 d8 00 	lds	r21, 0x00D8	; 0x8000d8 <rf+0x29>
+ 3f0:	60 91 d9 00 	lds	r22, 0x00D9	; 0x8000d9 <rf+0x2a>
+ 3f4:	70 91 da 00 	lds	r23, 0x00DA	; 0x8000da <rf+0x2b>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:78
+            size_t sz = sizeof(REGW);
+            if (half != register_bottom) {
+                v >>= (sz * 4);
+ 3f8:	2b 01       	movw	r4, r22
+ 3fa:	66 24       	eor	r6, r6
+ 3fc:	77 24       	eor	r7, r7
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:82
+            }
+            REGW halfmask = ~(0x0);
+            halfmask >>= (sz * 4);
+            v &= halfmask;
+ 3fe:	66 27       	eor	r22, r22
+ 400:	77 27       	eor	r23, r23
+doSecondWork():
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:96
+        reg_t on_rem = rf.get(REG_ON_REMAINING);
+        reg_t a_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_top);
+        reg_t b_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_bottom);
+        bool a_under = a_off_thresh && (rf.gethl(REG_VSENSA_VSENSB,register_top) < a_off_thresh);
+ 402:	41 14       	cp	r4, r1
+ 404:	51 04       	cpc	r5, r1
+ 406:	61 04       	cpc	r6, r1
+ 408:	71 04       	cpc	r7, r1
+ 40a:	89 f0       	breq	.+34     	; 0x42e <__LOCK_REGION_LENGTH__+0x2e>
+_ZN9regfile_cImLj12EE5gethlEh15register_half_t():
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:75
+            registers[addr % REG_COUNT] = o;
+            return o;
+        }
+
+        REGW gethl(uint8_t addr, register_half_t half) {
+            REGW v = registers[addr % REG_COUNT];
+ 40c:	80 90 c7 00 	lds	r8, 0x00C7	; 0x8000c7 <rf+0x18>
+ 410:	90 90 c8 00 	lds	r9, 0x00C8	; 0x8000c8 <rf+0x19>
+ 414:	a0 90 c9 00 	lds	r10, 0x00C9	; 0x8000c9 <rf+0x1a>
+ 418:	b0 90 ca 00 	lds	r11, 0x00CA	; 0x8000ca <rf+0x1b>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:78
+            size_t sz = sizeof(REGW);
+            if (half != register_bottom) {
+                v >>= (sz * 4);
+ 41c:	45 01       	movw	r8, r10
+ 41e:	aa 24       	eor	r10, r10
+ 420:	bb 24       	eor	r11, r11
+doSecondWork():
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:96
+ 422:	31 e0       	ldi	r19, 0x01	; 1
+ 424:	84 14       	cp	r8, r4
+ 426:	95 04       	cpc	r9, r5
+ 428:	a6 04       	cpc	r10, r6
+ 42a:	b7 04       	cpc	r11, r7
+ 42c:	08 f0       	brcs	.+2      	; 0x430 <__LOCK_REGION_LENGTH__+0x30>
+_Z10doTickWorkv():
+ 42e:	30 e0       	ldi	r19, 0x00	; 0
+doSecondWork():
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:97
+        bool b_under = b_off_thresh && (rf.gethl(REG_VSENSA_VSENSB,register_bottom) < b_off_thresh);
+ 430:	41 15       	cp	r20, r1
+ 432:	51 05       	cpc	r21, r1
+ 434:	61 05       	cpc	r22, r1
+ 436:	71 05       	cpc	r23, r1
+ 438:	81 f0       	breq	.+32     	; 0x45a <__LOCK_REGION_LENGTH__+0x5a>
+_ZN9regfile_cImLj12EE5gethlEh15register_half_t():
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:75
+            registers[addr % REG_COUNT] = o;
+            return o;
+        }
+
+        REGW gethl(uint8_t addr, register_half_t half) {
+            REGW v = registers[addr % REG_COUNT];
+ 43a:	80 90 c7 00 	lds	r8, 0x00C7	; 0x8000c7 <rf+0x18>
+ 43e:	90 90 c8 00 	lds	r9, 0x00C8	; 0x8000c8 <rf+0x19>
+ 442:	a0 90 c9 00 	lds	r10, 0x00C9	; 0x8000c9 <rf+0x1a>
+ 446:	b0 90 ca 00 	lds	r11, 0x00CA	; 0x8000ca <rf+0x1b>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:82
+            if (half != register_bottom) {
+                v >>= (sz * 4);
+            }
+            REGW halfmask = ~(0x0);
+            halfmask >>= (sz * 4);
+            v &= halfmask;
+ 44a:	aa 24       	eor	r10, r10
+ 44c:	bb 24       	eor	r11, r11
+doSecondWork():
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:97
+ 44e:	21 e0       	ldi	r18, 0x01	; 1
+ 450:	84 16       	cp	r8, r20
+ 452:	95 06       	cpc	r9, r21
+ 454:	a6 06       	cpc	r10, r22
+ 456:	b7 06       	cpc	r11, r23
+ 458:	08 f0       	brcs	.+2      	; 0x45c <__LOCK_REGION_LENGTH__+0x5c>
+_Z10doTickWorkv():
+ 45a:	20 e0       	ldi	r18, 0x00	; 0
+doSecondWork():
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:98
+        if ( !on_rem || a_under || b_under) {
+ 45c:	00 97       	sbiw	r24, 0x00	; 0
+ 45e:	a1 05       	cpc	r26, r1
+ 460:	b1 05       	cpc	r27, r1
+ 462:	29 f0       	breq	.+10     	; 0x46e <__LOCK_REGION_LENGTH__+0x6e>
+ 464:	31 11       	cpse	r19, r1
+ 466:	03 c0       	rjmp	.+6      	; 0x46e <__LOCK_REGION_LENGTH__+0x6e>
+ 468:	22 23       	and	r18, r18
+ 46a:	09 f4       	brne	.+2      	; 0x46e <__LOCK_REGION_LENGTH__+0x6e>
+ 46c:	86 c1       	rjmp	.+780    	; 0x77a <__LOCK_REGION_LENGTH__+0x37a>
+ 46e:	e8 94       	clt
+ 470:	c7 f8       	bld	r12, 7
+ 472:	d0 f8       	bld	r13, 0
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:104
+            #ifdef SERIAL_DEBUG
+            srl.println("Powering off pi.");
+            #endif
+            s |=  _BV(STAT_WDOG_FIRED);
+            s &= ~(_BV(STAT_WDOG_FIRE_CODE) | _BV(STAT_WDOG_FIRE_CODE+1));                        //00b - on-remaining timer expired 
+            if (a_under && b_under) s |= (_BV(STAT_WDOG_FIRE_CODE) | _BV(STAT_WDOG_FIRE_CODE+1)); //11b - vsensb & vsensb dropped below threshold 
+ 474:	33 23       	and	r19, r19
+ 476:	09 f4       	brne	.+2      	; 0x47a <__LOCK_REGION_LENGTH__+0x7a>
+ 478:	77 c1       	rjmp	.+750    	; 0x768 <__LOCK_REGION_LENGTH__+0x368>
+ 47a:	22 23       	and	r18, r18
+ 47c:	09 f4       	brne	.+2      	; 0x480 <__LOCK_REGION_LENGTH__+0x80>
+ 47e:	71 c1       	rjmp	.+738    	; 0x762 <__LOCK_REGION_LENGTH__+0x362>
+ 480:	22 e8       	ldi	r18, 0x82	; 130
+ 482:	c2 2a       	or	r12, r18
+ 484:	68 94       	set
+ 486:	d0 f8       	bld	r13, 0
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:109
+            else if (a_under)       s |= _BV(STAT_WDOG_FIRE_CODE);                                //01b - vsensa dropped below threshold
+            else if (b_under)       s |= _BV(STAT_WDOG_FIRE_CODE+1);                              //10b - vsensb dropped below threshold
+            s &= ~_BV(STAT_WAKE_FIRED);
+            s &= ~_BV(STAT_PWR_ON);
+            s &= ~_BV(STAT_LED_WARN);
+ 488:	8f e8       	ldi	r24, 0x8F	; 143
+ 48a:	c8 22       	and	r12, r24
+_ZN9regfile_cImLj12EE3setEhm():
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:99
+        REGW setAnd(uint8_t addr, REGW val) {
+            registers[addr % REG_COUNT] &= val;
+            return get(addr);
+        }
+        REGW set(uint8_t addr, REGW val) {
+            registers[addr % REG_COUNT] = val;
+ 48c:	80 91 bf 00 	lds	r24, 0x00BF	; 0x8000bf <rf+0x10>
+ 490:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <rf+0x11>
+ 494:	a0 91 c1 00 	lds	r26, 0x00C1	; 0x8000c1 <rf+0x12>
+ 498:	b0 91 c2 00 	lds	r27, 0x00C2	; 0x8000c2 <rf+0x13>
+ 49c:	80 93 b7 00 	sts	0x00B7, r24	; 0x8000b7 <rf+0x8>
+ 4a0:	90 93 b8 00 	sts	0x00B8, r25	; 0x8000b8 <rf+0x9>
+ 4a4:	a0 93 b9 00 	sts	0x00B9, r26	; 0x8000b9 <rf+0xa>
+ 4a8:	b0 93 ba 00 	sts	0x00BA, r27	; 0x8000ba <rf+0xb>
+_ZN9regfile_cImLj12EE5gethlEh15register_half_t():
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:75
+            registers[addr % REG_COUNT] = o;
+            return o;
+        }
+
+        REGW gethl(uint8_t addr, register_half_t half) {
+            REGW v = registers[addr % REG_COUNT];
+ 4ac:	80 91 cf 00 	lds	r24, 0x00CF	; 0x8000cf <rf+0x20>
+ 4b0:	90 91 d0 00 	lds	r25, 0x00D0	; 0x8000d0 <rf+0x21>
+ 4b4:	a0 91 d1 00 	lds	r26, 0x00D1	; 0x8000d1 <rf+0x22>
+ 4b8:	b0 91 d2 00 	lds	r27, 0x00D2	; 0x8000d2 <rf+0x23>
 sethl():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:67
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:67
             } else {
                 i <<= (sz * 4);
             }
             REGW o = registers[addr % REG_COUNT];
 
             o &= mask;
- 498:	ac 01       	movw	r20, r24
- 49a:	bd 01       	movw	r22, r26
- 49c:	44 27       	eor	r20, r20
- 49e:	55 27       	eor	r21, r21
+ 4bc:	ac 01       	movw	r20, r24
+ 4be:	bd 01       	movw	r22, r26
+ 4c0:	44 27       	eor	r20, r20
+ 4c2:	55 27       	eor	r21, r21
+_ZN9regfile_cImLj12EE5gethlEh15register_half_t():
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:82
+            if (half != register_bottom) {
+                v >>= (sz * 4);
+            }
+            REGW halfmask = ~(0x0);
+            halfmask >>= (sz * 4);
+            v &= halfmask;
+ 4c4:	aa 27       	eor	r26, r26
+ 4c6:	bb 27       	eor	r27, r27
 doSecondWork():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:109
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:111
             rf.set(REG_OFF_REMAINING,rf.get(REG_OFF_REM_RESETVAL));
             rf.sethl(REG_FIRECOUNTS,rf.gethl(REG_FIRECOUNTS,register_bottom)+1,register_bottom);
- 4a0:	01 96       	adiw	r24, 0x01	; 1
- 4a2:	a1 1d       	adc	r26, r1
- 4a4:	b1 1d       	adc	r27, r1
+ 4c8:	01 96       	adiw	r24, 0x01	; 1
+ 4ca:	a1 1d       	adc	r26, r1
+ 4cc:	b1 1d       	adc	r27, r1
 sethl():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:59
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:59
 
         REGW sethl(uint8_t addr, REGW i, register_half_t half) {
             size_t sz = sizeof(REGW);
             REGW mask = ~0; // all ones
             mask >>= (sz * 4);
             i &= mask;
- 4a6:	aa 27       	eor	r26, r26
- 4a8:	bb 27       	eor	r27, r27
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:68
+ 4ce:	aa 27       	eor	r26, r26
+ 4d0:	bb 27       	eor	r27, r27
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:68
                 i <<= (sz * 4);
             }
             REGW o = registers[addr % REG_COUNT];
 
             o &= mask;
             o |= i;
- 4aa:	84 2b       	or	r24, r20
- 4ac:	95 2b       	or	r25, r21
- 4ae:	a6 2b       	or	r26, r22
- 4b0:	b7 2b       	or	r27, r23
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:70
+ 4d2:	84 2b       	or	r24, r20
+ 4d4:	95 2b       	or	r25, r21
+ 4d6:	a6 2b       	or	r26, r22
+ 4d8:	b7 2b       	or	r27, r23
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:70
 
             registers[addr % REG_COUNT] = o;
- 4b2:	80 93 cf 00 	sts	0x00CF, r24	; 0x8000cf <rf+0x20>
- 4b6:	90 93 d0 00 	sts	0x00D0, r25	; 0x8000d0 <rf+0x21>
- 4ba:	a0 93 d1 00 	sts	0x00D1, r26	; 0x8000d1 <rf+0x22>
- 4be:	b0 93 d2 00 	sts	0x00D2, r27	; 0x8000d2 <rf+0x23>
+ 4da:	80 93 cf 00 	sts	0x00CF, r24	; 0x8000cf <rf+0x20>
+ 4de:	90 93 d0 00 	sts	0x00D0, r25	; 0x8000d0 <rf+0x21>
+ 4e2:	a0 93 d1 00 	sts	0x00D1, r26	; 0x8000d1 <rf+0x22>
+ 4e6:	b0 93 d2 00 	sts	0x00D2, r27	; 0x8000d2 <rf+0x23>
 doSecondWork():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:115
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:117
         } else {
             if (on_rem < WARN_SECS) s |= _BV(STAT_LED_WARN);
             rf.set(REG_ON_REMAINING,on_rem-1);
         }
     }
     if ((s & _BV(STAT_WAKE_EN)) && (~s & _BV(STAT_PWR_ON))) {
- 4c2:	c3 fe       	sbrs	r12, 3
- 4c4:	56 c0       	rjmp	.+172    	; 0x572 <__LOCK_REGION_LENGTH__+0x172>
- 4c6:	c5 fc       	sbrc	r12, 5
- 4c8:	54 c0       	rjmp	.+168    	; 0x572 <__LOCK_REGION_LENGTH__+0x172>
+ 4ea:	c3 fe       	sbrs	r12, 3
+ 4ec:	67 c0       	rjmp	.+206    	; 0x5bc <__LOCK_REGION_LENGTH__+0x1bc>
+ 4ee:	c5 fc       	sbrc	r12, 5
+ 4f0:	65 c0       	rjmp	.+202    	; 0x5bc <__LOCK_REGION_LENGTH__+0x1bc>
 _ZN9regfile_cImLj12EE3getEh():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:85
-            v &= ~(0x0) >> (sz * 4);
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:87
+            v &= halfmask;
             return v;
         }
 
         REGW get(uint8_t addr) { 
             return registers[addr % REG_COUNT];
- 4ca:	80 91 b7 00 	lds	r24, 0x00B7	; 0x8000b7 <rf+0x8>
- 4ce:	90 91 b8 00 	lds	r25, 0x00B8	; 0x8000b8 <rf+0x9>
- 4d2:	a0 91 b9 00 	lds	r26, 0x00B9	; 0x8000b9 <rf+0xa>
- 4d6:	b0 91 ba 00 	lds	r27, 0x00BA	; 0x8000ba <rf+0xb>
+ 4f2:	80 91 b7 00 	lds	r24, 0x00B7	; 0x8000b7 <rf+0x8>
+ 4f6:	90 91 b8 00 	lds	r25, 0x00B8	; 0x8000b8 <rf+0x9>
+ 4fa:	a0 91 b9 00 	lds	r26, 0x00B9	; 0x8000b9 <rf+0xa>
+ 4fe:	b0 91 ba 00 	lds	r27, 0x00BA	; 0x8000ba <rf+0xb>
 doSecondWork():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:117
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:119
         reg_t off_rem = rf.get(REG_OFF_REMAINING);
         if (!off_rem) {
- 4da:	00 97       	sbiw	r24, 0x00	; 0
- 4dc:	a1 05       	cpc	r26, r1
- 4de:	b1 05       	cpc	r27, r1
- 4e0:	09 f0       	breq	.+2      	; 0x4e4 <__LOCK_REGION_LENGTH__+0xe4>
- 4e2:	67 c1       	rjmp	.+718    	; 0x7b2 <__LOCK_REGION_LENGTH__+0x3b2>
-_ZN9regfile_cImLj12EE3getEh():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:85
- 4e4:	80 91 d3 00 	lds	r24, 0x00D3	; 0x8000d3 <rf+0x24>
- 4e8:	90 91 d4 00 	lds	r25, 0x00D4	; 0x8000d4 <rf+0x25>
- 4ec:	a0 91 d5 00 	lds	r26, 0x00D5	; 0x8000d5 <rf+0x26>
- 4f0:	b0 91 d6 00 	lds	r27, 0x00D6	; 0x8000d6 <rf+0x27>
-doSecondWork():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:120
-            //reg_t a_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_top); <-- This always works.
-            //reg_t b_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_bottom); <-- This only works when the top 16 bits are 0. Otherwise, this call returns all 32 bits.
-            reg_t a_on_thresh = (rf.get(REG_VSENSE_ON_THRESHOLD) >> 16) & 0xffff;
- 4f4:	4d 01       	movw	r8, r26
- 4f6:	aa 24       	eor	r10, r10
- 4f8:	bb 24       	eor	r11, r11
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:121
-            reg_t b_on_thresh = rf.get(REG_VSENSE_ON_THRESHOLD) & 0xffff;
- 4fa:	aa 27       	eor	r26, r26
- 4fc:	bb 27       	eor	r27, r27
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:123
-            bool enable = false;
-            if ( ! ( a_on_thresh || b_on_thresh ) ) {
- 4fe:	81 14       	cp	r8, r1
- 500:	91 04       	cpc	r9, r1
- 502:	a1 04       	cpc	r10, r1
- 504:	b1 04       	cpc	r11, r1
- 506:	09 f0       	breq	.+2      	; 0x50a <__LOCK_REGION_LENGTH__+0x10a>
- 508:	18 c1       	rjmp	.+560    	; 0x73a <__LOCK_REGION_LENGTH__+0x33a>
- 50a:	00 97       	sbiw	r24, 0x00	; 0
- 50c:	a1 05       	cpc	r26, r1
- 50e:	b1 05       	cpc	r27, r1
- 510:	09 f0       	breq	.+2      	; 0x514 <__LOCK_REGION_LENGTH__+0x114>
- 512:	46 c1       	rjmp	.+652    	; 0x7a0 <__LOCK_REGION_LENGTH__+0x3a0>
- 514:	3d eb       	ldi	r19, 0xBD	; 189
- 516:	c3 22       	and	r12, r19
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:141
-                srl.println("Powering on pi.");
-                #endif
-                s |= _BV(STAT_WAKE_FIRED);
-                s |= _BV(STAT_PWR_ON);
-                s &= ~_BV(STAT_LED_WARN);
-                s &= ~_BV(STAT_WDOG_FIRED);
- 518:	80 e3       	ldi	r24, 0x30	; 48
- 51a:	c8 2a       	or	r12, r24
-_ZN9regfile_cImLj12EE3setEhm():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:97
-        REGW setAnd(uint8_t addr, REGW val) {
-            registers[addr % REG_COUNT] &= val;
-            return get(addr);
-        }
-        REGW set(uint8_t addr, REGW val) {
-            registers[addr % REG_COUNT] = val;
- 51c:	80 91 bb 00 	lds	r24, 0x00BB	; 0x8000bb <rf+0xc>
- 520:	90 91 bc 00 	lds	r25, 0x00BC	; 0x8000bc <rf+0xd>
- 524:	a0 91 bd 00 	lds	r26, 0x00BD	; 0x8000bd <rf+0xe>
- 528:	b0 91 be 00 	lds	r27, 0x00BE	; 0x8000be <rf+0xf>
- 52c:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <rf+0x4>
- 530:	90 93 b4 00 	sts	0x00B4, r25	; 0x8000b4 <rf+0x5>
- 534:	a0 93 b5 00 	sts	0x00B5, r26	; 0x8000b5 <rf+0x6>
- 538:	b0 93 b6 00 	sts	0x00B6, r27	; 0x8000b6 <rf+0x7>
+ 502:	00 97       	sbiw	r24, 0x00	; 0
+ 504:	a1 05       	cpc	r26, r1
+ 506:	b1 05       	cpc	r27, r1
+ 508:	09 f0       	breq	.+2      	; 0x50c <__LOCK_REGION_LENGTH__+0x10c>
+ 50a:	66 c1       	rjmp	.+716    	; 0x7d8 <__LOCK_REGION_LENGTH__+0x3d8>
 _ZN9regfile_cImLj12EE5gethlEh15register_half_t():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:75
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:75
             registers[addr % REG_COUNT] = o;
             return o;
         }
 
         REGW gethl(uint8_t addr, register_half_t half) {
             REGW v = registers[addr % REG_COUNT];
- 53c:	80 91 cf 00 	lds	r24, 0x00CF	; 0x8000cf <rf+0x20>
- 540:	90 91 d0 00 	lds	r25, 0x00D0	; 0x8000d0 <rf+0x21>
- 544:	a0 91 d1 00 	lds	r26, 0x00D1	; 0x8000d1 <rf+0x22>
- 548:	b0 91 d2 00 	lds	r27, 0x00D2	; 0x8000d2 <rf+0x23>
-sethl():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:67
-            } else {
-                i <<= (sz * 4);
+ 50c:	80 91 d3 00 	lds	r24, 0x00D3	; 0x8000d3 <rf+0x24>
+ 510:	90 91 d4 00 	lds	r25, 0x00D4	; 0x8000d4 <rf+0x25>
+ 514:	a0 91 d5 00 	lds	r26, 0x00D5	; 0x8000d5 <rf+0x26>
+ 518:	b0 91 d6 00 	lds	r27, 0x00D6	; 0x8000d6 <rf+0x27>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:78
+            size_t sz = sizeof(REGW);
+            if (half != register_bottom) {
+                v >>= (sz * 4);
+ 51c:	4d 01       	movw	r8, r26
+ 51e:	aa 24       	eor	r10, r10
+ 520:	bb 24       	eor	r11, r11
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:82
             }
-            REGW o = registers[addr % REG_COUNT];
-
-            o &= mask;
- 54c:	ac 01       	movw	r20, r24
- 54e:	bd 01       	movw	r22, r26
- 550:	66 27       	eor	r22, r22
- 552:	77 27       	eor	r23, r23
-doSecondWork():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:143
-                rf.set(REG_ON_REMAINING,rf.get(REG_ON_REM_RESETVAL));
-                rf.sethl(REG_FIRECOUNTS,rf.gethl(REG_FIRECOUNTS,register_top)+1,register_top);
- 554:	88 27       	eor	r24, r24
- 556:	99 27       	eor	r25, r25
-sethl():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:68
-            o |= i;
- 558:	11 96       	adiw	r26, 0x01	; 1
- 55a:	84 2b       	or	r24, r20
- 55c:	95 2b       	or	r25, r21
- 55e:	a6 2b       	or	r26, r22
- 560:	b7 2b       	or	r27, r23
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:70
-
+            REGW halfmask = ~(0x0);
+            halfmask >>= (sz * 4);
+            v &= halfmask;
+ 522:	aa 27       	eor	r26, r26
+ 524:	bb 27       	eor	r27, r27
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:75
             registers[addr % REG_COUNT] = o;
- 562:	80 93 cf 00 	sts	0x00CF, r24	; 0x8000cf <rf+0x20>
- 566:	90 93 d0 00 	sts	0x00D0, r25	; 0x8000d0 <rf+0x21>
- 56a:	a0 93 d1 00 	sts	0x00D1, r26	; 0x8000d1 <rf+0x22>
- 56e:	b0 93 d2 00 	sts	0x00D2, r27	; 0x8000d2 <rf+0x23>
+            return o;
+        }
+
+        REGW gethl(uint8_t addr, register_half_t half) {
+            REGW v = registers[addr % REG_COUNT];
+ 526:	40 91 c7 00 	lds	r20, 0x00C7	; 0x8000c7 <rf+0x18>
+ 52a:	50 91 c8 00 	lds	r21, 0x00C8	; 0x8000c8 <rf+0x19>
+ 52e:	60 91 c9 00 	lds	r22, 0x00C9	; 0x8000c9 <rf+0x1a>
+ 532:	70 91 ca 00 	lds	r23, 0x00CA	; 0x8000ca <rf+0x1b>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:82
+            if (half != register_bottom) {
+                v >>= (sz * 4);
+            }
+            REGW halfmask = ~(0x0);
+            halfmask >>= (sz * 4);
+            v &= halfmask;
+ 536:	2a 01       	movw	r4, r20
+ 538:	3b 01       	movw	r6, r22
+ 53a:	66 24       	eor	r6, r6
+ 53c:	77 24       	eor	r7, r7
+doSecondWork():
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:126
+            reg_t b_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_bottom); 
+            bool a_over = rf.gethl(REG_VSENSA_VSENSB,register_top) >= a_on_thresh;
+            bool b_over = rf.gethl(REG_VSENSA_VSENSB,register_bottom) >= b_on_thresh;
+            bool enable = (!a_on_thresh && !b_on_thresh)                   || 
+                          (a_on_thresh && a_over && b_on_thresh && b_over) || 
+                          (a_on_thresh && a_over && !b_on_thresh)          || 
+ 53e:	81 14       	cp	r8, r1
+ 540:	91 04       	cpc	r9, r1
+ 542:	a1 04       	cpc	r10, r1
+ 544:	b1 04       	cpc	r11, r1
+ 546:	09 f0       	breq	.+2      	; 0x54a <__LOCK_REGION_LENGTH__+0x14a>
+ 548:	2b c1       	rjmp	.+598    	; 0x7a0 <__LOCK_REGION_LENGTH__+0x3a0>
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:125
+            reg_t a_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_top);
+            reg_t b_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_bottom); 
+            bool a_over = rf.gethl(REG_VSENSA_VSENSB,register_top) >= a_on_thresh;
+            bool b_over = rf.gethl(REG_VSENSA_VSENSB,register_bottom) >= b_on_thresh;
+            bool enable = (!a_on_thresh && !b_on_thresh)                   || 
+                          (a_on_thresh && a_over && b_on_thresh && b_over) || 
+ 54a:	00 97       	sbiw	r24, 0x00	; 0
+ 54c:	a1 05       	cpc	r26, r1
+ 54e:	b1 05       	cpc	r27, r1
+ 550:	31 f0       	breq	.+12     	; 0x55e <__LOCK_REGION_LENGTH__+0x15e>
+ 552:	48 16       	cp	r4, r24
+ 554:	59 06       	cpc	r5, r25
+ 556:	6a 06       	cpc	r6, r26
+ 558:	7b 06       	cpc	r7, r27
+ 55a:	08 f4       	brcc	.+2      	; 0x55e <__LOCK_REGION_LENGTH__+0x15e>
+ 55c:	2a c1       	rjmp	.+596    	; 0x7b2 <__LOCK_REGION_LENGTH__+0x3b2>
+ 55e:	ad eb       	ldi	r26, 0xBD	; 189
+ 560:	ca 22       	and	r12, r26
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:135
+                srl.println("Powering on pi.");
+                #endif
+                s |= _BV(STAT_WAKE_FIRED);
+                s |= _BV(STAT_PWR_ON);
+                s &= ~_BV(STAT_LED_WARN);
+                s &= ~_BV(STAT_WDOG_FIRED);
+ 562:	b0 e3       	ldi	r27, 0x30	; 48
+ 564:	cb 2a       	or	r12, r27
 _ZN9regfile_cImLj12EE3setEhm():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:97
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:99
         REGW setAnd(uint8_t addr, REGW val) {
             registers[addr % REG_COUNT] &= val;
             return get(addr);
         }
         REGW set(uint8_t addr, REGW val) {
             registers[addr % REG_COUNT] = val;
- 572:	c0 92 af 00 	sts	0x00AF, r12	; 0x8000af <rf>
- 576:	d0 92 b0 00 	sts	0x00B0, r13	; 0x8000b0 <rf+0x1>
- 57a:	e0 92 b1 00 	sts	0x00B1, r14	; 0x8000b1 <rf+0x2>
- 57e:	f0 92 b2 00 	sts	0x00B2, r15	; 0x8000b2 <rf+0x3>
+ 566:	80 91 bb 00 	lds	r24, 0x00BB	; 0x8000bb <rf+0xc>
+ 56a:	90 91 bc 00 	lds	r25, 0x00BC	; 0x8000bc <rf+0xd>
+ 56e:	a0 91 bd 00 	lds	r26, 0x00BD	; 0x8000bd <rf+0xe>
+ 572:	b0 91 be 00 	lds	r27, 0x00BE	; 0x8000be <rf+0xf>
+ 576:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <rf+0x4>
+ 57a:	90 93 b4 00 	sts	0x00B4, r25	; 0x8000b4 <rf+0x5>
+ 57e:	a0 93 b5 00 	sts	0x00B5, r26	; 0x8000b5 <rf+0x6>
+ 582:	b0 93 b6 00 	sts	0x00B6, r27	; 0x8000b6 <rf+0x7>
+_ZN9regfile_cImLj12EE5gethlEh15register_half_t():
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:75
+            registers[addr % REG_COUNT] = o;
+            return o;
+        }
+
+        REGW gethl(uint8_t addr, register_half_t half) {
+            REGW v = registers[addr % REG_COUNT];
+ 586:	80 91 cf 00 	lds	r24, 0x00CF	; 0x8000cf <rf+0x20>
+ 58a:	90 91 d0 00 	lds	r25, 0x00D0	; 0x8000d0 <rf+0x21>
+ 58e:	a0 91 d1 00 	lds	r26, 0x00D1	; 0x8000d1 <rf+0x22>
+ 592:	b0 91 d2 00 	lds	r27, 0x00D2	; 0x8000d2 <rf+0x23>
+sethl():
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:67
+            } else {
+                i <<= (sz * 4);
+            }
+            REGW o = registers[addr % REG_COUNT];
+
+            o &= mask;
+ 596:	ac 01       	movw	r20, r24
+ 598:	bd 01       	movw	r22, r26
+ 59a:	66 27       	eor	r22, r22
+ 59c:	77 27       	eor	r23, r23
 doSecondWork():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:157
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:137
+                rf.set(REG_ON_REMAINING,rf.get(REG_ON_REM_RESETVAL));
+                rf.sethl(REG_FIRECOUNTS,rf.gethl(REG_FIRECOUNTS,register_top)+1,register_top);
+ 59e:	88 27       	eor	r24, r24
+ 5a0:	99 27       	eor	r25, r25
+sethl():
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:68
+            o |= i;
+ 5a2:	11 96       	adiw	r26, 0x01	; 1
+ 5a4:	84 2b       	or	r24, r20
+ 5a6:	95 2b       	or	r25, r21
+ 5a8:	a6 2b       	or	r26, r22
+ 5aa:	b7 2b       	or	r27, r23
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:70
+
+            registers[addr % REG_COUNT] = o;
+ 5ac:	80 93 cf 00 	sts	0x00CF, r24	; 0x8000cf <rf+0x20>
+ 5b0:	90 93 d0 00 	sts	0x00D0, r25	; 0x8000d0 <rf+0x21>
+ 5b4:	a0 93 d1 00 	sts	0x00D1, r26	; 0x8000d1 <rf+0x22>
+ 5b8:	b0 93 d2 00 	sts	0x00D2, r27	; 0x8000d2 <rf+0x23>
+_ZN9regfile_cImLj12EE3setEhm():
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:99
+        REGW setAnd(uint8_t addr, REGW val) {
+            registers[addr % REG_COUNT] &= val;
+            return get(addr);
+        }
+        REGW set(uint8_t addr, REGW val) {
+            registers[addr % REG_COUNT] = val;
+ 5bc:	c0 92 af 00 	sts	0x00AF, r12	; 0x8000af <rf>
+ 5c0:	d0 92 b0 00 	sts	0x00B0, r13	; 0x8000b0 <rf+0x1>
+ 5c4:	e0 92 b1 00 	sts	0x00B1, r14	; 0x8000b1 <rf+0x2>
+ 5c8:	f0 92 b2 00 	sts	0x00B2, r15	; 0x8000b2 <rf+0x3>
+doSecondWork():
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:152
 
     rf.set(REG_STATUS,s);
 
     if (true) {
         // NB the power pin has negative polarity
         digitalWrite(PIN_PWR,      !(s & _BV(STAT_PWR_ON)));
- 582:	d7 01       	movw	r26, r14
- 584:	c6 01       	movw	r24, r12
- 586:	15 e0       	ldi	r17, 0x05	; 5
- 588:	b6 95       	lsr	r27
- 58a:	a7 95       	ror	r26
- 58c:	97 95       	ror	r25
- 58e:	87 95       	ror	r24
- 590:	1a 95       	dec	r17
- 592:	d1 f7       	brne	.-12     	; 0x588 <__LOCK_REGION_LENGTH__+0x188>
- 594:	e1 e0       	ldi	r30, 0x01	; 1
- 596:	8e 27       	eor	r24, r30
- 598:	68 2f       	mov	r22, r24
- 59a:	61 70       	andi	r22, 0x01	; 1
- 59c:	83 e0       	ldi	r24, 0x03	; 3
- 59e:	e9 dd       	rcall	.-1070   	; 0x172 <digitalWrite>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:159
+ 5cc:	d7 01       	movw	r26, r14
+ 5ce:	c6 01       	movw	r24, r12
+ 5d0:	15 e0       	ldi	r17, 0x05	; 5
+ 5d2:	b6 95       	lsr	r27
+ 5d4:	a7 95       	ror	r26
+ 5d6:	97 95       	ror	r25
+ 5d8:	87 95       	ror	r24
+ 5da:	1a 95       	dec	r17
+ 5dc:	d1 f7       	brne	.-12     	; 0x5d2 <__LOCK_REGION_LENGTH__+0x1d2>
+ 5de:	e1 e0       	ldi	r30, 0x01	; 1
+ 5e0:	8e 27       	eor	r24, r30
+ 5e2:	68 2f       	mov	r22, r24
+ 5e4:	61 70       	andi	r22, 0x01	; 1
+ 5e6:	83 e0       	ldi	r24, 0x03	; 3
+ 5e8:	c4 dd       	rcall	.-1144   	; 0x172 <digitalWrite>
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:154
 #ifndef SERIAL_DEBUG
         digitalWrite(PIN_LED_0,    s & _BV(STAT_LED_WARN));
- 5a0:	6c 2d       	mov	r22, r12
- 5a2:	60 74       	andi	r22, 0x40	; 64
- 5a4:	81 e0       	ldi	r24, 0x01	; 1
- 5a6:	e5 dd       	rcall	.-1078   	; 0x172 <digitalWrite>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:160
+ 5ea:	6c 2d       	mov	r22, r12
+ 5ec:	60 74       	andi	r22, 0x40	; 64
+ 5ee:	81 e0       	ldi	r24, 0x01	; 1
+ 5f0:	c0 dd       	rcall	.-1152   	; 0x172 <digitalWrite>
+_ZN9regfile_cImLj12EE5gethlEh15register_half_t():
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:75
+            registers[addr % REG_COUNT] = o;
+            return o;
+        }
+
+        REGW gethl(uint8_t addr, register_half_t half) {
+            REGW v = registers[addr % REG_COUNT];
+ 5f2:	80 91 cf 00 	lds	r24, 0x00CF	; 0x8000cf <rf+0x20>
+ 5f6:	90 91 d0 00 	lds	r25, 0x00D0	; 0x8000d0 <rf+0x21>
+ 5fa:	a0 91 d1 00 	lds	r26, 0x00D1	; 0x8000d1 <rf+0x22>
+ 5fe:	b0 91 d2 00 	lds	r27, 0x00D2	; 0x8000d2 <rf+0x23>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:82
+            if (half != register_bottom) {
+                v >>= (sz * 4);
+            }
+            REGW halfmask = ~(0x0);
+            halfmask >>= (sz * 4);
+            v &= halfmask;
+ 602:	aa 27       	eor	r26, r26
+ 604:	bb 27       	eor	r27, r27
+doSecondWork():
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:155
         digitalWrite(PIN_LED_1,    rf.gethl(REG_FIRECOUNTS,register_bottom) > 0);
- 5a8:	61 e0       	ldi	r22, 0x01	; 1
- 5aa:	80 91 cf 00 	lds	r24, 0x00CF	; 0x8000cf <rf+0x20>
- 5ae:	90 91 d0 00 	lds	r25, 0x00D0	; 0x8000d0 <rf+0x21>
- 5b2:	a0 91 d1 00 	lds	r26, 0x00D1	; 0x8000d1 <rf+0x22>
- 5b6:	b0 91 d2 00 	lds	r27, 0x00D2	; 0x8000d2 <rf+0x23>
- 5ba:	89 2b       	or	r24, r25
- 5bc:	8a 2b       	or	r24, r26
- 5be:	8b 2b       	or	r24, r27
- 5c0:	09 f4       	brne	.+2      	; 0x5c4 <__LOCK_REGION_LENGTH__+0x1c4>
- 5c2:	60 e0       	ldi	r22, 0x00	; 0
- 5c4:	82 e0       	ldi	r24, 0x02	; 2
- 5c6:	d5 dd       	rcall	.-1110   	; 0x172 <digitalWrite>
+ 606:	61 e0       	ldi	r22, 0x01	; 1
+ 608:	89 2b       	or	r24, r25
+ 60a:	8a 2b       	or	r24, r26
+ 60c:	8b 2b       	or	r24, r27
+ 60e:	09 f4       	brne	.+2      	; 0x612 <__LOCK_REGION_LENGTH__+0x212>
+ 610:	60 e0       	ldi	r22, 0x00	; 0
+ 612:	82 e0       	ldi	r24, 0x02	; 2
+ 614:	ae dd       	rcall	.-1188   	; 0x172 <digitalWrite>
 dump():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:44
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:44
         void clear() {
           for (uint8_t i=0;i<REG_COUNT;i++) registers[i] = 0;
         };
 
         void dump() {
             if (ser) {
- 5c8:	80 91 df 00 	lds	r24, 0x00DF	; 0x8000df <rf+0x30>
- 5cc:	90 91 e0 00 	lds	r25, 0x00E0	; 0x8000e0 <rf+0x31>
- 5d0:	00 97       	sbiw	r24, 0x00	; 0
- 5d2:	09 f4       	brne	.+2      	; 0x5d6 <__LOCK_REGION_LENGTH__+0x1d6>
- 5d4:	88 c0       	rjmp	.+272    	; 0x6e6 <__LOCK_REGION_LENGTH__+0x2e6>
+ 616:	80 91 df 00 	lds	r24, 0x00DF	; 0x8000df <rf+0x30>
+ 61a:	90 91 e0 00 	lds	r25, 0x00E0	; 0x8000e0 <rf+0x31>
+ 61e:	00 97       	sbiw	r24, 0x00	; 0
+ 620:	09 f4       	brne	.+2      	; 0x624 <__LOCK_REGION_LENGTH__+0x224>
+ 622:	88 c0       	rjmp	.+272    	; 0x734 <__LOCK_REGION_LENGTH__+0x334>
 print():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/Print.cpp:53
   return n;
@@ -1397,92 +1523,92 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
 size_t Print::print(const char str[])
 {
   return write(str);
- 5d6:	60 e6       	ldi	r22, 0x60	; 96
- 5d8:	70 e0       	ldi	r23, 0x00	; 0
- 5da:	bb de       	rcall	.-650    	; 0x352 <Print::write(char const*)>
- 5dc:	af ea       	ldi	r26, 0xAF	; 175
- 5de:	8a 2e       	mov	r8, r26
- 5e0:	a0 e0       	ldi	r26, 0x00	; 0
- 5e2:	9a 2e       	mov	r9, r26
+ 624:	60 e6       	ldi	r22, 0x60	; 96
+ 626:	70 e0       	ldi	r23, 0x00	; 0
+ 628:	94 de       	rcall	.-728    	; 0x352 <Print::write(char const*)>
+ 62a:	af ea       	ldi	r26, 0xAF	; 175
+ 62c:	8a 2e       	mov	r8, r26
+ 62e:	a0 e0       	ldi	r26, 0x00	; 0
+ 630:	9a 2e       	mov	r9, r26
 _Z10doTickWorkv():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:46
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:46
                 ser->print("[ ");
                 for (uint8_t i=0; i< REG_COUNT; i++) {
- 5e4:	10 e0       	ldi	r17, 0x00	; 0
+ 632:	10 e0       	ldi	r17, 0x00	; 0
 print():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/Print.cpp:53
- 5e6:	63 e6       	ldi	r22, 0x63	; 99
- 5e8:	70 e0       	ldi	r23, 0x00	; 0
- 5ea:	80 91 df 00 	lds	r24, 0x00DF	; 0x8000df <rf+0x30>
- 5ee:	90 91 e0 00 	lds	r25, 0x00E0	; 0x8000e0 <rf+0x31>
- 5f2:	af de       	rcall	.-674    	; 0x352 <Print::write(char const*)>
+ 634:	63 e6       	ldi	r22, 0x63	; 99
+ 636:	70 e0       	ldi	r23, 0x00	; 0
+ 638:	80 91 df 00 	lds	r24, 0x00DF	; 0x8000df <rf+0x30>
+ 63c:	90 91 e0 00 	lds	r25, 0x00E0	; 0x8000e0 <rf+0x31>
+ 640:	88 de       	rcall	.-752    	; 0x352 <Print::write(char const*)>
 dump():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:48
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:48
                     ser->print("0x");
                     pp32hex(registers[i]);
- 5f4:	d4 01       	movw	r26, r8
- 5f6:	4d 90       	ld	r4, X+
- 5f8:	5d 90       	ld	r5, X+
- 5fa:	6d 90       	ld	r6, X+
- 5fc:	7d 90       	ld	r7, X+
- 5fe:	4d 01       	movw	r8, r26
- 600:	f8 e1       	ldi	r31, 0x18	; 24
- 602:	af 2e       	mov	r10, r31
- 604:	b1 2c       	mov	r11, r1
+ 642:	d4 01       	movw	r26, r8
+ 644:	4d 90       	ld	r4, X+
+ 646:	5d 90       	ld	r5, X+
+ 648:	6d 90       	ld	r6, X+
+ 64a:	7d 90       	ld	r7, X+
+ 64c:	4d 01       	movw	r8, r26
+ 64e:	f8 e1       	ldi	r31, 0x18	; 24
+ 650:	af 2e       	mov	r10, r31
+ 652:	b1 2c       	mov	r11, r1
 _ZN9regfile_cImLj12EE6pp8hexEh.isra.4():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:19
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:19
 class regfile_c {
     private:
         REGW registers[REG_COUNT];
         Stream *ser;
         void pp8hex(uint8_t i) {
             if (ser) {
- 606:	80 91 df 00 	lds	r24, 0x00DF	; 0x8000df <rf+0x30>
- 60a:	90 91 e0 00 	lds	r25, 0x00E0	; 0x8000e0 <rf+0x31>
- 60e:	00 97       	sbiw	r24, 0x00	; 0
- 610:	d1 f1       	breq	.+116    	; 0x686 <__LOCK_REGION_LENGTH__+0x286>
+ 654:	80 91 df 00 	lds	r24, 0x00DF	; 0x8000df <rf+0x30>
+ 658:	90 91 e0 00 	lds	r25, 0x00E0	; 0x8000e0 <rf+0x31>
+ 65c:	00 97       	sbiw	r24, 0x00	; 0
+ 65e:	d1 f1       	breq	.+116    	; 0x6d4 <__LOCK_REGION_LENGTH__+0x2d4>
 pp32hex():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:27
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:27
             }
         }
         void pp32hex(REGW i) {
             uint8_t j = sizeof(REGW);
             while (j) {
                 pp8hex((uint8_t)((i >> ((j-1)*8)) & 0xff));
- 612:	73 01       	movw	r14, r6
- 614:	62 01       	movw	r12, r4
- 616:	0a 2c       	mov	r0, r10
- 618:	04 c0       	rjmp	.+8      	; 0x622 <__LOCK_REGION_LENGTH__+0x222>
- 61a:	f6 94       	lsr	r15
- 61c:	e7 94       	ror	r14
- 61e:	d7 94       	ror	r13
- 620:	c7 94       	ror	r12
- 622:	0a 94       	dec	r0
- 624:	d2 f7       	brpl	.-12     	; 0x61a <__LOCK_REGION_LENGTH__+0x21a>
+ 660:	73 01       	movw	r14, r6
+ 662:	62 01       	movw	r12, r4
+ 664:	0a 2c       	mov	r0, r10
+ 666:	04 c0       	rjmp	.+8      	; 0x670 <__LOCK_REGION_LENGTH__+0x270>
+ 668:	f6 94       	lsr	r15
+ 66a:	e7 94       	ror	r14
+ 66c:	d7 94       	ror	r13
+ 66e:	c7 94       	ror	r12
+ 670:	0a 94       	dec	r0
+ 672:	d2 f7       	brpl	.-12     	; 0x668 <__LOCK_REGION_LENGTH__+0x268>
 _ZN9regfile_cImLj12EE6pp8hexEh.isra.4():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:20
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:20
     private:
         REGW registers[REG_COUNT];
         Stream *ser;
         void pp8hex(uint8_t i) {
             if (ser) {
                 if (i < 16) ser->print("0");
- 626:	bf e0       	ldi	r27, 0x0F	; 15
- 628:	bc 15       	cp	r27, r12
- 62a:	18 f0       	brcs	.+6      	; 0x632 <__LOCK_REGION_LENGTH__+0x232>
+ 674:	bf e0       	ldi	r27, 0x0F	; 15
+ 676:	bc 15       	cp	r27, r12
+ 678:	18 f0       	brcs	.+6      	; 0x680 <__LOCK_REGION_LENGTH__+0x280>
 print():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/Print.cpp:53
- 62c:	66 e6       	ldi	r22, 0x66	; 102
- 62e:	70 e0       	ldi	r23, 0x00	; 0
- 630:	90 de       	rcall	.-736    	; 0x352 <Print::write(char const*)>
+ 67a:	66 e6       	ldi	r22, 0x66	; 102
+ 67c:	70 e0       	ldi	r23, 0x00	; 0
+ 67e:	69 de       	rcall	.-814    	; 0x352 <Print::write(char const*)>
 _ZN9regfile_cImLj12EE6pp8hexEh.isra.4():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:21
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:21
                 ser->print(i,HEX);
- 632:	40 91 df 00 	lds	r20, 0x00DF	; 0x8000df <rf+0x30>
- 636:	50 91 e0 00 	lds	r21, 0x00E0	; 0x8000e0 <rf+0x31>
- 63a:	dd 24       	eor	r13, r13
- 63c:	ee 24       	eor	r14, r14
- 63e:	ff 24       	eor	r15, r15
+ 680:	40 91 df 00 	lds	r20, 0x00DF	; 0x8000df <rf+0x30>
+ 684:	50 91 e0 00 	lds	r21, 0x00E0	; 0x8000e0 <rf+0x31>
+ 688:	dd 24       	eor	r13, r13
+ 68a:	ee 24       	eor	r14, r14
+ 68c:	ff 24       	eor	r15, r15
 printNumber():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/Print.cpp:261
 
@@ -1491,10 +1617,10 @@ size_t Print::printNumber(unsigned long n, uint8_t base) {
   char *str = &buf[sizeof(buf) - 1];
 
   *str = '\0';
- 640:	19 a2       	std	Y+33, r1	; 0x21
- 642:	be 01       	movw	r22, r28
- 644:	6f 5d       	subi	r22, 0xDF	; 223
- 646:	7f 4f       	sbci	r23, 0xFF	; 255
+ 68e:	19 a2       	std	Y+33, r1	; 0x21
+ 690:	be 01       	movw	r22, r28
+ 692:	6f 5d       	subi	r22, 0xDF	; 223
+ 694:	7f 4f       	sbci	r23, 0xFF	; 255
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/Print.cpp:268
   // prevent crash if called with base == 1
   if (base < 2) base = 10;
@@ -1502,74 +1628,74 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
   do {
     unsigned long m = n;
     n /= base;
- 648:	d7 01       	movw	r26, r14
- 64a:	c6 01       	movw	r24, r12
- 64c:	e4 e0       	ldi	r30, 0x04	; 4
- 64e:	b6 95       	lsr	r27
- 650:	a7 95       	ror	r26
- 652:	97 95       	ror	r25
- 654:	87 95       	ror	r24
- 656:	ea 95       	dec	r30
- 658:	d1 f7       	brne	.-12     	; 0x64e <__LOCK_REGION_LENGTH__+0x24e>
+ 696:	d7 01       	movw	r26, r14
+ 698:	c6 01       	movw	r24, r12
+ 69a:	e4 e0       	ldi	r30, 0x04	; 4
+ 69c:	b6 95       	lsr	r27
+ 69e:	a7 95       	ror	r26
+ 6a0:	97 95       	ror	r25
+ 6a2:	87 95       	ror	r24
+ 6a4:	ea 95       	dec	r30
+ 6a6:	d1 f7       	brne	.-12     	; 0x69c <__LOCK_REGION_LENGTH__+0x29c>
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/Print.cpp:269
     char c = m - base * n;
- 65a:	28 2f       	mov	r18, r24
- 65c:	22 95       	swap	r18
- 65e:	20 7f       	andi	r18, 0xF0	; 240
- 660:	ec 2d       	mov	r30, r12
- 662:	e2 1b       	sub	r30, r18
- 664:	2e 2f       	mov	r18, r30
+ 6a8:	28 2f       	mov	r18, r24
+ 6aa:	22 95       	swap	r18
+ 6ac:	20 7f       	andi	r18, 0xF0	; 240
+ 6ae:	ec 2d       	mov	r30, r12
+ 6b0:	e2 1b       	sub	r30, r18
+ 6b2:	2e 2f       	mov	r18, r30
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/Print.cpp:270
     *--str = c < 10 ? c + '0' : c + 'A' - 10;
- 666:	ea 30       	cpi	r30, 0x0A	; 10
- 668:	0c f0       	brlt	.+2      	; 0x66c <__LOCK_REGION_LENGTH__+0x26c>
- 66a:	ae c0       	rjmp	.+348    	; 0x7c8 <__LOCK_REGION_LENGTH__+0x3c8>
- 66c:	20 5d       	subi	r18, 0xD0	; 208
- 66e:	fb 01       	movw	r30, r22
- 670:	22 93       	st	-Z, r18
- 672:	bf 01       	movw	r22, r30
- 674:	6c 01       	movw	r12, r24
- 676:	7d 01       	movw	r14, r26
+ 6b4:	ea 30       	cpi	r30, 0x0A	; 10
+ 6b6:	0c f0       	brlt	.+2      	; 0x6ba <__LOCK_REGION_LENGTH__+0x2ba>
+ 6b8:	a2 c0       	rjmp	.+324    	; 0x7fe <__LOCK_REGION_LENGTH__+0x3fe>
+ 6ba:	20 5d       	subi	r18, 0xD0	; 208
+ 6bc:	fb 01       	movw	r30, r22
+ 6be:	22 93       	st	-Z, r18
+ 6c0:	bf 01       	movw	r22, r30
+ 6c2:	6c 01       	movw	r12, r24
+ 6c4:	7d 01       	movw	r14, r26
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/Print.cpp:271
   } while(n);
- 678:	c1 14       	cp	r12, r1
- 67a:	d1 04       	cpc	r13, r1
- 67c:	e1 04       	cpc	r14, r1
- 67e:	f1 04       	cpc	r15, r1
- 680:	19 f7       	brne	.-58     	; 0x648 <__LOCK_REGION_LENGTH__+0x248>
+ 6c6:	c1 14       	cp	r12, r1
+ 6c8:	d1 04       	cpc	r13, r1
+ 6ca:	e1 04       	cpc	r14, r1
+ 6cc:	f1 04       	cpc	r15, r1
+ 6ce:	19 f7       	brne	.-58     	; 0x696 <__LOCK_REGION_LENGTH__+0x296>
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/Print.cpp:273
 
   return write(str);
- 682:	ca 01       	movw	r24, r20
- 684:	66 de       	rcall	.-820    	; 0x352 <Print::write(char const*)>
- 686:	f8 e0       	ldi	r31, 0x08	; 8
- 688:	af 1a       	sub	r10, r31
- 68a:	b1 08       	sbc	r11, r1
+ 6d0:	ca 01       	movw	r24, r20
+ 6d2:	3f de       	rcall	.-898    	; 0x352 <Print::write(char const*)>
+ 6d4:	f8 e0       	ldi	r31, 0x08	; 8
+ 6d6:	af 1a       	sub	r10, r31
+ 6d8:	b1 08       	sbc	r11, r1
 pp32hex():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:26
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:26
             }
         }
         void pp32hex(REGW i) {
             uint8_t j = sizeof(REGW);
             while (j) {
- 68c:	28 ef       	ldi	r18, 0xF8	; 248
- 68e:	a2 16       	cp	r10, r18
- 690:	2f ef       	ldi	r18, 0xFF	; 255
- 692:	b2 06       	cpc	r11, r18
- 694:	09 f0       	breq	.+2      	; 0x698 <__LOCK_REGION_LENGTH__+0x298>
- 696:	b7 cf       	rjmp	.-146    	; 0x606 <__LOCK_REGION_LENGTH__+0x206>
- 698:	80 91 df 00 	lds	r24, 0x00DF	; 0x8000df <rf+0x30>
- 69c:	90 91 e0 00 	lds	r25, 0x00E0	; 0x8000e0 <rf+0x31>
+ 6da:	28 ef       	ldi	r18, 0xF8	; 248
+ 6dc:	a2 16       	cp	r10, r18
+ 6de:	2f ef       	ldi	r18, 0xFF	; 255
+ 6e0:	b2 06       	cpc	r11, r18
+ 6e2:	09 f0       	breq	.+2      	; 0x6e6 <__LOCK_REGION_LENGTH__+0x2e6>
+ 6e4:	b7 cf       	rjmp	.-146    	; 0x654 <__LOCK_REGION_LENGTH__+0x254>
+ 6e6:	80 91 df 00 	lds	r24, 0x00DF	; 0x8000df <rf+0x30>
+ 6ea:	90 91 e0 00 	lds	r25, 0x00E0	; 0x8000e0 <rf+0x31>
 dump():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:49
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:49
             if (ser) {
                 ser->print("[ ");
                 for (uint8_t i=0; i< REG_COUNT; i++) {
                     ser->print("0x");
                     pp32hex(registers[i]);
                     if (i < (REG_COUNT-1)) ser->print(", ");
- 6a0:	1b 30       	cpi	r17, 0x0B	; 11
- 6a2:	19 f0       	breq	.+6      	; 0x6aa <__LOCK_REGION_LENGTH__+0x2aa>
+ 6ee:	1b 30       	cpi	r17, 0x0B	; 11
+ 6f0:	19 f0       	breq	.+6      	; 0x6f8 <__LOCK_REGION_LENGTH__+0x2f8>
 print():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/Print.cpp:53
   return n;
@@ -1578,214 +1704,230 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
 size_t Print::print(const char str[])
 {
   return write(str);
- 6a4:	68 e6       	ldi	r22, 0x68	; 104
- 6a6:	70 e0       	ldi	r23, 0x00	; 0
- 6a8:	54 de       	rcall	.-856    	; 0x352 <Print::write(char const*)>
+ 6f2:	68 e6       	ldi	r22, 0x68	; 104
+ 6f4:	70 e0       	ldi	r23, 0x00	; 0
+ 6f6:	2d de       	rcall	.-934    	; 0x352 <Print::write(char const*)>
 dump():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:46
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:46
         };
 
         void dump() {
             if (ser) {
                 ser->print("[ ");
                 for (uint8_t i=0; i< REG_COUNT; i++) {
- 6aa:	1f 5f       	subi	r17, 0xFF	; 255
- 6ac:	1c 30       	cpi	r17, 0x0C	; 12
- 6ae:	09 f0       	breq	.+2      	; 0x6b2 <__LOCK_REGION_LENGTH__+0x2b2>
- 6b0:	9a cf       	rjmp	.-204    	; 0x5e6 <__LOCK_REGION_LENGTH__+0x1e6>
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:51
+ 6f8:	1f 5f       	subi	r17, 0xFF	; 255
+ 6fa:	1c 30       	cpi	r17, 0x0C	; 12
+ 6fc:	09 f0       	breq	.+2      	; 0x700 <__LOCK_REGION_LENGTH__+0x300>
+ 6fe:	9a cf       	rjmp	.-204    	; 0x634 <__LOCK_REGION_LENGTH__+0x234>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:51
                     ser->print("0x");
                     pp32hex(registers[i]);
                     if (i < (REG_COUNT-1)) ser->print(", ");
                 }
                 ser->println(" ]");
- 6b2:	e0 90 df 00 	lds	r14, 0x00DF	; 0x8000df <rf+0x30>
- 6b6:	f0 90 e0 00 	lds	r15, 0x00E0	; 0x8000e0 <rf+0x31>
+ 700:	e0 90 df 00 	lds	r14, 0x00DF	; 0x8000df <rf+0x30>
+ 704:	f0 90 e0 00 	lds	r15, 0x00E0	; 0x8000e0 <rf+0x31>
 print():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/Print.cpp:53
- 6ba:	6b e6       	ldi	r22, 0x6B	; 107
- 6bc:	70 e0       	ldi	r23, 0x00	; 0
- 6be:	c7 01       	movw	r24, r14
- 6c0:	48 de       	rcall	.-880    	; 0x352 <Print::write(char const*)>
+ 708:	6b e6       	ldi	r22, 0x6B	; 107
+ 70a:	70 e0       	ldi	r23, 0x00	; 0
+ 70c:	c7 01       	movw	r24, r14
+ 70e:	21 de       	rcall	.-958    	; 0x352 <Print::write(char const*)>
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/Print.cpp:58
 }
 
 size_t Print::print(char c)
 {
   return write(c);
- 6c2:	d7 01       	movw	r26, r14
- 6c4:	ed 91       	ld	r30, X+
- 6c6:	fc 91       	ld	r31, X
- 6c8:	01 90       	ld	r0, Z+
- 6ca:	f0 81       	ld	r31, Z
- 6cc:	e0 2d       	mov	r30, r0
- 6ce:	6d e0       	ldi	r22, 0x0D	; 13
- 6d0:	c7 01       	movw	r24, r14
- 6d2:	09 95       	icall
- 6d4:	d7 01       	movw	r26, r14
- 6d6:	ed 91       	ld	r30, X+
- 6d8:	fc 91       	ld	r31, X
- 6da:	01 90       	ld	r0, Z+
- 6dc:	f0 81       	ld	r31, Z
- 6de:	e0 2d       	mov	r30, r0
- 6e0:	6a e0       	ldi	r22, 0x0A	; 10
- 6e2:	c7 01       	movw	r24, r14
- 6e4:	09 95       	icall
+ 710:	d7 01       	movw	r26, r14
+ 712:	ed 91       	ld	r30, X+
+ 714:	fc 91       	ld	r31, X
+ 716:	01 90       	ld	r0, Z+
+ 718:	f0 81       	ld	r31, Z
+ 71a:	e0 2d       	mov	r30, r0
+ 71c:	6d e0       	ldi	r22, 0x0D	; 13
+ 71e:	c7 01       	movw	r24, r14
+ 720:	09 95       	icall
+ 722:	d7 01       	movw	r26, r14
+ 724:	ed 91       	ld	r30, X+
+ 726:	fc 91       	ld	r31, X
+ 728:	01 90       	ld	r0, Z+
+ 72a:	f0 81       	ld	r31, Z
+ 72c:	e0 2d       	mov	r30, r0
+ 72e:	6a e0       	ldi	r22, 0x0A	; 10
+ 730:	c7 01       	movw	r24, r14
+ 732:	09 95       	icall
 _Z10doTickWorkv():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:185
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:180
     }
    
     adcreader.doRead();
     return;
 
 }
- 6e6:	a1 96       	adiw	r28, 0x21	; 33
- 6e8:	0f b6       	in	r0, 0x3f	; 63
- 6ea:	f8 94       	cli
- 6ec:	de bf       	out	0x3e, r29	; 62
- 6ee:	0f be       	out	0x3f, r0	; 63
- 6f0:	cd bf       	out	0x3d, r28	; 61
- 6f2:	df 91       	pop	r29
- 6f4:	cf 91       	pop	r28
- 6f6:	1f 91       	pop	r17
- 6f8:	0f 91       	pop	r16
- 6fa:	ff 90       	pop	r15
- 6fc:	ef 90       	pop	r14
- 6fe:	df 90       	pop	r13
- 700:	cf 90       	pop	r12
- 702:	bf 90       	pop	r11
- 704:	af 90       	pop	r10
- 706:	9f 90       	pop	r9
- 708:	8f 90       	pop	r8
- 70a:	7f 90       	pop	r7
- 70c:	6f 90       	pop	r6
- 70e:	5f 90       	pop	r5
- 710:	4f 90       	pop	r4
- 712:	08 95       	ret
+ 734:	a1 96       	adiw	r28, 0x21	; 33
+ 736:	0f b6       	in	r0, 0x3f	; 63
+ 738:	f8 94       	cli
+ 73a:	de bf       	out	0x3e, r29	; 62
+ 73c:	0f be       	out	0x3f, r0	; 63
+ 73e:	cd bf       	out	0x3d, r28	; 61
+ 740:	df 91       	pop	r29
+ 742:	cf 91       	pop	r28
+ 744:	1f 91       	pop	r17
+ 746:	0f 91       	pop	r16
+ 748:	ff 90       	pop	r15
+ 74a:	ef 90       	pop	r14
+ 74c:	df 90       	pop	r13
+ 74e:	cf 90       	pop	r12
+ 750:	bf 90       	pop	r11
+ 752:	af 90       	pop	r10
+ 754:	9f 90       	pop	r9
+ 756:	8f 90       	pop	r8
+ 758:	7f 90       	pop	r7
+ 75a:	6f 90       	pop	r6
+ 75c:	5f 90       	pop	r5
+ 75e:	4f 90       	pop	r4
+ 760:	08 95       	ret
 doSecondWork():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:111
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:105
+            srl.println("Powering off pi.");
+            #endif
+            s |=  _BV(STAT_WDOG_FIRED);
+            s &= ~(_BV(STAT_WDOG_FIRE_CODE) | _BV(STAT_WDOG_FIRE_CODE+1));                        //00b - on-remaining timer expired 
+            if (a_under && b_under) s |= (_BV(STAT_WDOG_FIRE_CODE) | _BV(STAT_WDOG_FIRE_CODE+1)); //11b - vsensb & vsensb dropped below threshold 
+            else if (a_under)       s |= _BV(STAT_WDOG_FIRE_CODE);                                //01b - vsensa dropped below threshold
+ 762:	32 e8       	ldi	r19, 0x82	; 130
+ 764:	c3 2a       	or	r12, r19
+ 766:	90 ce       	rjmp	.-736    	; 0x488 <__LOCK_REGION_LENGTH__+0x88>
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:106
+            else if (b_under)       s |= _BV(STAT_WDOG_FIRE_CODE+1);                              //10b - vsensb dropped below threshold
+ 768:	21 11       	cpse	r18, r1
+ 76a:	03 c0       	rjmp	.+6      	; 0x772 <__LOCK_REGION_LENGTH__+0x372>
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:103
+        if ( !on_rem || a_under || b_under) {
+            #ifdef SERIAL_DEBUG
+            srl.println("Powering off pi.");
+            #endif
+            s |=  _BV(STAT_WDOG_FIRED);
+            s &= ~(_BV(STAT_WDOG_FIRE_CODE) | _BV(STAT_WDOG_FIRE_CODE+1));                        //00b - on-remaining timer expired 
+ 76c:	68 94       	set
+ 76e:	c1 f8       	bld	r12, 1
+ 770:	8b ce       	rjmp	.-746    	; 0x488 <__LOCK_REGION_LENGTH__+0x88>
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:106
+            if (a_under && b_under) s |= (_BV(STAT_WDOG_FIRE_CODE) | _BV(STAT_WDOG_FIRE_CODE+1)); //11b - vsensb & vsensb dropped below threshold 
+            else if (a_under)       s |= _BV(STAT_WDOG_FIRE_CODE);                                //01b - vsensa dropped below threshold
+            else if (b_under)       s |= _BV(STAT_WDOG_FIRE_CODE+1);                              //10b - vsensb dropped below threshold
+ 772:	68 94       	set
+ 774:	c1 f8       	bld	r12, 1
+ 776:	d0 f8       	bld	r13, 0
+ 778:	87 ce       	rjmp	.-754    	; 0x488 <__LOCK_REGION_LENGTH__+0x88>
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:113
             s &= ~_BV(STAT_PWR_ON);
             s &= ~_BV(STAT_LED_WARN);
             rf.set(REG_OFF_REMAINING,rf.get(REG_OFF_REM_RESETVAL));
             rf.sethl(REG_FIRECOUNTS,rf.gethl(REG_FIRECOUNTS,register_bottom)+1,register_bottom);
         } else {
             if (on_rem < WARN_SECS) s |= _BV(STAT_LED_WARN);
- 714:	8e 31       	cpi	r24, 0x1E	; 30
- 716:	91 05       	cpc	r25, r1
- 718:	a1 05       	cpc	r26, r1
- 71a:	b1 05       	cpc	r27, r1
- 71c:	10 f4       	brcc	.+4      	; 0x722 <__LOCK_REGION_LENGTH__+0x322>
- 71e:	68 94       	set
- 720:	c6 f8       	bld	r12, 6
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:112
+ 77a:	8e 31       	cpi	r24, 0x1E	; 30
+ 77c:	91 05       	cpc	r25, r1
+ 77e:	a1 05       	cpc	r26, r1
+ 780:	b1 05       	cpc	r27, r1
+ 782:	10 f4       	brcc	.+4      	; 0x788 <__LOCK_REGION_LENGTH__+0x388>
+ 784:	68 94       	set
+ 786:	c6 f8       	bld	r12, 6
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:114
             rf.set(REG_ON_REMAINING,on_rem-1);
- 722:	01 97       	sbiw	r24, 0x01	; 1
- 724:	a1 09       	sbc	r26, r1
- 726:	b1 09       	sbc	r27, r1
+ 788:	01 97       	sbiw	r24, 0x01	; 1
+ 78a:	a1 09       	sbc	r26, r1
+ 78c:	b1 09       	sbc	r27, r1
 _ZN9regfile_cImLj12EE3setEhm():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:97
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:99
         REGW setAnd(uint8_t addr, REGW val) {
             registers[addr % REG_COUNT] &= val;
             return get(addr);
         }
         REGW set(uint8_t addr, REGW val) {
             registers[addr % REG_COUNT] = val;
- 728:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <rf+0x4>
- 72c:	90 93 b4 00 	sts	0x00B4, r25	; 0x8000b4 <rf+0x5>
- 730:	a0 93 b5 00 	sts	0x00B5, r26	; 0x8000b5 <rf+0x6>
- 734:	b0 93 b6 00 	sts	0x00B6, r27	; 0x8000b6 <rf+0x7>
- 738:	c4 ce       	rjmp	.-632    	; 0x4c2 <__LOCK_REGION_LENGTH__+0xc2>
- 73a:	40 91 c7 00 	lds	r20, 0x00C7	; 0x8000c7 <rf+0x18>
- 73e:	50 91 c8 00 	lds	r21, 0x00C8	; 0x8000c8 <rf+0x19>
- 742:	60 91 c9 00 	lds	r22, 0x00C9	; 0x8000c9 <rf+0x1a>
- 746:	70 91 ca 00 	lds	r23, 0x00CA	; 0x8000ca <rf+0x1b>
- 74a:	2b 01       	movw	r4, r22
- 74c:	66 24       	eor	r6, r6
- 74e:	77 24       	eor	r7, r7
+ 78e:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <rf+0x4>
+ 792:	90 93 b4 00 	sts	0x00B4, r25	; 0x8000b4 <rf+0x5>
+ 796:	a0 93 b5 00 	sts	0x00B5, r26	; 0x8000b5 <rf+0x6>
+ 79a:	b0 93 b6 00 	sts	0x00B6, r27	; 0x8000b6 <rf+0x7>
+ 79e:	a5 ce       	rjmp	.-694    	; 0x4ea <__LOCK_REGION_LENGTH__+0xea>
+_ZN9regfile_cImLj12EE5gethlEh15register_half_t():
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:78
+
+        REGW gethl(uint8_t addr, register_half_t half) {
+            REGW v = registers[addr % REG_COUNT];
+            size_t sz = sizeof(REGW);
+            if (half != register_bottom) {
+                v >>= (sz * 4);
+ 7a0:	ab 01       	movw	r20, r22
+ 7a2:	66 27       	eor	r22, r22
+ 7a4:	77 27       	eor	r23, r23
 doSecondWork():
 C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:125
-            reg_t a_on_thresh = (rf.get(REG_VSENSE_ON_THRESHOLD) >> 16) & 0xffff;
-            reg_t b_on_thresh = rf.get(REG_VSENSE_ON_THRESHOLD) & 0xffff;
-            bool enable = false;
-            if ( ! ( a_on_thresh || b_on_thresh ) ) {
-                enable = true;
-            } else if ( a_on_thresh && b_on_thresh && (((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) >= a_on_thresh ) &&
- 750:	00 97       	sbiw	r24, 0x00	; 0
- 752:	a1 05       	cpc	r26, r1
- 754:	b1 05       	cpc	r27, r1
- 756:	69 f0       	breq	.+26     	; 0x772 <__LOCK_REGION_LENGTH__+0x372>
- 758:	48 14       	cp	r4, r8
- 75a:	59 04       	cpc	r5, r9
- 75c:	6a 04       	cpc	r6, r10
- 75e:	7b 04       	cpc	r7, r11
- 760:	70 f0       	brcs	.+28     	; 0x77e <__LOCK_REGION_LENGTH__+0x37e>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:130
-                                                       ((rf.get(REG_VSENSA_VSENSB) & 0xffff) >= b_on_thresh) ) {
-                enable = true;
-            } else if ( a_on_thresh && ! b_on_thresh && (((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) >= a_on_thresh ) ) {
-                enable = true;
-            } else if ( ! a_on_thresh && b_on_thresh && ((rf.get(REG_VSENSA_VSENSB) & 0xffff) >= b_on_thresh) ) {
- 762:	66 27       	eor	r22, r22
- 764:	77 27       	eor	r23, r23
- 766:	48 17       	cp	r20, r24
- 768:	59 07       	cpc	r21, r25
- 76a:	6a 07       	cpc	r22, r26
- 76c:	7b 07       	cpc	r23, r27
- 76e:	38 f0       	brcs	.+14     	; 0x77e <__LOCK_REGION_LENGTH__+0x37e>
- 770:	d1 ce       	rjmp	.-606    	; 0x514 <__LOCK_REGION_LENGTH__+0x114>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:128
-            if ( ! ( a_on_thresh || b_on_thresh ) ) {
-                enable = true;
-            } else if ( a_on_thresh && b_on_thresh && (((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) >= a_on_thresh ) &&
-                                                       ((rf.get(REG_VSENSA_VSENSB) & 0xffff) >= b_on_thresh) ) {
-                enable = true;
-            } else if ( a_on_thresh && ! b_on_thresh && (((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) >= a_on_thresh ) ) {
- 772:	48 14       	cp	r4, r8
- 774:	59 04       	cpc	r5, r9
- 776:	6a 04       	cpc	r6, r10
- 778:	7b 04       	cpc	r7, r11
- 77a:	08 f0       	brcs	.+2      	; 0x77e <__LOCK_REGION_LENGTH__+0x37e>
- 77c:	cb ce       	rjmp	.-618    	; 0x514 <__LOCK_REGION_LENGTH__+0x114>
+            reg_t a_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_top);
+            reg_t b_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_bottom); 
+            bool a_over = rf.gethl(REG_VSENSA_VSENSB,register_top) >= a_on_thresh;
+            bool b_over = rf.gethl(REG_VSENSA_VSENSB,register_bottom) >= b_on_thresh;
+            bool enable = (!a_on_thresh && !b_on_thresh)                   || 
+                          (a_on_thresh && a_over && b_on_thresh && b_over) || 
+ 7a6:	48 15       	cp	r20, r8
+ 7a8:	59 05       	cpc	r21, r9
+ 7aa:	6a 05       	cpc	r22, r10
+ 7ac:	7b 05       	cpc	r23, r11
+ 7ae:	08 f0       	brcs	.+2      	; 0x7b2 <__LOCK_REGION_LENGTH__+0x3b2>
+ 7b0:	cc ce       	rjmp	.-616    	; 0x54a <__LOCK_REGION_LENGTH__+0x14a>
 _ZN9regfile_cImLj12EE3setEhm():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:97
- 77e:	80 91 bf 00 	lds	r24, 0x00BF	; 0x8000bf <rf+0x10>
- 782:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <rf+0x11>
- 786:	a0 91 c1 00 	lds	r26, 0x00C1	; 0x8000c1 <rf+0x12>
- 78a:	b0 91 c2 00 	lds	r27, 0x00C2	; 0x8000c2 <rf+0x13>
- 78e:	80 93 b7 00 	sts	0x00B7, r24	; 0x8000b7 <rf+0x8>
- 792:	90 93 b8 00 	sts	0x00B8, r25	; 0x8000b8 <rf+0x9>
- 796:	a0 93 b9 00 	sts	0x00B9, r26	; 0x8000b9 <rf+0xa>
- 79a:	b0 93 ba 00 	sts	0x00BA, r27	; 0x8000ba <rf+0xb>
- 79e:	e9 ce       	rjmp	.-558    	; 0x572 <__LOCK_REGION_LENGTH__+0x172>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:99
+        REGW setAnd(uint8_t addr, REGW val) {
+            registers[addr % REG_COUNT] &= val;
+            return get(addr);
+        }
+        REGW set(uint8_t addr, REGW val) {
+            registers[addr % REG_COUNT] = val;
+ 7b2:	80 91 bf 00 	lds	r24, 0x00BF	; 0x8000bf <rf+0x10>
+ 7b6:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <rf+0x11>
+ 7ba:	a0 91 c1 00 	lds	r26, 0x00C1	; 0x8000c1 <rf+0x12>
+ 7be:	b0 91 c2 00 	lds	r27, 0x00C2	; 0x8000c2 <rf+0x13>
+ 7c2:	80 93 b7 00 	sts	0x00B7, r24	; 0x8000b7 <rf+0x8>
+ 7c6:	90 93 b8 00 	sts	0x00B8, r25	; 0x8000b8 <rf+0x9>
+ 7ca:	a0 93 b9 00 	sts	0x00B9, r26	; 0x8000b9 <rf+0xa>
+ 7ce:	b0 93 ba 00 	sts	0x00BA, r27	; 0x8000ba <rf+0xb>
 doSecondWork():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:130
-                enable = true;
-            } else if ( ! a_on_thresh && b_on_thresh && ((rf.get(REG_VSENSA_VSENSB) & 0xffff) >= b_on_thresh) ) {
- 7a0:	40 91 c7 00 	lds	r20, 0x00C7	; 0x8000c7 <rf+0x18>
- 7a4:	50 91 c8 00 	lds	r21, 0x00C8	; 0x8000c8 <rf+0x19>
- 7a8:	60 91 c9 00 	lds	r22, 0x00C9	; 0x8000c9 <rf+0x1a>
- 7ac:	70 91 ca 00 	lds	r23, 0x00CA	; 0x8000ca <rf+0x1b>
- 7b0:	d8 cf       	rjmp	.-80     	; 0x762 <__LOCK_REGION_LENGTH__+0x362>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:148
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:140
+                s &= ~_BV(STAT_WDOG_FIRED);
+                rf.set(REG_ON_REMAINING,rf.get(REG_ON_REM_RESETVAL));
                 rf.sethl(REG_FIRECOUNTS,rf.gethl(REG_FIRECOUNTS,register_top)+1,register_top);
             } else if ( a_on_thresh || b_on_thresh ) {
               rf.set(REG_OFF_REMAINING,rf.get(REG_OFF_REM_RESETVAL));
+              s &= ~_BV(STAT_LED_WARN);
+ 7d2:	e8 94       	clt
+ 7d4:	c6 f8       	bld	r12, 6
+ 7d6:	f2 ce       	rjmp	.-540    	; 0x5bc <__LOCK_REGION_LENGTH__+0x1bc>
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:143
             }
         } else {
             if (off_rem < WARN_SECS) s |= _BV(STAT_LED_WARN);
- 7b2:	8e 31       	cpi	r24, 0x1E	; 30
- 7b4:	91 05       	cpc	r25, r1
- 7b6:	a1 05       	cpc	r26, r1
- 7b8:	b1 05       	cpc	r27, r1
- 7ba:	10 f4       	brcc	.+4      	; 0x7c0 <__LOCK_REGION_LENGTH__+0x3c0>
- 7bc:	68 94       	set
- 7be:	c6 f8       	bld	r12, 6
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:149
+ 7d8:	8e 31       	cpi	r24, 0x1E	; 30
+ 7da:	91 05       	cpc	r25, r1
+ 7dc:	a1 05       	cpc	r26, r1
+ 7de:	b1 05       	cpc	r27, r1
+ 7e0:	10 f4       	brcc	.+4      	; 0x7e6 <__LOCK_REGION_LENGTH__+0x3e6>
+ 7e2:	68 94       	set
+ 7e4:	c6 f8       	bld	r12, 6
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:144
             rf.set(REG_OFF_REMAINING,off_rem-1);
- 7c0:	01 97       	sbiw	r24, 0x01	; 1
- 7c2:	a1 09       	sbc	r26, r1
- 7c4:	b1 09       	sbc	r27, r1
- 7c6:	e3 cf       	rjmp	.-58     	; 0x78e <__LOCK_REGION_LENGTH__+0x38e>
+ 7e6:	01 97       	sbiw	r24, 0x01	; 1
+ 7e8:	a1 09       	sbc	r26, r1
+ 7ea:	b1 09       	sbc	r27, r1
+_ZN9regfile_cImLj12EE3setEhm():
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:99
+ 7ec:	80 93 b7 00 	sts	0x00B7, r24	; 0x8000b7 <rf+0x8>
+ 7f0:	90 93 b8 00 	sts	0x00B8, r25	; 0x8000b8 <rf+0x9>
+ 7f4:	a0 93 b9 00 	sts	0x00B9, r26	; 0x8000b9 <rf+0xa>
+ 7f8:	b0 93 ba 00 	sts	0x00BA, r27	; 0x8000ba <rf+0xb>
+ 7fc:	df ce       	rjmp	.-578    	; 0x5bc <__LOCK_REGION_LENGTH__+0x1bc>
 printNumber():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/Print.cpp:270
 
@@ -1794,157 +1936,157 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
     n /= base;
     char c = m - base * n;
     *--str = c < 10 ? c + '0' : c + 'A' - 10;
- 7c8:	29 5c       	subi	r18, 0xC9	; 201
- 7ca:	51 cf       	rjmp	.-350    	; 0x66e <__LOCK_REGION_LENGTH__+0x26e>
+ 7fe:	29 5c       	subi	r18, 0xC9	; 201
+ 800:	5d cf       	rjmp	.-326    	; 0x6bc <__LOCK_REGION_LENGTH__+0x2bc>
 doRead():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:26
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:26
 ;
         uint8_t doRead() {
             reg_names_t r = _REG_INVALID;
             reg_t v       = 0xdeadbeef;
             register_half_t h = register_bottom;
             switch (next % 6) {
- 7cc:	80 91 8a 00 	lds	r24, 0x008A	; 0x80008a <adcreader>
- 7d0:	66 e0       	ldi	r22, 0x06	; 6
- 7d2:	de d2       	rcall	.+1468   	; 0xd90 <__udivmodqi4>
- 7d4:	93 30       	cpi	r25, 0x03	; 3
- 7d6:	09 f4       	brne	.+2      	; 0x7da <__LOCK_REGION_LENGTH__+0x3da>
- 7d8:	5a c0       	rjmp	.+180    	; 0x88e <__LOCK_REGION_LENGTH__+0x48e>
- 7da:	98 f5       	brcc	.+102    	; 0x842 <__LOCK_REGION_LENGTH__+0x442>
- 7dc:	91 30       	cpi	r25, 0x01	; 1
- 7de:	09 f4       	brne	.+2      	; 0x7e2 <__LOCK_REGION_LENGTH__+0x3e2>
- 7e0:	3f c0       	rjmp	.+126    	; 0x860 <__LOCK_REGION_LENGTH__+0x460>
- 7e2:	92 30       	cpi	r25, 0x02	; 2
- 7e4:	09 f4       	brne	.+2      	; 0x7e8 <__LOCK_REGION_LENGTH__+0x3e8>
- 7e6:	47 c0       	rjmp	.+142    	; 0x876 <__LOCK_REGION_LENGTH__+0x476>
+ 802:	80 91 8a 00 	lds	r24, 0x008A	; 0x80008a <adcreader>
+ 806:	66 e0       	ldi	r22, 0x06	; 6
+ 808:	de d2       	rcall	.+1468   	; 0xdc6 <__udivmodqi4>
+ 80a:	93 30       	cpi	r25, 0x03	; 3
+ 80c:	09 f4       	brne	.+2      	; 0x810 <__LOCK_REGION_LENGTH__+0x410>
+ 80e:	5a c0       	rjmp	.+180    	; 0x8c4 <__LOCK_REGION_LENGTH__+0x4c4>
+ 810:	98 f5       	brcc	.+102    	; 0x878 <__LOCK_REGION_LENGTH__+0x478>
+ 812:	91 30       	cpi	r25, 0x01	; 1
+ 814:	09 f4       	brne	.+2      	; 0x818 <__LOCK_REGION_LENGTH__+0x418>
+ 816:	3f c0       	rjmp	.+126    	; 0x896 <__LOCK_REGION_LENGTH__+0x496>
+ 818:	92 30       	cpi	r25, 0x02	; 2
+ 81a:	09 f4       	brne	.+2      	; 0x81e <__LOCK_REGION_LENGTH__+0x41e>
+ 81c:	47 c0       	rjmp	.+142    	; 0x8ac <__LOCK_REGION_LENGTH__+0x4ac>
 _ZN11adcReader_cI9regfile_cImLj12EELh1ELh16EE11readOwnTempEv.isra.1():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:70
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:70
             next += 1;
             return next;
         };
 
         uint16_t readOwnTemp() {
             ADMUX   = B100010; // select temp sensor
- 7e8:	82 e2       	ldi	r24, 0x22	; 34
- 7ea:	87 b9       	out	0x07, r24	; 7
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:73
+ 81e:	82 e2       	ldi	r24, 0x22	; 34
+ 820:	87 b9       	out	0x07, r24	; 7
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:73
             // ADMUX  &= ~_BV(ADLAR);
             // select 1.1 volt reference
             ADMUX  |=  _BV(REFS1); 
- 7ec:	3f 9a       	sbi	0x07, 7	; 7
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:74
+ 822:	3f 9a       	sbi	0x07, 7	; 7
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:74
             ADMUX  &= ~_BV(REFS0);
- 7ee:	3e 98       	cbi	0x07, 6	; 7
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:75
+ 824:	3e 98       	cbi	0x07, 6	; 7
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:75
             delay(2);
- 7f0:	62 e0       	ldi	r22, 0x02	; 2
- 7f2:	70 e0       	ldi	r23, 0x00	; 0
- 7f4:	80 e0       	ldi	r24, 0x00	; 0
- 7f6:	90 e0       	ldi	r25, 0x00	; 0
- 7f8:	5d dd       	rcall	.-1350   	; 0x2b4 <delay>
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:77
+ 826:	62 e0       	ldi	r22, 0x02	; 2
+ 828:	70 e0       	ldi	r23, 0x00	; 0
+ 82a:	80 e0       	ldi	r24, 0x00	; 0
+ 82c:	90 e0       	ldi	r25, 0x00	; 0
+ 82e:	42 dd       	rcall	.-1404   	; 0x2b4 <delay>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:77
             // no interrupts and no auto-trigger
             ADCSRA &= ~(_BV(ADATE) | _BV(ADIE));
- 7fa:	86 b1       	in	r24, 0x06	; 6
- 7fc:	87 7d       	andi	r24, 0xD7	; 215
- 7fe:	86 b9       	out	0x06, r24	; 6
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:79
+ 830:	86 b1       	in	r24, 0x06	; 6
+ 832:	87 7d       	andi	r24, 0xD7	; 215
+ 834:	86 b9       	out	0x06, r24	; 6
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:79
             // turn her on and start a conversion
             ADCSRA |= _BV(ADEN);
- 800:	37 9a       	sbi	0x06, 7	; 6
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:80
+ 836:	37 9a       	sbi	0x06, 7	; 6
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:80
             ADCSRA |= _BV(ADSC);
- 802:	36 9a       	sbi	0x06, 6	; 6
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:81
+ 838:	36 9a       	sbi	0x06, 6	; 6
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:81
             delay(2);
- 804:	62 e0       	ldi	r22, 0x02	; 2
- 806:	70 e0       	ldi	r23, 0x00	; 0
- 808:	80 e0       	ldi	r24, 0x00	; 0
- 80a:	90 e0       	ldi	r25, 0x00	; 0
- 80c:	53 dd       	rcall	.-1370   	; 0x2b4 <delay>
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:82
+ 83a:	62 e0       	ldi	r22, 0x02	; 2
+ 83c:	70 e0       	ldi	r23, 0x00	; 0
+ 83e:	80 e0       	ldi	r24, 0x00	; 0
+ 840:	90 e0       	ldi	r25, 0x00	; 0
+ 842:	38 dd       	rcall	.-1424   	; 0x2b4 <delay>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:82
             while (bit_is_set(ADCSRA,ADSC));
- 80e:	36 99       	sbic	0x06, 6	; 6
- 810:	fe cf       	rjmp	.-4      	; 0x80e <__LOCK_REGION_LENGTH__+0x40e>
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:84
+ 844:	36 99       	sbic	0x06, 6	; 6
+ 846:	fe cf       	rjmp	.-4      	; 0x844 <__LOCK_REGION_LENGTH__+0x444>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:84
             // supposed to read ADCL first, then ADCH
             uint16_t ov = ADCL;
- 812:	84 b1       	in	r24, 0x04	; 4
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:85
+ 848:	84 b1       	in	r24, 0x04	; 4
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:85
             ov |= (ADCH << 8);
- 814:	25 b1       	in	r18, 0x05	; 5
- 816:	32 2f       	mov	r19, r18
- 818:	28 2f       	mov	r18, r24
+ 84a:	25 b1       	in	r18, 0x05	; 5
+ 84c:	32 2f       	mov	r19, r18
+ 84e:	28 2f       	mov	r18, r24
 doRead():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:31
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:31
             switch (next % 6) {
                  
                 case 0 :
                     r = REG_TEMP_V33;
                     h = register_top;
                     v = avg_temp.update(readOwnTemp());
- 81a:	89 01       	movw	r16, r18
- 81c:	30 e0       	ldi	r19, 0x00	; 0
- 81e:	20 e0       	ldi	r18, 0x00	; 0
+ 850:	89 01       	movw	r16, r18
+ 852:	30 e0       	ldi	r19, 0x00	; 0
+ 854:	20 e0       	ldi	r18, 0x00	; 0
 _Z10doTickWorkv():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:30
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:30
             register_half_t h = register_bottom;
             switch (next % 6) {
                  
                 case 0 :
                     r = REG_TEMP_V33;
                     h = register_top;
- 820:	81 e0       	ldi	r24, 0x01	; 1
- 822:	90 e0       	ldi	r25, 0x00	; 0
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:34
+ 856:	81 e0       	ldi	r24, 0x01	; 1
+ 858:	90 e0       	ldi	r25, 0x00	; 0
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:34
                     v = avg_temp.update(readOwnTemp());
                     break;
                 case 1 :
                     r = REG_TEMP_V33;
- 824:	65 e0       	ldi	r22, 0x05	; 5
- 826:	70 e0       	ldi	r23, 0x00	; 0
+ 85a:	65 e0       	ldi	r22, 0x05	; 5
+ 85c:	70 e0       	ldi	r23, 0x00	; 0
 doRead():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:64
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:64
                     analogReference(INTERNAL1V1);
                     v = avg_vcc_sw.update(analogRead(A2));
                     break;
             } 
             
             if (r != _REG_INVALID) rf.sethl(r,v,h);
- 828:	e0 91 8b 00 	lds	r30, 0x008B	; 0x80008b <adcreader+0x1>
- 82c:	f0 91 8c 00 	lds	r31, 0x008C	; 0x80008c <adcreader+0x2>
+ 85e:	e0 91 8b 00 	lds	r30, 0x008B	; 0x80008b <adcreader+0x1>
+ 862:	f0 91 8c 00 	lds	r31, 0x008C	; 0x80008c <adcreader+0x2>
 sethl():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:60
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:60
         REGW sethl(uint8_t addr, REGW i, register_half_t half) {
             size_t sz = sizeof(REGW);
             REGW mask = ~0; // all ones
             mask >>= (sz * 4);
             i &= mask;
             if (half == register_bottom) {
- 830:	89 2b       	or	r24, r25
- 832:	09 f0       	breq	.+2      	; 0x836 <__LOCK_REGION_LENGTH__+0x436>
- 834:	59 c0       	rjmp	.+178    	; 0x8e8 <__LOCK_REGION_LENGTH__+0x4e8>
+ 866:	89 2b       	or	r24, r25
+ 868:	09 f0       	breq	.+2      	; 0x86c <__LOCK_REGION_LENGTH__+0x46c>
+ 86a:	59 c0       	rjmp	.+178    	; 0x91e <__LOCK_REGION_LENGTH__+0x51e>
 _Z10doTickWorkv():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:61
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:61
                 mask <<= (sz * 4);
- 836:	c1 2c       	mov	r12, r1
- 838:	d1 2c       	mov	r13, r1
- 83a:	ee 24       	eor	r14, r14
- 83c:	ea 94       	dec	r14
- 83e:	fe 2c       	mov	r15, r14
- 840:	5b c0       	rjmp	.+182    	; 0x8f8 <__LOCK_REGION_LENGTH__+0x4f8>
+ 86c:	c1 2c       	mov	r12, r1
+ 86e:	d1 2c       	mov	r13, r1
+ 870:	ee 24       	eor	r14, r14
+ 872:	ea 94       	dec	r14
+ 874:	fe 2c       	mov	r15, r14
+ 876:	5b c0       	rjmp	.+182    	; 0x92e <__LOCK_REGION_LENGTH__+0x52e>
 doRead():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:26
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:26
 ;
         uint8_t doRead() {
             reg_names_t r = _REG_INVALID;
             reg_t v       = 0xdeadbeef;
             register_half_t h = register_bottom;
             switch (next % 6) {
- 842:	94 30       	cpi	r25, 0x04	; 4
- 844:	79 f1       	breq	.+94     	; 0x8a4 <__LOCK_REGION_LENGTH__+0x4a4>
- 846:	95 30       	cpi	r25, 0x05	; 5
- 848:	79 f6       	brne	.-98     	; 0x7e8 <__LOCK_REGION_LENGTH__+0x3e8>
+ 878:	94 30       	cpi	r25, 0x04	; 4
+ 87a:	79 f1       	breq	.+94     	; 0x8da <__LOCK_REGION_LENGTH__+0x4da>
+ 87c:	95 30       	cpi	r25, 0x05	; 5
+ 87e:	79 f6       	brne	.-98     	; 0x81e <__LOCK_REGION_LENGTH__+0x41e>
 analogReference():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring_analog.c:45
 {
@@ -1953,260 +2095,260 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
   // there's something connected to AREF.
   // fix? Validate the mode?
   analog_reference = mode;
- 84a:	82 e0       	ldi	r24, 0x02	; 2
- 84c:	80 93 a6 00 	sts	0x00A6, r24	; 0x8000a6 <analog_reference>
+ 880:	82 e0       	ldi	r24, 0x02	; 2
+ 882:	80 93 a6 00 	sts	0x00A6, r24	; 0x8000a6 <analog_reference>
 doRead():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:60
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:60
                     break;
                 case 5 :
                     r = REG_V5_V5SWTCH;
                     h = register_bottom;
                     analogReference(INTERNAL1V1);
                     v = avg_vcc_sw.update(analogRead(A2));
- 850:	82 e8       	ldi	r24, 0x82	; 130
- 852:	fb dc       	rcall	.-1546   	; 0x24a <analogRead>
- 854:	8c 01       	movw	r16, r24
- 856:	30 e0       	ldi	r19, 0x00	; 0
- 858:	20 e0       	ldi	r18, 0x00	; 0
+ 886:	82 e8       	ldi	r24, 0x82	; 130
+ 888:	e0 dc       	rcall	.-1600   	; 0x24a <analogRead>
+ 88a:	8c 01       	movw	r16, r24
+ 88c:	30 e0       	ldi	r19, 0x00	; 0
+ 88e:	20 e0       	ldi	r18, 0x00	; 0
 _Z10doTickWorkv():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:58
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:58
                     h = register_top;
                     v = avg_vcc.update(readOwnVCC());
                     break;
                 case 5 :
                     r = REG_V5_V5SWTCH;
                     h = register_bottom;
- 85a:	90 e0       	ldi	r25, 0x00	; 0
- 85c:	80 e0       	ldi	r24, 0x00	; 0
- 85e:	41 c0       	rjmp	.+130    	; 0x8e2 <__LOCK_REGION_LENGTH__+0x4e2>
+ 890:	90 e0       	ldi	r25, 0x00	; 0
+ 892:	80 e0       	ldi	r24, 0x00	; 0
+ 894:	41 c0       	rjmp	.+130    	; 0x918 <__LOCK_REGION_LENGTH__+0x518>
 analogReference():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring_analog.c:45
- 860:	82 e0       	ldi	r24, 0x02	; 2
- 862:	80 93 a6 00 	sts	0x00A6, r24	; 0x8000a6 <analog_reference>
+ 896:	82 e0       	ldi	r24, 0x02	; 2
+ 898:	80 93 a6 00 	sts	0x00A6, r24	; 0x8000a6 <analog_reference>
 doRead():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:37
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:37
                     break;
                 case 1 :
                     r = REG_TEMP_V33;
                     h = register_bottom;
                     analogReference(INTERNAL1V1);
                     v = avg_vcc_sw.update(analogRead(A3));
- 866:	83 e8       	ldi	r24, 0x83	; 131
- 868:	f0 dc       	rcall	.-1568   	; 0x24a <analogRead>
- 86a:	8c 01       	movw	r16, r24
- 86c:	30 e0       	ldi	r19, 0x00	; 0
- 86e:	20 e0       	ldi	r18, 0x00	; 0
+ 89c:	83 e8       	ldi	r24, 0x83	; 131
+ 89e:	d5 dc       	rcall	.-1622   	; 0x24a <analogRead>
+ 8a0:	8c 01       	movw	r16, r24
+ 8a2:	30 e0       	ldi	r19, 0x00	; 0
+ 8a4:	20 e0       	ldi	r18, 0x00	; 0
 _Z10doTickWorkv():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:35
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:35
                     h = register_top;
                     v = avg_temp.update(readOwnTemp());
                     break;
                 case 1 :
                     r = REG_TEMP_V33;
                     h = register_bottom;
- 870:	90 e0       	ldi	r25, 0x00	; 0
- 872:	80 e0       	ldi	r24, 0x00	; 0
- 874:	d7 cf       	rjmp	.-82     	; 0x824 <__LOCK_REGION_LENGTH__+0x424>
+ 8a6:	90 e0       	ldi	r25, 0x00	; 0
+ 8a8:	80 e0       	ldi	r24, 0x00	; 0
+ 8aa:	d7 cf       	rjmp	.-82     	; 0x85a <__LOCK_REGION_LENGTH__+0x45a>
 analogReference():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring_analog.c:45
- 876:	90 93 a6 00 	sts	0x00A6, r25	; 0x8000a6 <analog_reference>
+ 8ac:	90 93 a6 00 	sts	0x00A6, r25	; 0x8000a6 <analog_reference>
 doRead():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:43
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:43
                     break;
                 case 2 :
                     r = REG_VSENSA_VSENSB;
                     h = register_top;
                     analogReference(INTERNAL1V1);
                     v = avg_vbat.update(analogRead(A0));
- 87a:	80 e8       	ldi	r24, 0x80	; 128
- 87c:	e6 dc       	rcall	.-1588   	; 0x24a <analogRead>
- 87e:	8c 01       	movw	r16, r24
- 880:	30 e0       	ldi	r19, 0x00	; 0
- 882:	20 e0       	ldi	r18, 0x00	; 0
+ 8b0:	80 e8       	ldi	r24, 0x80	; 128
+ 8b2:	cb dc       	rcall	.-1642   	; 0x24a <analogRead>
+ 8b4:	8c 01       	movw	r16, r24
+ 8b6:	30 e0       	ldi	r19, 0x00	; 0
+ 8b8:	20 e0       	ldi	r18, 0x00	; 0
 _Z10doTickWorkv():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:41
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:41
                     analogReference(INTERNAL1V1);
                     v = avg_vcc_sw.update(analogRead(A3));
                     break;
                 case 2 :
                     r = REG_VSENSA_VSENSB;
                     h = register_top;
- 884:	81 e0       	ldi	r24, 0x01	; 1
- 886:	90 e0       	ldi	r25, 0x00	; 0
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:46
+ 8ba:	81 e0       	ldi	r24, 0x01	; 1
+ 8bc:	90 e0       	ldi	r25, 0x00	; 0
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:46
                     analogReference(INTERNAL1V1);
                     v = avg_vbat.update(analogRead(A0));
                     break;
                 case 3 :
                     r = REG_VSENSA_VSENSB;
- 888:	66 e0       	ldi	r22, 0x06	; 6
- 88a:	70 e0       	ldi	r23, 0x00	; 0
- 88c:	cd cf       	rjmp	.-102    	; 0x828 <__LOCK_REGION_LENGTH__+0x428>
+ 8be:	66 e0       	ldi	r22, 0x06	; 6
+ 8c0:	70 e0       	ldi	r23, 0x00	; 0
+ 8c2:	cd cf       	rjmp	.-102    	; 0x85e <__LOCK_REGION_LENGTH__+0x45e>
 analogReference():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring_analog.c:45
- 88e:	82 e0       	ldi	r24, 0x02	; 2
- 890:	80 93 a6 00 	sts	0x00A6, r24	; 0x8000a6 <analog_reference>
+ 8c4:	82 e0       	ldi	r24, 0x02	; 2
+ 8c6:	80 93 a6 00 	sts	0x00A6, r24	; 0x8000a6 <analog_reference>
 doRead():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:49
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:49
                     h = register_bottom;
                     analogReference(INTERNAL1V1);
                     v = avg_vbat.update(analogRead(A1));
- 894:	81 e8       	ldi	r24, 0x81	; 129
- 896:	d9 dc       	rcall	.-1614   	; 0x24a <analogRead>
- 898:	8c 01       	movw	r16, r24
- 89a:	30 e0       	ldi	r19, 0x00	; 0
- 89c:	20 e0       	ldi	r18, 0x00	; 0
+ 8ca:	81 e8       	ldi	r24, 0x81	; 129
+ 8cc:	be dc       	rcall	.-1668   	; 0x24a <analogRead>
+ 8ce:	8c 01       	movw	r16, r24
+ 8d0:	30 e0       	ldi	r19, 0x00	; 0
+ 8d2:	20 e0       	ldi	r18, 0x00	; 0
 _Z10doTickWorkv():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:47
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:47
                     analogReference(INTERNAL1V1);
                     v = avg_vbat.update(analogRead(A0));
                     break;
                 case 3 :
                     r = REG_VSENSA_VSENSB;
                     h = register_bottom;
- 89e:	90 e0       	ldi	r25, 0x00	; 0
- 8a0:	80 e0       	ldi	r24, 0x00	; 0
- 8a2:	f2 cf       	rjmp	.-28     	; 0x888 <__LOCK_REGION_LENGTH__+0x488>
+ 8d4:	90 e0       	ldi	r25, 0x00	; 0
+ 8d6:	80 e0       	ldi	r24, 0x00	; 0
+ 8d8:	f2 cf       	rjmp	.-28     	; 0x8be <__LOCK_REGION_LENGTH__+0x4be>
 _ZN11adcReader_cI9regfile_cImLj12EELh1ELh16EE10readOwnVCCEv.isra.3():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:91
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:91
             return ov;
         }
 
         uint16_t readOwnVCC() {
             uint32_t result;
             ADMUX = _BV(MUX5) | _BV(MUX0);
- 8a4:	81 e2       	ldi	r24, 0x21	; 33
- 8a6:	87 b9       	out	0x07, r24	; 7
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:92
+ 8da:	81 e2       	ldi	r24, 0x21	; 33
+ 8dc:	87 b9       	out	0x07, r24	; 7
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:92
             delay(2);
- 8a8:	62 e0       	ldi	r22, 0x02	; 2
- 8aa:	70 e0       	ldi	r23, 0x00	; 0
- 8ac:	80 e0       	ldi	r24, 0x00	; 0
- 8ae:	90 e0       	ldi	r25, 0x00	; 0
- 8b0:	01 dd       	rcall	.-1534   	; 0x2b4 <delay>
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:93
+ 8de:	62 e0       	ldi	r22, 0x02	; 2
+ 8e0:	70 e0       	ldi	r23, 0x00	; 0
+ 8e2:	80 e0       	ldi	r24, 0x00	; 0
+ 8e4:	90 e0       	ldi	r25, 0x00	; 0
+ 8e6:	e6 dc       	rcall	.-1588   	; 0x2b4 <delay>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:93
             ADCSRA |= _BV(ADSC);
- 8b2:	36 9a       	sbi	0x06, 6	; 6
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:94
+ 8e8:	36 9a       	sbi	0x06, 6	; 6
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:94
             while (bit_is_set(ADCSRA,ADSC));
- 8b4:	36 99       	sbic	0x06, 6	; 6
- 8b6:	fe cf       	rjmp	.-4      	; 0x8b4 <__LOCK_REGION_LENGTH__+0x4b4>
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:95
+ 8ea:	36 99       	sbic	0x06, 6	; 6
+ 8ec:	fe cf       	rjmp	.-4      	; 0x8ea <__LOCK_REGION_LENGTH__+0x4ea>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:95
             result = ADCL;
- 8b8:	84 b1       	in	r24, 0x04	; 4
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:96
+ 8ee:	84 b1       	in	r24, 0x04	; 4
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:96
             result |= ADCH << 8;
- 8ba:	25 b1       	in	r18, 0x05	; 5
- 8bc:	30 e0       	ldi	r19, 0x00	; 0
- 8be:	32 2f       	mov	r19, r18
- 8c0:	22 27       	eor	r18, r18
- 8c2:	03 2e       	mov	r0, r19
- 8c4:	00 0c       	add	r0, r0
- 8c6:	44 0b       	sbc	r20, r20
- 8c8:	55 0b       	sbc	r21, r21
- 8ca:	28 2b       	or	r18, r24
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:98
+ 8f0:	25 b1       	in	r18, 0x05	; 5
+ 8f2:	30 e0       	ldi	r19, 0x00	; 0
+ 8f4:	32 2f       	mov	r19, r18
+ 8f6:	22 27       	eor	r18, r18
+ 8f8:	03 2e       	mov	r0, r19
+ 8fa:	00 0c       	add	r0, r0
+ 8fc:	44 0b       	sbc	r20, r20
+ 8fe:	55 0b       	sbc	r21, r21
+ 900:	28 2b       	or	r18, r24
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:98
             // reading directly in mV
             result = 1126400L / result;
- 8cc:	60 e0       	ldi	r22, 0x00	; 0
- 8ce:	70 e3       	ldi	r23, 0x30	; 48
- 8d0:	81 e1       	ldi	r24, 0x11	; 17
- 8d2:	90 e0       	ldi	r25, 0x00	; 0
- 8d4:	69 d2       	rcall	.+1234   	; 0xda8 <__udivmodsi4>
- 8d6:	89 01       	movw	r16, r18
- 8d8:	9a 01       	movw	r18, r20
- 8da:	22 27       	eor	r18, r18
- 8dc:	33 27       	eor	r19, r19
+ 902:	60 e0       	ldi	r22, 0x00	; 0
+ 904:	70 e3       	ldi	r23, 0x30	; 48
+ 906:	81 e1       	ldi	r24, 0x11	; 17
+ 908:	90 e0       	ldi	r25, 0x00	; 0
+ 90a:	69 d2       	rcall	.+1234   	; 0xdde <__udivmodsi4>
+ 90c:	89 01       	movw	r16, r18
+ 90e:	9a 01       	movw	r18, r20
+ 910:	22 27       	eor	r18, r18
+ 912:	33 27       	eor	r19, r19
 _Z10doTickWorkv():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:53
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:53
                     analogReference(INTERNAL1V1);
                     v = avg_vbat.update(analogRead(A1));
                     break;
                 case 4 :
                     r = REG_V5_V5SWTCH;
                     h = register_top;
- 8de:	81 e0       	ldi	r24, 0x01	; 1
- 8e0:	90 e0       	ldi	r25, 0x00	; 0
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:57
+ 914:	81 e0       	ldi	r24, 0x01	; 1
+ 916:	90 e0       	ldi	r25, 0x00	; 0
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:57
                     v = avg_vcc.update(readOwnVCC());
                     break;
                 case 5 :
                     r = REG_V5_V5SWTCH;
- 8e2:	67 e0       	ldi	r22, 0x07	; 7
- 8e4:	70 e0       	ldi	r23, 0x00	; 0
- 8e6:	a0 cf       	rjmp	.-192    	; 0x828 <__LOCK_REGION_LENGTH__+0x428>
+ 918:	67 e0       	ldi	r22, 0x07	; 7
+ 91a:	70 e0       	ldi	r23, 0x00	; 0
+ 91c:	a0 cf       	rjmp	.-192    	; 0x85e <__LOCK_REGION_LENGTH__+0x45e>
 sethl():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:63
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:63
             } else {
                 i <<= (sz * 4);
- 8e8:	98 01       	movw	r18, r16
- 8ea:	11 27       	eor	r17, r17
- 8ec:	00 27       	eor	r16, r16
+ 91e:	98 01       	movw	r18, r16
+ 920:	11 27       	eor	r17, r17
+ 922:	00 27       	eor	r16, r16
 _Z10doTickWorkv():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:58
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:58
         }
 
         REGW sethl(uint8_t addr, REGW i, register_half_t half) {
             size_t sz = sizeof(REGW);
             REGW mask = ~0; // all ones
             mask >>= (sz * 4);
- 8ee:	cc 24       	eor	r12, r12
- 8f0:	ca 94       	dec	r12
- 8f2:	dc 2c       	mov	r13, r12
- 8f4:	e1 2c       	mov	r14, r1
- 8f6:	f1 2c       	mov	r15, r1
- 8f8:	66 0f       	add	r22, r22
- 8fa:	77 1f       	adc	r23, r23
- 8fc:	66 0f       	add	r22, r22
- 8fe:	77 1f       	adc	r23, r23
- 900:	e6 0f       	add	r30, r22
- 902:	f7 1f       	adc	r31, r23
+ 924:	cc 24       	eor	r12, r12
+ 926:	ca 94       	dec	r12
+ 928:	dc 2c       	mov	r13, r12
+ 92a:	e1 2c       	mov	r14, r1
+ 92c:	f1 2c       	mov	r15, r1
+ 92e:	66 0f       	add	r22, r22
+ 930:	77 1f       	adc	r23, r23
+ 932:	66 0f       	add	r22, r22
+ 934:	77 1f       	adc	r23, r23
+ 936:	e6 0f       	add	r30, r22
+ 938:	f7 1f       	adc	r31, r23
 sethl():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:65
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:65
             if (half == register_bottom) {
                 mask <<= (sz * 4);
             } else {
                 i <<= (sz * 4);
             }
             REGW o = registers[addr % REG_COUNT];
- 904:	80 81       	ld	r24, Z
- 906:	91 81       	ldd	r25, Z+1	; 0x01
- 908:	a2 81       	ldd	r26, Z+2	; 0x02
- 90a:	b3 81       	ldd	r27, Z+3	; 0x03
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:67
+ 93a:	80 81       	ld	r24, Z
+ 93c:	91 81       	ldd	r25, Z+1	; 0x01
+ 93e:	a2 81       	ldd	r26, Z+2	; 0x02
+ 940:	b3 81       	ldd	r27, Z+3	; 0x03
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:67
 
             o &= mask;
- 90c:	8c 21       	and	r24, r12
- 90e:	9d 21       	and	r25, r13
- 910:	ae 21       	and	r26, r14
- 912:	bf 21       	and	r27, r15
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:68
+ 942:	8c 21       	and	r24, r12
+ 944:	9d 21       	and	r25, r13
+ 946:	ae 21       	and	r26, r14
+ 948:	bf 21       	and	r27, r15
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:68
             o |= i;
- 914:	80 2b       	or	r24, r16
- 916:	91 2b       	or	r25, r17
- 918:	a2 2b       	or	r26, r18
- 91a:	b3 2b       	or	r27, r19
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:70
+ 94a:	80 2b       	or	r24, r16
+ 94c:	91 2b       	or	r25, r17
+ 94e:	a2 2b       	or	r26, r18
+ 950:	b3 2b       	or	r27, r19
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:70
 
             registers[addr % REG_COUNT] = o;
- 91c:	80 83       	st	Z, r24
- 91e:	91 83       	std	Z+1, r25	; 0x01
- 920:	a2 83       	std	Z+2, r26	; 0x02
- 922:	b3 83       	std	Z+3, r27	; 0x03
+ 952:	80 83       	st	Z, r24
+ 954:	91 83       	std	Z+1, r25	; 0x01
+ 956:	a2 83       	std	Z+2, r26	; 0x02
+ 958:	b3 83       	std	Z+3, r27	; 0x03
 doRead():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:65
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:65
                     v = avg_vcc_sw.update(analogRead(A2));
                     break;
             } 
             
             if (r != _REG_INVALID) rf.sethl(r,v,h);
             next += 1;
- 924:	80 91 8a 00 	lds	r24, 0x008A	; 0x80008a <adcreader>
- 928:	8f 5f       	subi	r24, 0xFF	; 255
- 92a:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <adcreader>
- 92e:	db ce       	rjmp	.-586    	; 0x6e6 <__LOCK_REGION_LENGTH__+0x2e6>
+ 95a:	80 91 8a 00 	lds	r24, 0x008A	; 0x80008a <adcreader>
+ 95e:	8f 5f       	subi	r24, 0xFF	; 255
+ 960:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <adcreader>
+ 964:	e7 ce       	rjmp	.-562    	; 0x734 <__LOCK_REGION_LENGTH__+0x334>
 
-00000930 <__vector_11>:
+00000966 <__vector_11>:
 __vector_11():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:139
       #error "cannot find Millis() timer overflow vector"
@@ -2215,49 +2357,49 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
     #error "Millis() timer not defined!"
   #endif
   {
- 930:	1f 92       	push	r1
- 932:	0f 92       	push	r0
- 934:	0f b6       	in	r0, 0x3f	; 63
- 936:	0f 92       	push	r0
- 938:	11 24       	eor	r1, r1
- 93a:	2f 93       	push	r18
- 93c:	3f 93       	push	r19
- 93e:	8f 93       	push	r24
- 940:	9f 93       	push	r25
- 942:	af 93       	push	r26
- 944:	bf 93       	push	r27
+ 966:	1f 92       	push	r1
+ 968:	0f 92       	push	r0
+ 96a:	0f b6       	in	r0, 0x3f	; 63
+ 96c:	0f 92       	push	r0
+ 96e:	11 24       	eor	r1, r1
+ 970:	2f 93       	push	r18
+ 972:	3f 93       	push	r19
+ 974:	8f 93       	push	r24
+ 976:	9f 93       	push	r25
+ 978:	af 93       	push	r26
+ 97a:	bf 93       	push	r27
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:142
     // copy these to local variables so they can be stored in registers
     // (volatile variables must be read from memory on every access)
     unsigned long m = millis_timer_millis;
- 946:	80 91 a7 00 	lds	r24, 0x00A7	; 0x8000a7 <millis_timer_millis>
- 94a:	90 91 a8 00 	lds	r25, 0x00A8	; 0x8000a8 <millis_timer_millis+0x1>
- 94e:	a0 91 a9 00 	lds	r26, 0x00A9	; 0x8000a9 <millis_timer_millis+0x2>
- 952:	b0 91 aa 00 	lds	r27, 0x00AA	; 0x8000aa <millis_timer_millis+0x3>
+ 97c:	80 91 a7 00 	lds	r24, 0x00A7	; 0x8000a7 <millis_timer_millis>
+ 980:	90 91 a8 00 	lds	r25, 0x00A8	; 0x8000a8 <millis_timer_millis+0x1>
+ 984:	a0 91 a9 00 	lds	r26, 0x00A9	; 0x8000a9 <millis_timer_millis+0x2>
+ 988:	b0 91 aa 00 	lds	r27, 0x00AA	; 0x8000aa <millis_timer_millis+0x3>
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:143
     unsigned char f = millis_timer_fract;
- 956:	30 91 a1 00 	lds	r19, 0x00A1	; 0x8000a1 <millis_timer_fract>
+ 98c:	30 91 a1 00 	lds	r19, 0x00A1	; 0x8000a1 <millis_timer_fract>
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:145
 
     f += FRACT_INC;
- 95a:	26 e0       	ldi	r18, 0x06	; 6
- 95c:	23 0f       	add	r18, r19
+ 990:	26 e0       	ldi	r18, 0x06	; 6
+ 992:	23 0f       	add	r18, r19
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:147
 
     if (f >= FRACT_MAX)
- 95e:	2d 37       	cpi	r18, 0x7D	; 125
- 960:	68 f1       	brcs	.+90     	; 0x9bc <__vector_11+0x8c>
+ 994:	2d 37       	cpi	r18, 0x7D	; 125
+ 996:	68 f1       	brcs	.+90     	; 0x9f2 <__vector_11+0x8c>
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:149
     {
       f -= FRACT_MAX;
- 962:	29 e8       	ldi	r18, 0x89	; 137
- 964:	23 0f       	add	r18, r19
+ 998:	29 e8       	ldi	r18, 0x89	; 137
+ 99a:	23 0f       	add	r18, r19
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:151
     m += 1;
       m += MILLIS_INC;
- 966:	03 96       	adiw	r24, 0x03	; 3
- 968:	a1 1d       	adc	r26, r1
- 96a:	b1 1d       	adc	r27, r1
+ 99c:	03 96       	adiw	r24, 0x03	; 3
+ 99e:	a1 1d       	adc	r26, r1
+ 9a0:	b1 1d       	adc	r27, r1
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:158
     else
     {
@@ -2265,40 +2407,40 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
     }
 
     millis_timer_fract = f;
- 96c:	20 93 a1 00 	sts	0x00A1, r18	; 0x8000a1 <millis_timer_fract>
+ 9a2:	20 93 a1 00 	sts	0x00A1, r18	; 0x8000a1 <millis_timer_fract>
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:159
     millis_timer_millis = m;
- 970:	80 93 a7 00 	sts	0x00A7, r24	; 0x8000a7 <millis_timer_millis>
- 974:	90 93 a8 00 	sts	0x00A8, r25	; 0x8000a8 <millis_timer_millis+0x1>
- 978:	a0 93 a9 00 	sts	0x00A9, r26	; 0x8000a9 <millis_timer_millis+0x2>
- 97c:	b0 93 aa 00 	sts	0x00AA, r27	; 0x8000aa <millis_timer_millis+0x3>
+ 9a6:	80 93 a7 00 	sts	0x00A7, r24	; 0x8000a7 <millis_timer_millis>
+ 9aa:	90 93 a8 00 	sts	0x00A8, r25	; 0x8000a8 <millis_timer_millis+0x1>
+ 9ae:	a0 93 a9 00 	sts	0x00A9, r26	; 0x8000a9 <millis_timer_millis+0x2>
+ 9b2:	b0 93 aa 00 	sts	0x00AA, r27	; 0x8000aa <millis_timer_millis+0x3>
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:160
     millis_timer_overflow_count++;
- 980:	80 91 a2 00 	lds	r24, 0x00A2	; 0x8000a2 <millis_timer_overflow_count>
- 984:	90 91 a3 00 	lds	r25, 0x00A3	; 0x8000a3 <millis_timer_overflow_count+0x1>
- 988:	a0 91 a4 00 	lds	r26, 0x00A4	; 0x8000a4 <millis_timer_overflow_count+0x2>
- 98c:	b0 91 a5 00 	lds	r27, 0x00A5	; 0x8000a5 <millis_timer_overflow_count+0x3>
- 990:	01 96       	adiw	r24, 0x01	; 1
- 992:	a1 1d       	adc	r26, r1
- 994:	b1 1d       	adc	r27, r1
- 996:	80 93 a2 00 	sts	0x00A2, r24	; 0x8000a2 <millis_timer_overflow_count>
- 99a:	90 93 a3 00 	sts	0x00A3, r25	; 0x8000a3 <millis_timer_overflow_count+0x1>
- 99e:	a0 93 a4 00 	sts	0x00A4, r26	; 0x8000a4 <millis_timer_overflow_count+0x2>
- 9a2:	b0 93 a5 00 	sts	0x00A5, r27	; 0x8000a5 <millis_timer_overflow_count+0x3>
+ 9b6:	80 91 a2 00 	lds	r24, 0x00A2	; 0x8000a2 <millis_timer_overflow_count>
+ 9ba:	90 91 a3 00 	lds	r25, 0x00A3	; 0x8000a3 <millis_timer_overflow_count+0x1>
+ 9be:	a0 91 a4 00 	lds	r26, 0x00A4	; 0x8000a4 <millis_timer_overflow_count+0x2>
+ 9c2:	b0 91 a5 00 	lds	r27, 0x00A5	; 0x8000a5 <millis_timer_overflow_count+0x3>
+ 9c6:	01 96       	adiw	r24, 0x01	; 1
+ 9c8:	a1 1d       	adc	r26, r1
+ 9ca:	b1 1d       	adc	r27, r1
+ 9cc:	80 93 a2 00 	sts	0x00A2, r24	; 0x8000a2 <millis_timer_overflow_count>
+ 9d0:	90 93 a3 00 	sts	0x00A3, r25	; 0x8000a3 <millis_timer_overflow_count+0x1>
+ 9d4:	a0 93 a4 00 	sts	0x00A4, r26	; 0x8000a4 <millis_timer_overflow_count+0x2>
+ 9d8:	b0 93 a5 00 	sts	0x00A5, r27	; 0x8000a5 <millis_timer_overflow_count+0x3>
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:162
 
   }
- 9a6:	bf 91       	pop	r27
- 9a8:	af 91       	pop	r26
- 9aa:	9f 91       	pop	r25
- 9ac:	8f 91       	pop	r24
- 9ae:	3f 91       	pop	r19
- 9b0:	2f 91       	pop	r18
- 9b2:	0f 90       	pop	r0
- 9b4:	0f be       	out	0x3f, r0	; 63
- 9b6:	0f 90       	pop	r0
- 9b8:	1f 90       	pop	r1
- 9ba:	18 95       	reti
+ 9dc:	bf 91       	pop	r27
+ 9de:	af 91       	pop	r26
+ 9e0:	9f 91       	pop	r25
+ 9e2:	8f 91       	pop	r24
+ 9e4:	3f 91       	pop	r19
+ 9e6:	2f 91       	pop	r18
+ 9e8:	0f 90       	pop	r0
+ 9ea:	0f be       	out	0x3f, r0	; 63
+ 9ec:	0f 90       	pop	r0
+ 9ee:	1f 90       	pop	r1
+ 9f0:	18 95       	reti
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:155
     m += 1;
       m += MILLIS_INC;
@@ -2306,332 +2448,332 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
     else
     {
       m += MILLIS_INC;
- 9bc:	02 96       	adiw	r24, 0x02	; 2
- 9be:	a1 1d       	adc	r26, r1
- 9c0:	b1 1d       	adc	r27, r1
- 9c2:	d4 cf       	rjmp	.-88     	; 0x96c <__vector_11+0x3c>
+ 9f2:	02 96       	adiw	r24, 0x02	; 2
+ 9f4:	a1 1d       	adc	r26, r1
+ 9f6:	b1 1d       	adc	r27, r1
+ 9f8:	d4 cf       	rjmp	.-88     	; 0x9a2 <__vector_11+0x3c>
 
-000009c4 <__vector_16>:
+000009fa <__vector_16>:
 __vector_16():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:10
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:10
 
 ISR(PCINT1_vect)  { 
     spislave_c::getInstance()->_ss_int();
 }
 
 ISR(USI_OVF_vect) { 
- 9c4:	1f 92       	push	r1
- 9c6:	0f 92       	push	r0
- 9c8:	0f b6       	in	r0, 0x3f	; 63
- 9ca:	0f 92       	push	r0
- 9cc:	11 24       	eor	r1, r1
- 9ce:	1f 93       	push	r17
- 9d0:	2f 93       	push	r18
- 9d2:	3f 93       	push	r19
- 9d4:	4f 93       	push	r20
- 9d6:	5f 93       	push	r21
- 9d8:	6f 93       	push	r22
- 9da:	7f 93       	push	r23
- 9dc:	8f 93       	push	r24
- 9de:	9f 93       	push	r25
- 9e0:	af 93       	push	r26
- 9e2:	bf 93       	push	r27
- 9e4:	cf 93       	push	r28
- 9e6:	df 93       	push	r29
- 9e8:	ef 93       	push	r30
- 9ea:	ff 93       	push	r31
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:11
+ 9fa:	1f 92       	push	r1
+ 9fc:	0f 92       	push	r0
+ 9fe:	0f b6       	in	r0, 0x3f	; 63
+ a00:	0f 92       	push	r0
+ a02:	11 24       	eor	r1, r1
+ a04:	1f 93       	push	r17
+ a06:	2f 93       	push	r18
+ a08:	3f 93       	push	r19
+ a0a:	4f 93       	push	r20
+ a0c:	5f 93       	push	r21
+ a0e:	6f 93       	push	r22
+ a10:	7f 93       	push	r23
+ a12:	8f 93       	push	r24
+ a14:	9f 93       	push	r25
+ a16:	af 93       	push	r26
+ a18:	bf 93       	push	r27
+ a1a:	cf 93       	push	r28
+ a1c:	df 93       	push	r29
+ a1e:	ef 93       	push	r30
+ a20:	ff 93       	push	r31
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:11
     spislave_c::getInstance()->_byte_int();
- 9ec:	8d dc       	rcall	.-1766   	; 0x308 <spislave_c::getInstance()>
- 9ee:	ec 01       	movw	r28, r24
+ a22:	72 dc       	rcall	.-1820   	; 0x308 <spislave_c::getInstance()>
+ a24:	ec 01       	movw	r28, r24
 _byte_int():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:61
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:61
 
 };
 
 void 
 spislave_c::_byte_int() {
     uint8_t newbyte = USIDR;
- 9f0:	1f b1       	in	r17, 0x0f	; 15
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:63
+ a26:	1f b1       	in	r17, 0x0f	; 15
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:63
 
     USISR = _BV(USIOIF);
- 9f2:	80 e4       	ldi	r24, 0x40	; 64
- 9f4:	8e b9       	out	0x0e, r24	; 14
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:64
+ a28:	80 e4       	ldi	r24, 0x40	; 64
+ a2a:	8e b9       	out	0x0e, r24	; 14
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:64
     USIDR = 0xff & (dv_out >> 24);
- 9f6:	89 85       	ldd	r24, Y+9	; 0x09
- 9f8:	9a 85       	ldd	r25, Y+10	; 0x0a
- 9fa:	ab 85       	ldd	r26, Y+11	; 0x0b
- 9fc:	bc 85       	ldd	r27, Y+12	; 0x0c
- 9fe:	8b 2f       	mov	r24, r27
- a00:	99 27       	eor	r25, r25
- a02:	aa 27       	eor	r26, r26
- a04:	bb 27       	eor	r27, r27
- a06:	8f b9       	out	0x0f, r24	; 15
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:67
+ a2c:	89 85       	ldd	r24, Y+9	; 0x09
+ a2e:	9a 85       	ldd	r25, Y+10	; 0x0a
+ a30:	ab 85       	ldd	r26, Y+11	; 0x0b
+ a32:	bc 85       	ldd	r27, Y+12	; 0x0c
+ a34:	8b 2f       	mov	r24, r27
+ a36:	99 27       	eor	r25, r25
+ a38:	aa 27       	eor	r26, r26
+ a3a:	bb 27       	eor	r27, r27
+ a3c:	8f b9       	out	0x0f, r24	; 15
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:67
 
     // do not do anythign at all if the SS is not low
     if (digitalRead(PIN_SS) || (bctr < 0)) return; 
- a08:	4f db       	rcall	.-2402   	; 0xa8 <digitalRead.constprop.0>
- a0a:	89 2b       	or	r24, r25
- a0c:	41 f5       	brne	.+80     	; 0xa5e <__vector_16+0x9a>
- a0e:	2c 81       	ldd	r18, Y+4	; 0x04
- a10:	27 fd       	sbrc	r18, 7
- a12:	25 c0       	rjmp	.+74     	; 0xa5e <__vector_16+0x9a>
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:69
+ a3e:	34 db       	rcall	.-2456   	; 0xa8 <digitalRead.constprop.0>
+ a40:	89 2b       	or	r24, r25
+ a42:	41 f5       	brne	.+80     	; 0xa94 <__vector_16+0x9a>
+ a44:	2c 81       	ldd	r18, Y+4	; 0x04
+ a46:	27 fd       	sbrc	r18, 7
+ a48:	25 c0       	rjmp	.+74     	; 0xa94 <__vector_16+0x9a>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:69
 
     if (!bctr) {
- a14:	21 11       	cpse	r18, r1
- a16:	37 c0       	rjmp	.+110    	; 0xa86 <__vector_16+0xc2>
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:70
+ a4a:	21 11       	cpse	r18, r1
+ a4c:	37 c0       	rjmp	.+110    	; 0xabc <__vector_16+0xc2>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:70
         cmd_in = newbyte;
- a18:	1d 87       	std	Y+13, r17	; 0x0d
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:88
+ a4e:	1d 87       	std	Y+13, r17	; 0x0d
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:88
         psrl->print(cmd_out,HEX);
         psrl->print(" dv_out: ");
         psrl->println(dv_out,HEX);
     }
 
     dv_out <<= 8;
- a1a:	89 85       	ldd	r24, Y+9	; 0x09
- a1c:	9a 85       	ldd	r25, Y+10	; 0x0a
- a1e:	ab 85       	ldd	r26, Y+11	; 0x0b
- a20:	bc 85       	ldd	r27, Y+12	; 0x0c
- a22:	ba 2f       	mov	r27, r26
- a24:	a9 2f       	mov	r26, r25
- a26:	98 2f       	mov	r25, r24
- a28:	88 27       	eor	r24, r24
- a2a:	89 87       	std	Y+9, r24	; 0x09
- a2c:	9a 87       	std	Y+10, r25	; 0x0a
- a2e:	ab 87       	std	Y+11, r26	; 0x0b
- a30:	bc 87       	std	Y+12, r27	; 0x0c
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:90
+ a50:	89 85       	ldd	r24, Y+9	; 0x09
+ a52:	9a 85       	ldd	r25, Y+10	; 0x0a
+ a54:	ab 85       	ldd	r26, Y+11	; 0x0b
+ a56:	bc 85       	ldd	r27, Y+12	; 0x0c
+ a58:	ba 2f       	mov	r27, r26
+ a5a:	a9 2f       	mov	r26, r25
+ a5c:	98 2f       	mov	r25, r24
+ a5e:	88 27       	eor	r24, r24
+ a60:	89 87       	std	Y+9, r24	; 0x09
+ a62:	9a 87       	std	Y+10, r25	; 0x0a
+ a64:	ab 87       	std	Y+11, r26	; 0x0b
+ a66:	bc 87       	std	Y+12, r27	; 0x0c
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:90
   
     if (bctr == 4) {
- a32:	24 30       	cpi	r18, 0x04	; 4
- a34:	89 f4       	brne	.+34     	; 0xa58 <__vector_16+0x94>
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:91
+ a68:	24 30       	cpi	r18, 0x04	; 4
+ a6a:	89 f4       	brne	.+34     	; 0xa8e <__vector_16+0x94>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:91
         reg_t rv = ch(cmd_in, dv_in);
- a36:	4d 81       	ldd	r20, Y+5	; 0x05
- a38:	5e 81       	ldd	r21, Y+6	; 0x06
- a3a:	6f 81       	ldd	r22, Y+7	; 0x07
- a3c:	78 85       	ldd	r23, Y+8	; 0x08
- a3e:	e8 81       	ld	r30, Y
- a40:	f9 81       	ldd	r31, Y+1	; 0x01
- a42:	8d 85       	ldd	r24, Y+13	; 0x0d
- a44:	09 95       	icall
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:92
+ a6c:	4d 81       	ldd	r20, Y+5	; 0x05
+ a6e:	5e 81       	ldd	r21, Y+6	; 0x06
+ a70:	6f 81       	ldd	r22, Y+7	; 0x07
+ a72:	78 85       	ldd	r23, Y+8	; 0x08
+ a74:	e8 81       	ld	r30, Y
+ a76:	f9 81       	ldd	r31, Y+1	; 0x01
+ a78:	8d 85       	ldd	r24, Y+13	; 0x0d
+ a7a:	09 95       	icall
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:92
         dv_out = rv;
- a46:	69 87       	std	Y+9, r22	; 0x09
- a48:	7a 87       	std	Y+10, r23	; 0x0a
- a4a:	8b 87       	std	Y+11, r24	; 0x0b
- a4c:	9c 87       	std	Y+12, r25	; 0x0c
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:93
+ a7c:	69 87       	std	Y+9, r22	; 0x09
+ a7e:	7a 87       	std	Y+10, r23	; 0x0a
+ a80:	8b 87       	std	Y+11, r24	; 0x0b
+ a82:	9c 87       	std	Y+12, r25	; 0x0c
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:93
         cmd_out = cmd_in | 0x40;
- a4e:	8d 85       	ldd	r24, Y+13	; 0x0d
- a50:	80 64       	ori	r24, 0x40	; 64
- a52:	8e 87       	std	Y+14, r24	; 0x0e
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:94
+ a84:	8d 85       	ldd	r24, Y+13	; 0x0d
+ a86:	80 64       	ori	r24, 0x40	; 64
+ a88:	8e 87       	std	Y+14, r24	; 0x0e
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:94
         bctr = -1;
- a54:	8f ef       	ldi	r24, 0xFF	; 255
- a56:	8c 83       	std	Y+4, r24	; 0x04
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:97
+ a8a:	8f ef       	ldi	r24, 0xFF	; 255
+ a8c:	8c 83       	std	Y+4, r24	; 0x04
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:97
     }
 
     bctr += 1;
- a58:	8c 81       	ldd	r24, Y+4	; 0x04
- a5a:	8f 5f       	subi	r24, 0xFF	; 255
- a5c:	8c 83       	std	Y+4, r24	; 0x04
+ a8e:	8c 81       	ldd	r24, Y+4	; 0x04
+ a90:	8f 5f       	subi	r24, 0xFF	; 255
+ a92:	8c 83       	std	Y+4, r24	; 0x04
 __vector_16():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:12
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:12
     spislave_c::getInstance()->_ss_int();
 }
 
 ISR(USI_OVF_vect) { 
     spislave_c::getInstance()->_byte_int();
 }
- a5e:	ff 91       	pop	r31
- a60:	ef 91       	pop	r30
- a62:	df 91       	pop	r29
- a64:	cf 91       	pop	r28
- a66:	bf 91       	pop	r27
- a68:	af 91       	pop	r26
- a6a:	9f 91       	pop	r25
- a6c:	8f 91       	pop	r24
- a6e:	7f 91       	pop	r23
- a70:	6f 91       	pop	r22
- a72:	5f 91       	pop	r21
- a74:	4f 91       	pop	r20
- a76:	3f 91       	pop	r19
- a78:	2f 91       	pop	r18
- a7a:	1f 91       	pop	r17
- a7c:	0f 90       	pop	r0
- a7e:	0f be       	out	0x3f, r0	; 63
- a80:	0f 90       	pop	r0
- a82:	1f 90       	pop	r1
- a84:	18 95       	reti
+ a94:	ff 91       	pop	r31
+ a96:	ef 91       	pop	r30
+ a98:	df 91       	pop	r29
+ a9a:	cf 91       	pop	r28
+ a9c:	bf 91       	pop	r27
+ a9e:	af 91       	pop	r26
+ aa0:	9f 91       	pop	r25
+ aa2:	8f 91       	pop	r24
+ aa4:	7f 91       	pop	r23
+ aa6:	6f 91       	pop	r22
+ aa8:	5f 91       	pop	r21
+ aaa:	4f 91       	pop	r20
+ aac:	3f 91       	pop	r19
+ aae:	2f 91       	pop	r18
+ ab0:	1f 91       	pop	r17
+ ab2:	0f 90       	pop	r0
+ ab4:	0f be       	out	0x3f, r0	; 63
+ ab6:	0f 90       	pop	r0
+ ab8:	1f 90       	pop	r1
+ aba:	18 95       	reti
 _byte_int():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:72
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:72
     if (digitalRead(PIN_SS) || (bctr < 0)) return; 
 
     if (!bctr) {
         cmd_in = newbyte;
     } else {
         dv_in = (dv_in << 8) | newbyte;
- a86:	8d 81       	ldd	r24, Y+5	; 0x05
- a88:	9e 81       	ldd	r25, Y+6	; 0x06
- a8a:	af 81       	ldd	r26, Y+7	; 0x07
- a8c:	b8 85       	ldd	r27, Y+8	; 0x08
- a8e:	ba 2f       	mov	r27, r26
- a90:	a9 2f       	mov	r26, r25
- a92:	98 2f       	mov	r25, r24
- a94:	88 27       	eor	r24, r24
- a96:	81 2b       	or	r24, r17
- a98:	8d 83       	std	Y+5, r24	; 0x05
- a9a:	9e 83       	std	Y+6, r25	; 0x06
- a9c:	af 83       	std	Y+7, r26	; 0x07
- a9e:	b8 87       	std	Y+8, r27	; 0x08
- aa0:	bc cf       	rjmp	.-136    	; 0xa1a <__vector_16+0x56>
+ abc:	8d 81       	ldd	r24, Y+5	; 0x05
+ abe:	9e 81       	ldd	r25, Y+6	; 0x06
+ ac0:	af 81       	ldd	r26, Y+7	; 0x07
+ ac2:	b8 85       	ldd	r27, Y+8	; 0x08
+ ac4:	ba 2f       	mov	r27, r26
+ ac6:	a9 2f       	mov	r26, r25
+ ac8:	98 2f       	mov	r25, r24
+ aca:	88 27       	eor	r24, r24
+ acc:	81 2b       	or	r24, r17
+ ace:	8d 83       	std	Y+5, r24	; 0x05
+ ad0:	9e 83       	std	Y+6, r25	; 0x06
+ ad2:	af 83       	std	Y+7, r26	; 0x07
+ ad4:	b8 87       	std	Y+8, r27	; 0x08
+ ad6:	bc cf       	rjmp	.-136    	; 0xa50 <__vector_16+0x56>
 
-00000aa2 <__vector_3>:
+00000ad8 <__vector_3>:
 __vector_3():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:6
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:6
 #include <Arduino.h>
 #include "spislave.h"
 #include <avr/interrupt.h>
 #include <avr/io.h>
 
 ISR(PCINT1_vect)  { 
- aa2:	1f 92       	push	r1
- aa4:	0f 92       	push	r0
- aa6:	0f b6       	in	r0, 0x3f	; 63
- aa8:	0f 92       	push	r0
- aaa:	11 24       	eor	r1, r1
- aac:	2f 93       	push	r18
- aae:	3f 93       	push	r19
- ab0:	4f 93       	push	r20
- ab2:	5f 93       	push	r21
- ab4:	6f 93       	push	r22
- ab6:	7f 93       	push	r23
- ab8:	8f 93       	push	r24
- aba:	9f 93       	push	r25
- abc:	af 93       	push	r26
- abe:	bf 93       	push	r27
- ac0:	cf 93       	push	r28
- ac2:	df 93       	push	r29
- ac4:	ef 93       	push	r30
- ac6:	ff 93       	push	r31
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:7
+ ad8:	1f 92       	push	r1
+ ada:	0f 92       	push	r0
+ adc:	0f b6       	in	r0, 0x3f	; 63
+ ade:	0f 92       	push	r0
+ ae0:	11 24       	eor	r1, r1
+ ae2:	2f 93       	push	r18
+ ae4:	3f 93       	push	r19
+ ae6:	4f 93       	push	r20
+ ae8:	5f 93       	push	r21
+ aea:	6f 93       	push	r22
+ aec:	7f 93       	push	r23
+ aee:	8f 93       	push	r24
+ af0:	9f 93       	push	r25
+ af2:	af 93       	push	r26
+ af4:	bf 93       	push	r27
+ af6:	cf 93       	push	r28
+ af8:	df 93       	push	r29
+ afa:	ef 93       	push	r30
+ afc:	ff 93       	push	r31
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:7
     spislave_c::getInstance()->_ss_int();
- ac8:	1f dc       	rcall	.-1986   	; 0x308 <spislave_c::getInstance()>
- aca:	ec 01       	movw	r28, r24
+ afe:	04 dc       	rcall	.-2040   	; 0x308 <spislave_c::getInstance()>
+ b00:	ec 01       	movw	r28, r24
 _ss_int():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:37
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:37
     GIMSK  = _BV(PCIE1);
 }
 
 void
 spislave_c::_ss_int() {
     if (!digitalRead(PIN_SS)) {
- acc:	ed da       	rcall	.-2598   	; 0xa8 <digitalRead.constprop.0>
- ace:	89 2b       	or	r24, r25
- ad0:	e1 f4       	brne	.+56     	; 0xb0a <__vector_3+0x68>
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:38
+ b02:	d2 da       	rcall	.-2652   	; 0xa8 <digitalRead.constprop.0>
+ b04:	89 2b       	or	r24, r25
+ b06:	e1 f4       	brne	.+56     	; 0xb40 <__vector_3+0x68>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:38
         pinMode(PIN_MISO, OUTPUT);
- ad2:	61 e0       	ldi	r22, 0x01	; 1
- ad4:	85 e0       	ldi	r24, 0x05	; 5
- ad6:	88 db       	rcall	.-2288   	; 0x1e8 <pinMode>
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:44
+ b08:	61 e0       	ldi	r22, 0x01	; 1
+ b0a:	85 e0       	ldi	r24, 0x05	; 5
+ b0c:	6d db       	rcall	.-2342   	; 0x1e8 <pinMode>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:44
         if (false && psrl) {
             psrl->println("T_start");
             // psrl->print("last USIDR ");
             // psrl->println(USIDR,HEX);
         }
         bctr = 0;
- ad8:	1c 82       	std	Y+4, r1	; 0x04
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:45
+ b0e:	1c 82       	std	Y+4, r1	; 0x04
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:45
         USICR |= _BV(USIOIE);
- ada:	6e 9a       	sbi	0x0d, 6	; 13
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:46
+ b10:	6e 9a       	sbi	0x0d, 6	; 13
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:46
         USISR = _BV(USIOIF);
- adc:	80 e4       	ldi	r24, 0x40	; 64
- ade:	8e b9       	out	0x0e, r24	; 14
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:47
+ b12:	80 e4       	ldi	r24, 0x40	; 64
+ b14:	8e b9       	out	0x0e, r24	; 14
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:47
         USIDR = cmd_out;
- ae0:	8e 85       	ldd	r24, Y+14	; 0x0e
- ae2:	8f b9       	out	0x0f, r24	; 15
+ b16:	8e 85       	ldd	r24, Y+14	; 0x0e
+ b18:	8f b9       	out	0x0f, r24	; 15
 __vector_3():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:8
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:8
 #include <avr/interrupt.h>
 #include <avr/io.h>
 
 ISR(PCINT1_vect)  { 
     spislave_c::getInstance()->_ss_int();
 }
- ae4:	ff 91       	pop	r31
- ae6:	ef 91       	pop	r30
- ae8:	df 91       	pop	r29
- aea:	cf 91       	pop	r28
- aec:	bf 91       	pop	r27
- aee:	af 91       	pop	r26
- af0:	9f 91       	pop	r25
- af2:	8f 91       	pop	r24
- af4:	7f 91       	pop	r23
- af6:	6f 91       	pop	r22
- af8:	5f 91       	pop	r21
- afa:	4f 91       	pop	r20
- afc:	3f 91       	pop	r19
- afe:	2f 91       	pop	r18
- b00:	0f 90       	pop	r0
- b02:	0f be       	out	0x3f, r0	; 63
- b04:	0f 90       	pop	r0
- b06:	1f 90       	pop	r1
- b08:	18 95       	reti
+ b1a:	ff 91       	pop	r31
+ b1c:	ef 91       	pop	r30
+ b1e:	df 91       	pop	r29
+ b20:	cf 91       	pop	r28
+ b22:	bf 91       	pop	r27
+ b24:	af 91       	pop	r26
+ b26:	9f 91       	pop	r25
+ b28:	8f 91       	pop	r24
+ b2a:	7f 91       	pop	r23
+ b2c:	6f 91       	pop	r22
+ b2e:	5f 91       	pop	r21
+ b30:	4f 91       	pop	r20
+ b32:	3f 91       	pop	r19
+ b34:	2f 91       	pop	r18
+ b36:	0f 90       	pop	r0
+ b38:	0f be       	out	0x3f, r0	; 63
+ b3a:	0f 90       	pop	r0
+ b3c:	1f 90       	pop	r1
+ b3e:	18 95       	reti
 _ss_int():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:49
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:49
         bctr = 0;
         USICR |= _BV(USIOIE);
         USISR = _BV(USIOIF);
         USIDR = cmd_out;
     } else {
         USICR &= ~_BV(USIOIE);
- b0a:	6e 98       	cbi	0x0d, 6	; 13
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:50
+ b40:	6e 98       	cbi	0x0d, 6	; 13
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:50
         USISR = 0;
- b0c:	1e b8       	out	0x0e, r1	; 14
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:51
+ b42:	1e b8       	out	0x0e, r1	; 14
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:51
         bctr = -1;
- b0e:	8f ef       	ldi	r24, 0xFF	; 255
- b10:	8c 83       	std	Y+4, r24	; 0x04
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:52
+ b44:	8f ef       	ldi	r24, 0xFF	; 255
+ b46:	8c 83       	std	Y+4, r24	; 0x04
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:52
         pinMode(PIN_MISO, INPUT);
- b12:	60 e0       	ldi	r22, 0x00	; 0
- b14:	85 e0       	ldi	r24, 0x05	; 5
- b16:	68 db       	rcall	.-2352   	; 0x1e8 <pinMode>
- b18:	e5 cf       	rjmp	.-54     	; 0xae4 <__vector_3+0x42>
+ b48:	60 e0       	ldi	r22, 0x00	; 0
+ b4a:	85 e0       	ldi	r24, 0x05	; 5
+ b4c:	4d db       	rcall	.-2406   	; 0x1e8 <pinMode>
+ b4e:	e5 cf       	rjmp	.-54     	; 0xb1a <__vector_3+0x42>
 
-00000b1a <__vector_default>:
+00000b50 <__vector_default>:
 __vector_default():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:281
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:276
         delay(MILLIS_PER_TICK / 10);
     }
 }
 
 
 ISR(BADISR_vect)  { }
- b1a:	1f 92       	push	r1
- b1c:	0f 92       	push	r0
- b1e:	0f b6       	in	r0, 0x3f	; 63
- b20:	0f 92       	push	r0
- b22:	11 24       	eor	r1, r1
- b24:	0f 90       	pop	r0
- b26:	0f be       	out	0x3f, r0	; 63
- b28:	0f 90       	pop	r0
- b2a:	1f 90       	pop	r1
- b2c:	18 95       	reti
+ b50:	1f 92       	push	r1
+ b52:	0f 92       	push	r0
+ b54:	0f b6       	in	r0, 0x3f	; 63
+ b56:	0f 92       	push	r0
+ b58:	11 24       	eor	r1, r1
+ b5a:	0f 90       	pop	r0
+ b5c:	0f be       	out	0x3f, r0	; 63
+ b5e:	0f 90       	pop	r0
+ b60:	1f 90       	pop	r1
+ b62:	18 95       	reti
 
-00000b2e <__vector_4>:
+00000b64 <__vector_4>:
 __vector_4():
 C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:26
 const uint8_t PIN_LED_0    = 1;
@@ -2640,41 +2782,41 @@ const uint8_t PIN_PWR      = 3;
 
 uint32_t vhits;
 ISR(WDT_vect) { 
- b2e:	1f 92       	push	r1
- b30:	0f 92       	push	r0
- b32:	0f b6       	in	r0, 0x3f	; 63
- b34:	0f 92       	push	r0
- b36:	11 24       	eor	r1, r1
- b38:	8f 93       	push	r24
- b3a:	9f 93       	push	r25
- b3c:	af 93       	push	r26
- b3e:	bf 93       	push	r27
+ b64:	1f 92       	push	r1
+ b66:	0f 92       	push	r0
+ b68:	0f b6       	in	r0, 0x3f	; 63
+ b6a:	0f 92       	push	r0
+ b6c:	11 24       	eor	r1, r1
+ b6e:	8f 93       	push	r24
+ b70:	9f 93       	push	r25
+ b72:	af 93       	push	r26
+ b74:	bf 93       	push	r27
 C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:27
     vhits++;
- b40:	80 91 85 00 	lds	r24, 0x0085	; 0x800085 <vhits>
- b44:	90 91 86 00 	lds	r25, 0x0086	; 0x800086 <vhits+0x1>
- b48:	a0 91 87 00 	lds	r26, 0x0087	; 0x800087 <vhits+0x2>
- b4c:	b0 91 88 00 	lds	r27, 0x0088	; 0x800088 <vhits+0x3>
- b50:	01 96       	adiw	r24, 0x01	; 1
- b52:	a1 1d       	adc	r26, r1
- b54:	b1 1d       	adc	r27, r1
- b56:	80 93 85 00 	sts	0x0085, r24	; 0x800085 <vhits>
- b5a:	90 93 86 00 	sts	0x0086, r25	; 0x800086 <vhits+0x1>
- b5e:	a0 93 87 00 	sts	0x0087, r26	; 0x800087 <vhits+0x2>
- b62:	b0 93 88 00 	sts	0x0088, r27	; 0x800088 <vhits+0x3>
+ b76:	80 91 85 00 	lds	r24, 0x0085	; 0x800085 <vhits>
+ b7a:	90 91 86 00 	lds	r25, 0x0086	; 0x800086 <vhits+0x1>
+ b7e:	a0 91 87 00 	lds	r26, 0x0087	; 0x800087 <vhits+0x2>
+ b82:	b0 91 88 00 	lds	r27, 0x0088	; 0x800088 <vhits+0x3>
+ b86:	01 96       	adiw	r24, 0x01	; 1
+ b88:	a1 1d       	adc	r26, r1
+ b8a:	b1 1d       	adc	r27, r1
+ b8c:	80 93 85 00 	sts	0x0085, r24	; 0x800085 <vhits>
+ b90:	90 93 86 00 	sts	0x0086, r25	; 0x800086 <vhits+0x1>
+ b94:	a0 93 87 00 	sts	0x0087, r26	; 0x800087 <vhits+0x2>
+ b98:	b0 93 88 00 	sts	0x0088, r27	; 0x800088 <vhits+0x3>
 C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:28
 }
- b66:	bf 91       	pop	r27
- b68:	af 91       	pop	r26
- b6a:	9f 91       	pop	r25
- b6c:	8f 91       	pop	r24
- b6e:	0f 90       	pop	r0
- b70:	0f be       	out	0x3f, r0	; 63
- b72:	0f 90       	pop	r0
- b74:	1f 90       	pop	r1
- b76:	18 95       	reti
+ b9c:	bf 91       	pop	r27
+ b9e:	af 91       	pop	r26
+ ba0:	9f 91       	pop	r25
+ ba2:	8f 91       	pop	r24
+ ba4:	0f 90       	pop	r0
+ ba6:	0f be       	out	0x3f, r0	; 63
+ ba8:	0f 90       	pop	r0
+ baa:	1f 90       	pop	r1
+ bac:	18 95       	reti
 
-00000b78 <main>:
+00000bae <main>:
 main():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:904
   */
@@ -2683,13 +2825,13 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
   #if (TIMER_TO_USE_FOR_MILLIS == 0)
     #if defined(WGM01) // if Timer0 has PWM
       TCCR0A = (1<<WGM01) | (1<<WGM00);
- b78:	83 e0       	ldi	r24, 0x03	; 3
- b7a:	80 bf       	out	0x30, r24	; 48
+ bae:	83 e0       	ldi	r24, 0x03	; 3
+ bb0:	80 bf       	out	0x30, r24	; 48
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:907
     #endif
     #if defined(TCCR0B) //The x61 has a wacky Timer0!
       TCCR0B = (MillisTimer_Prescale_Index << CS00);
- b7c:	83 bf       	out	0x33, r24	; 51
+ bb2:	83 bf       	out	0x33, r24	; 51
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:928
     TCCR1A = 1<<WGM10;
     TCCR1B = (1<<WGM12) | (MillisTimer_Prescale_Index << CS10);
@@ -2697,7 +2839,7 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
 
   // this needs to be called before setup() or some functions won't work there
   sei();
- b7e:	78 94       	sei
+ bb4:	78 94       	sei
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:935
   #ifndef DISABLEMILLIS
     // Enable the overflow interrupt (this is the basic system tic-toc for millis)
@@ -2705,9 +2847,9 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
       sbi(TIMSK, TOIE0);
     #elif defined(TIMSK0) && defined(TOIE0) && (TIMER_TO_USE_FOR_MILLIS == 0)
       sbi(TIMSK0, TOIE0);
- b80:	99 b7       	in	r25, 0x39	; 57
- b82:	91 60       	ori	r25, 0x01	; 1
- b84:	99 bf       	out	0x39, r25	; 57
+ bb6:	99 b7       	in	r25, 0x39	; 57
+ bb8:	91 60       	ori	r25, 0x01	; 1
+ bba:	99 bf       	out	0x39, r25	; 57
 initToneTimerInternal():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:608
     #elif (TIMER_TO_USE_FOR_TONE == 1 ) && defined(__AVR_ATtinyX7__)
@@ -2716,10 +2858,10 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
     #elif (TIMER_TO_USE_FOR_TONE == 1) // x4, x8, x313,
       // Use the Tone Timer for phase correct PWM
       TCCR1A = (1<<WGM10) | (1<<WGM11);
- b86:	8f bd       	out	0x2f, r24	; 47
+ bbc:	8f bd       	out	0x2f, r24	; 47
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:609
       TCCR1B = (0<<WGM12) | (0<<WGM13) | (ToneTimer_Prescale_Index << CS10); //set the clock
- b88:	8e bd       	out	0x2e, r24	; 46
+ bbe:	8e bd       	out	0x2e, r24	; 46
 main():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:972
 
@@ -2728,23 +2870,23 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
     #if defined(ADCSRA)
       // set a2d prescale factor
       ADCSRA = (ADCSRA & ~((1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0))) | (ADC_ARDUINO_PRESCALER << ADPS0) | (1<<ADEN);
- b8a:	86 b1       	in	r24, 0x06	; 6
- b8c:	88 77       	andi	r24, 0x78	; 120
- b8e:	86 68       	ori	r24, 0x86	; 134
- b90:	86 b9       	out	0x06, r24	; 6
+ bc0:	86 b1       	in	r24, 0x06	; 6
+ bc2:	88 77       	andi	r24, 0x78	; 120
+ bc4:	86 68       	ori	r24, 0x86	; 134
+ bc6:	86 b9       	out	0x06, r24	; 6
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:974
       // enable a2d conversions
       sbi(ADCSRA, ADEN);
- b92:	37 9a       	sbi	0x06, 7	; 6
+ bc8:	37 9a       	sbi	0x06, 7	; 6
 setup():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:191
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:186
 
 
 void setup() {
 
     // disable the watchdog
     MCUSR = 0;
- b94:	14 be       	out	0x34, r1	; 52
+ bca:	14 be       	out	0x34, r1	; 52
 wdt_enable():
 c:\users\ericw\appdata\local\arduino15\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino7\avr\include\avr/wdt.h:469
 				: "I" (_SFR_IO_ADDR(_WD_CONTROL_REG)),
@@ -2753,187 +2895,187 @@ c:\users\ericw\appdata\local\arduino15\packages\arduino\tools\avr-gcc\7.3.0-atme
 						_BV(WDE) | (value & 0x07)) )
 				: "r0"
 		);
- b96:	88 e1       	ldi	r24, 0x18	; 24
- b98:	9f e0       	ldi	r25, 0x0F	; 15
- b9a:	0f b6       	in	r0, 0x3f	; 63
- b9c:	f8 94       	cli
- b9e:	a8 95       	wdr
- ba0:	81 bd       	out	0x21, r24	; 33
- ba2:	0f be       	out	0x3f, r0	; 63
- ba4:	91 bd       	out	0x21, r25	; 33
+ bcc:	88 e1       	ldi	r24, 0x18	; 24
+ bce:	9f e0       	ldi	r25, 0x0F	; 15
+ bd0:	0f b6       	in	r0, 0x3f	; 63
+ bd2:	f8 94       	cli
+ bd4:	a8 95       	wdr
+ bd6:	81 bd       	out	0x21, r24	; 33
+ bd8:	0f be       	out	0x3f, r0	; 63
+ bda:	91 bd       	out	0x21, r25	; 33
 setup():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:193
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:188
     wdt_enable(WDTO_2S);
     wdt_reset();
- ba6:	a8 95       	wdr
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:196
+ bdc:	a8 95       	wdr
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:191
     // WDTCSR = _BV(WDCE) | _BV(WDIE);
 
     pinMode(PIN_PWR,      OUTPUT);
- ba8:	61 e0       	ldi	r22, 0x01	; 1
- baa:	83 e0       	ldi	r24, 0x03	; 3
- bac:	1d db       	rcall	.-2502   	; 0x1e8 <pinMode>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:197
+ bde:	61 e0       	ldi	r22, 0x01	; 1
+ be0:	83 e0       	ldi	r24, 0x03	; 3
+ be2:	02 db       	rcall	.-2556   	; 0x1e8 <pinMode>
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:192
     pinMode(PIN_LED_0,    OUTPUT);
- bae:	61 e0       	ldi	r22, 0x01	; 1
- bb0:	81 e0       	ldi	r24, 0x01	; 1
- bb2:	1a db       	rcall	.-2508   	; 0x1e8 <pinMode>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:199
+ be4:	61 e0       	ldi	r22, 0x01	; 1
+ be6:	81 e0       	ldi	r24, 0x01	; 1
+ be8:	ff da       	rcall	.-2562   	; 0x1e8 <pinMode>
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:194
 #ifndef SERIAL_DEBUG
     pinMode(PIN_LED_1,    OUTPUT);
- bb4:	61 e0       	ldi	r22, 0x01	; 1
- bb6:	82 e0       	ldi	r24, 0x02	; 2
- bb8:	17 db       	rcall	.-2514   	; 0x1e8 <pinMode>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:208
+ bea:	61 e0       	ldi	r22, 0x01	; 1
+ bec:	82 e0       	ldi	r24, 0x02	; 2
+ bee:	fc da       	rcall	.-2568   	; 0x1e8 <pinMode>
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:203
         for (uint8_t i=0;i<11;i++) {
             digitalWrite(PIN_LED_1,i&0x1);
             delay(i & 0x1 ? 10 : 20);
         }
     }
     noInterrupts();
- bba:	f8 94       	cli
- bbc:	ef ea       	ldi	r30, 0xAF	; 175
- bbe:	f0 e0       	ldi	r31, 0x00	; 0
+ bf0:	f8 94       	cli
+ bf2:	ef ea       	ldi	r30, 0xAF	; 175
+ bf4:	f0 e0       	ldi	r31, 0x00	; 0
 clear():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:40
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:40
         }
         void set_debug(Stream *nser) {
           ser = nser;
         }
         void clear() {
           for (uint8_t i=0;i<REG_COUNT;i++) registers[i] = 0;
- bc0:	11 92       	st	Z+, r1
- bc2:	11 92       	st	Z+, r1
- bc4:	11 92       	st	Z+, r1
- bc6:	11 92       	st	Z+, r1
- bc8:	80 e0       	ldi	r24, 0x00	; 0
- bca:	ef 3d       	cpi	r30, 0xDF	; 223
- bcc:	f8 07       	cpc	r31, r24
- bce:	c1 f7       	brne	.-16     	; 0xbc0 <main+0x48>
+ bf6:	11 92       	st	Z+, r1
+ bf8:	11 92       	st	Z+, r1
+ bfa:	11 92       	st	Z+, r1
+ bfc:	11 92       	st	Z+, r1
+ bfe:	80 e0       	ldi	r24, 0x00	; 0
+ c00:	ef 3d       	cpi	r30, 0xDF	; 223
+ c02:	f8 07       	cpc	r31, r24
+ c04:	c1 f7       	brne	.-16     	; 0xbf6 <main+0x48>
 _ZN9regfile_cImLj12EE3setEhm():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:97
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:99
         REGW setAnd(uint8_t addr, REGW val) {
             registers[addr % REG_COUNT] &= val;
             return get(addr);
         }
         REGW set(uint8_t addr, REGW val) {
             registers[addr % REG_COUNT] = val;
- bd0:	86 e0       	ldi	r24, 0x06	; 6
- bd2:	92 e0       	ldi	r25, 0x02	; 2
- bd4:	a4 e6       	ldi	r26, 0x64	; 100
- bd6:	b0 e7       	ldi	r27, 0x70	; 112
- bd8:	80 93 db 00 	sts	0x00DB, r24	; 0x8000db <rf+0x2c>
- bdc:	90 93 dc 00 	sts	0x00DC, r25	; 0x8000dc <rf+0x2d>
- be0:	a0 93 dd 00 	sts	0x00DD, r26	; 0x8000dd <rf+0x2e>
- be4:	b0 93 de 00 	sts	0x00DE, r27	; 0x8000de <rf+0x2f>
- be8:	84 e8       	ldi	r24, 0x84	; 132
- bea:	93 e0       	ldi	r25, 0x03	; 3
- bec:	a0 e0       	ldi	r26, 0x00	; 0
- bee:	b0 e0       	ldi	r27, 0x00	; 0
- bf0:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <rf+0x4>
- bf4:	90 93 b4 00 	sts	0x00B4, r25	; 0x8000b4 <rf+0x5>
- bf8:	a0 93 b5 00 	sts	0x00B5, r26	; 0x8000b5 <rf+0x6>
- bfc:	b0 93 b6 00 	sts	0x00B6, r27	; 0x8000b6 <rf+0x7>
- c00:	80 93 b7 00 	sts	0x00B7, r24	; 0x8000b7 <rf+0x8>
- c04:	90 93 b8 00 	sts	0x00B8, r25	; 0x8000b8 <rf+0x9>
- c08:	a0 93 b9 00 	sts	0x00B9, r26	; 0x8000b9 <rf+0xa>
- c0c:	b0 93 ba 00 	sts	0x00BA, r27	; 0x8000ba <rf+0xb>
- c10:	80 93 bf 00 	sts	0x00BF, r24	; 0x8000bf <rf+0x10>
- c14:	90 93 c0 00 	sts	0x00C0, r25	; 0x8000c0 <rf+0x11>
- c18:	a0 93 c1 00 	sts	0x00C1, r26	; 0x8000c1 <rf+0x12>
- c1c:	b0 93 c2 00 	sts	0x00C2, r27	; 0x8000c2 <rf+0x13>
- c20:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <rf+0xc>
- c24:	90 93 bc 00 	sts	0x00BC, r25	; 0x8000bc <rf+0xd>
- c28:	a0 93 bd 00 	sts	0x00BD, r26	; 0x8000bd <rf+0xe>
- c2c:	b0 93 be 00 	sts	0x00BE, r27	; 0x8000be <rf+0xf>
- c30:	10 92 cf 00 	sts	0x00CF, r1	; 0x8000cf <rf+0x20>
- c34:	10 92 d0 00 	sts	0x00D0, r1	; 0x8000d0 <rf+0x21>
- c38:	10 92 d1 00 	sts	0x00D1, r1	; 0x8000d1 <rf+0x22>
- c3c:	10 92 d2 00 	sts	0x00D2, r1	; 0x8000d2 <rf+0x23>
- c40:	89 e2       	ldi	r24, 0x29	; 41
- c42:	90 e0       	ldi	r25, 0x00	; 0
- c44:	a0 e0       	ldi	r26, 0x00	; 0
- c46:	b0 e0       	ldi	r27, 0x00	; 0
- c48:	80 93 af 00 	sts	0x00AF, r24	; 0x8000af <rf>
- c4c:	90 93 b0 00 	sts	0x00B0, r25	; 0x8000b0 <rf+0x1>
- c50:	a0 93 b1 00 	sts	0x00B1, r26	; 0x8000b1 <rf+0x2>
- c54:	b0 93 b2 00 	sts	0x00B2, r27	; 0x8000b2 <rf+0x3>
- c58:	10 92 d3 00 	sts	0x00D3, r1	; 0x8000d3 <rf+0x24>
- c5c:	10 92 d4 00 	sts	0x00D4, r1	; 0x8000d4 <rf+0x25>
- c60:	10 92 d5 00 	sts	0x00D5, r1	; 0x8000d5 <rf+0x26>
- c64:	10 92 d6 00 	sts	0x00D6, r1	; 0x8000d6 <rf+0x27>
- c68:	10 92 d7 00 	sts	0x00D7, r1	; 0x8000d7 <rf+0x28>
- c6c:	10 92 d8 00 	sts	0x00D8, r1	; 0x8000d8 <rf+0x29>
- c70:	10 92 d9 00 	sts	0x00D9, r1	; 0x8000d9 <rf+0x2a>
- c74:	10 92 da 00 	sts	0x00DA, r1	; 0x8000da <rf+0x2b>
+ c06:	86 e0       	ldi	r24, 0x06	; 6
+ c08:	92 e0       	ldi	r25, 0x02	; 2
+ c0a:	a4 e6       	ldi	r26, 0x64	; 100
+ c0c:	b0 e7       	ldi	r27, 0x70	; 112
+ c0e:	80 93 db 00 	sts	0x00DB, r24	; 0x8000db <rf+0x2c>
+ c12:	90 93 dc 00 	sts	0x00DC, r25	; 0x8000dc <rf+0x2d>
+ c16:	a0 93 dd 00 	sts	0x00DD, r26	; 0x8000dd <rf+0x2e>
+ c1a:	b0 93 de 00 	sts	0x00DE, r27	; 0x8000de <rf+0x2f>
+ c1e:	84 e8       	ldi	r24, 0x84	; 132
+ c20:	93 e0       	ldi	r25, 0x03	; 3
+ c22:	a0 e0       	ldi	r26, 0x00	; 0
+ c24:	b0 e0       	ldi	r27, 0x00	; 0
+ c26:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <rf+0x4>
+ c2a:	90 93 b4 00 	sts	0x00B4, r25	; 0x8000b4 <rf+0x5>
+ c2e:	a0 93 b5 00 	sts	0x00B5, r26	; 0x8000b5 <rf+0x6>
+ c32:	b0 93 b6 00 	sts	0x00B6, r27	; 0x8000b6 <rf+0x7>
+ c36:	80 93 b7 00 	sts	0x00B7, r24	; 0x8000b7 <rf+0x8>
+ c3a:	90 93 b8 00 	sts	0x00B8, r25	; 0x8000b8 <rf+0x9>
+ c3e:	a0 93 b9 00 	sts	0x00B9, r26	; 0x8000b9 <rf+0xa>
+ c42:	b0 93 ba 00 	sts	0x00BA, r27	; 0x8000ba <rf+0xb>
+ c46:	80 93 bf 00 	sts	0x00BF, r24	; 0x8000bf <rf+0x10>
+ c4a:	90 93 c0 00 	sts	0x00C0, r25	; 0x8000c0 <rf+0x11>
+ c4e:	a0 93 c1 00 	sts	0x00C1, r26	; 0x8000c1 <rf+0x12>
+ c52:	b0 93 c2 00 	sts	0x00C2, r27	; 0x8000c2 <rf+0x13>
+ c56:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <rf+0xc>
+ c5a:	90 93 bc 00 	sts	0x00BC, r25	; 0x8000bc <rf+0xd>
+ c5e:	a0 93 bd 00 	sts	0x00BD, r26	; 0x8000bd <rf+0xe>
+ c62:	b0 93 be 00 	sts	0x00BE, r27	; 0x8000be <rf+0xf>
+ c66:	10 92 cf 00 	sts	0x00CF, r1	; 0x8000cf <rf+0x20>
+ c6a:	10 92 d0 00 	sts	0x00D0, r1	; 0x8000d0 <rf+0x21>
+ c6e:	10 92 d1 00 	sts	0x00D1, r1	; 0x8000d1 <rf+0x22>
+ c72:	10 92 d2 00 	sts	0x00D2, r1	; 0x8000d2 <rf+0x23>
+ c76:	89 e2       	ldi	r24, 0x29	; 41
+ c78:	90 e0       	ldi	r25, 0x00	; 0
+ c7a:	a0 e0       	ldi	r26, 0x00	; 0
+ c7c:	b0 e0       	ldi	r27, 0x00	; 0
+ c7e:	80 93 af 00 	sts	0x00AF, r24	; 0x8000af <rf>
+ c82:	90 93 b0 00 	sts	0x00B0, r25	; 0x8000b0 <rf+0x1>
+ c86:	a0 93 b1 00 	sts	0x00B1, r26	; 0x8000b1 <rf+0x2>
+ c8a:	b0 93 b2 00 	sts	0x00B2, r27	; 0x8000b2 <rf+0x3>
+ c8e:	10 92 d3 00 	sts	0x00D3, r1	; 0x8000d3 <rf+0x24>
+ c92:	10 92 d4 00 	sts	0x00D4, r1	; 0x8000d4 <rf+0x25>
+ c96:	10 92 d5 00 	sts	0x00D5, r1	; 0x8000d5 <rf+0x26>
+ c9a:	10 92 d6 00 	sts	0x00D6, r1	; 0x8000d6 <rf+0x27>
+ c9e:	10 92 d7 00 	sts	0x00D7, r1	; 0x8000d7 <rf+0x28>
+ ca2:	10 92 d8 00 	sts	0x00D8, r1	; 0x8000d8 <rf+0x29>
+ ca6:	10 92 d9 00 	sts	0x00D9, r1	; 0x8000d9 <rf+0x2a>
+ caa:	10 92 da 00 	sts	0x00DA, r1	; 0x8000da <rf+0x2b>
 setup():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:232
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:227
         _BV(STAT_PWR_ON)
     );
     rf.set(REG_VSENSE_ON_THRESHOLD,VSENSE_ON_THRESHOLD);
     rf.set(REG_VSENSE_OFF_THRESHOLD,VSENSE_OFF_THRESHOLD);
 
     spislave_c *spi = spislave_c::getInstance();
- c78:	47 db       	rcall	.-2418   	; 0x308 <spislave_c::getInstance()>
+ cae:	2c db       	rcall	.-2472   	; 0x308 <spislave_c::getInstance()>
 _ZN10spislave_c13setCmdHandlerEPFmhmE():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.h:31
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.h:31
         void setCmdHandler(cmdhandler_t ich) { ch = ich; }
- c7a:	2d e6       	ldi	r18, 0x6D	; 109
- c7c:	30 e0       	ldi	r19, 0x00	; 0
- c7e:	fc 01       	movw	r30, r24
- c80:	31 83       	std	Z+1, r19	; 0x01
- c82:	20 83       	st	Z, r18
+ cb0:	2d e6       	ldi	r18, 0x6D	; 109
+ cb2:	30 e0       	ldi	r19, 0x00	; 0
+ cb4:	fc 01       	movw	r30, r24
+ cb6:	31 83       	std	Z+1, r19	; 0x01
+ cb8:	20 83       	st	Z, r18
 init():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:22
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:22
  * USISR == status register
  */
 
 void
 spislave_c::init() {
     pinMode(PIN_MISO, INPUT); // do not switch to output unless /CS
- c84:	60 e0       	ldi	r22, 0x00	; 0
- c86:	85 e0       	ldi	r24, 0x05	; 5
- c88:	af da       	rcall	.-2722   	; 0x1e8 <pinMode>
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:23
+ cba:	60 e0       	ldi	r22, 0x00	; 0
+ cbc:	85 e0       	ldi	r24, 0x05	; 5
+ cbe:	94 da       	rcall	.-2776   	; 0x1e8 <pinMode>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:23
     pinMode(PIN_MOSI, INPUT);
- c8a:	60 e0       	ldi	r22, 0x00	; 0
- c8c:	84 e0       	ldi	r24, 0x04	; 4
- c8e:	ac da       	rcall	.-2728   	; 0x1e8 <pinMode>
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:24
+ cc0:	60 e0       	ldi	r22, 0x00	; 0
+ cc2:	84 e0       	ldi	r24, 0x04	; 4
+ cc4:	91 da       	rcall	.-2782   	; 0x1e8 <pinMode>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:24
     pinMode(PIN_SCK,  INPUT);
- c90:	60 e0       	ldi	r22, 0x00	; 0
- c92:	86 e0       	ldi	r24, 0x06	; 6
- c94:	a9 da       	rcall	.-2734   	; 0x1e8 <pinMode>
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:25
+ cc6:	60 e0       	ldi	r22, 0x00	; 0
+ cc8:	86 e0       	ldi	r24, 0x06	; 6
+ cca:	8e da       	rcall	.-2788   	; 0x1e8 <pinMode>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:25
     pinMode(PIN_SS ,  INPUT);
- c96:	60 e0       	ldi	r22, 0x00	; 0
- c98:	80 e0       	ldi	r24, 0x00	; 0
- c9a:	a6 da       	rcall	.-2740   	; 0x1e8 <pinMode>
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:28
+ ccc:	60 e0       	ldi	r22, 0x00	; 0
+ cce:	80 e0       	ldi	r24, 0x00	; 0
+ cd0:	8b da       	rcall	.-2794   	; 0x1e8 <pinMode>
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:28
 
     // three wire mode
     USICR = _BV(USIWM0) | _BV(USICS1);
- c9c:	88 e1       	ldi	r24, 0x18	; 24
- c9e:	8d b9       	out	0x0d, r24	; 13
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:31
+ cd2:	88 e1       	ldi	r24, 0x18	; 24
+ cd4:	8d b9       	out	0x0d, r24	; 13
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:31
 
     // enable interrupts on SS only
     PCMSK1 = _BV(PCINT8);
- ca0:	81 e0       	ldi	r24, 0x01	; 1
- ca2:	80 bd       	out	0x20, r24	; 32
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/spislave.cpp:32
+ cd6:	81 e0       	ldi	r24, 0x01	; 1
+ cd8:	80 bd       	out	0x20, r24	; 32
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/spislave.cpp:32
     GIMSK  = _BV(PCIE1);
- ca4:	80 e2       	ldi	r24, 0x20	; 32
- ca6:	8b bf       	out	0x3b, r24	; 59
+ cda:	80 e2       	ldi	r24, 0x20	; 32
+ cdc:	8b bf       	out	0x3b, r24	; 59
 setup():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:239
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:234
     spi->init();
 #ifdef SERIAL_DEBUG
     spi->setDebug(&srl);
 #endif
 
     interrupts();
- ca8:	78 94       	sei
+ cde:	78 94       	sei
 millis():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:167
   }
@@ -2942,115 +3084,115 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
   {
     unsigned long m;
     uint8_t oldSREG = SREG;
- caa:	2f b7       	in	r18, 0x3f	; 63
+ ce0:	2f b7       	in	r18, 0x3f	; 63
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:171
 
     // disable interrupts while we read millis_timer_millis or we might get an
     // inconsistent value (e.g. in the middle of a write to millis_timer_millis)
     cli();
- cac:	f8 94       	cli
+ ce2:	f8 94       	cli
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:172
     m = millis_timer_millis;
- cae:	80 91 a7 00 	lds	r24, 0x00A7	; 0x8000a7 <millis_timer_millis>
- cb2:	90 91 a8 00 	lds	r25, 0x00A8	; 0x8000a8 <millis_timer_millis+0x1>
- cb6:	a0 91 a9 00 	lds	r26, 0x00A9	; 0x8000a9 <millis_timer_millis+0x2>
- cba:	b0 91 aa 00 	lds	r27, 0x00AA	; 0x8000aa <millis_timer_millis+0x3>
+ ce4:	80 91 a7 00 	lds	r24, 0x00A7	; 0x8000a7 <millis_timer_millis>
+ ce8:	90 91 a8 00 	lds	r25, 0x00A8	; 0x8000a8 <millis_timer_millis+0x1>
+ cec:	a0 91 a9 00 	lds	r26, 0x00A9	; 0x8000a9 <millis_timer_millis+0x2>
+ cf0:	b0 91 aa 00 	lds	r27, 0x00AA	; 0x8000aa <millis_timer_millis+0x3>
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:173
     SREG = oldSREG;
- cbe:	2f bf       	out	0x3f, r18	; 63
+ cf4:	2f bf       	out	0x3f, r18	; 63
 setup():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:243
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:238
 #ifdef SERIAL_DEBUG
     srl.println("setup complete");
 #endif
     next_tick = millis();
- cc0:	80 93 ab 00 	sts	0x00AB, r24	; 0x8000ab <next_tick>
- cc4:	90 93 ac 00 	sts	0x00AC, r25	; 0x8000ac <next_tick+0x1>
- cc8:	a0 93 ad 00 	sts	0x00AD, r26	; 0x8000ad <next_tick+0x2>
- ccc:	b0 93 ae 00 	sts	0x00AE, r27	; 0x8000ae <next_tick+0x3>
+ cf6:	80 93 ab 00 	sts	0x00AB, r24	; 0x8000ab <next_tick>
+ cfa:	90 93 ac 00 	sts	0x00AC, r25	; 0x8000ac <next_tick+0x1>
+ cfe:	a0 93 ad 00 	sts	0x00AD, r26	; 0x8000ad <next_tick+0x2>
+ d02:	b0 93 ae 00 	sts	0x00AE, r27	; 0x8000ae <next_tick+0x3>
 wdt_enable():
 c:\users\ericw\appdata\local\arduino15\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino7\avr\include\avr/wdt.h:469
- cd0:	c8 e1       	ldi	r28, 0x18	; 24
- cd2:	dc e0       	ldi	r29, 0x0C	; 12
+ d06:	c8 e1       	ldi	r28, 0x18	; 24
+ d08:	dc e0       	ldi	r29, 0x0C	; 12
 loop():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:265
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:260
     ADCSRA = adcsra_was;
 }
 
 
 void loop() {
     bool use_sleep = !(rf.get(REG_STATUS) & _BV(STAT_PWR_ON));
- cd4:	80 91 af 00 	lds	r24, 0x00AF	; 0x8000af <rf>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:266
+ d0a:	80 91 af 00 	lds	r24, 0x00AF	; 0x8000af <rf>
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:261
     if (use_sleep) {
- cd8:	85 fd       	sbrc	r24, 5
- cda:	1a c0       	rjmp	.+52     	; 0xd10 <main+0x198>
+ d0e:	85 fd       	sbrc	r24, 5
+ d10:	1a c0       	rjmp	.+52     	; 0xd46 <main+0x198>
 sleep250():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:249
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:244
 }
 
 
 
 void sleep250() {
     uint8_t adcsra_was = ADCSRA;
- cdc:	96 b1       	in	r25, 0x06	; 6
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:250
+ d12:	96 b1       	in	r25, 0x06	; 6
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:245
     ADCSRA = 0;
- cde:	16 b8       	out	0x06, r1	; 6
+ d14:	16 b8       	out	0x06, r1	; 6
 wdt_enable():
 c:\users\ericw\appdata\local\arduino15\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino7\avr\include\avr/wdt.h:469
- ce0:	0f b6       	in	r0, 0x3f	; 63
- ce2:	f8 94       	cli
- ce4:	a8 95       	wdr
- ce6:	c1 bd       	out	0x21, r28	; 33
- ce8:	0f be       	out	0x3f, r0	; 63
- cea:	d1 bd       	out	0x21, r29	; 33
+ d16:	0f b6       	in	r0, 0x3f	; 63
+ d18:	f8 94       	cli
+ d1a:	a8 95       	wdr
+ d1c:	c1 bd       	out	0x21, r28	; 33
+ d1e:	0f be       	out	0x3f, r0	; 63
+ d20:	d1 bd       	out	0x21, r29	; 33
 sleep250():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:253
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:248
 
     wdt_enable(WDTO_250MS);
     wdt_reset();
- cec:	a8 95       	wdr
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:254
+ d22:	a8 95       	wdr
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:249
     WDTCSR |= _BV(WDIE);
- cee:	81 b5       	in	r24, 0x21	; 33
- cf0:	80 64       	ori	r24, 0x40	; 64
- cf2:	81 bd       	out	0x21, r24	; 33
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:255
+ d24:	81 b5       	in	r24, 0x21	; 33
+ d26:	80 64       	ori	r24, 0x40	; 64
+ d28:	81 bd       	out	0x21, r24	; 33
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:250
     set_sleep_mode(SLEEP_MODE_PWR_DOWN);
- cf4:	85 b7       	in	r24, 0x35	; 53
- cf6:	87 7e       	andi	r24, 0xE7	; 231
- cf8:	80 61       	ori	r24, 0x10	; 16
- cfa:	85 bf       	out	0x35, r24	; 53
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:257
+ d2a:	85 b7       	in	r24, 0x35	; 53
+ d2c:	87 7e       	andi	r24, 0xE7	; 231
+ d2e:	80 61       	ori	r24, 0x10	; 16
+ d30:	85 bf       	out	0x35, r24	; 53
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:252
 
     sleep_mode();
- cfc:	85 b7       	in	r24, 0x35	; 53
- cfe:	80 62       	ori	r24, 0x20	; 32
- d00:	85 bf       	out	0x35, r24	; 53
- d02:	88 95       	sleep
- d04:	85 b7       	in	r24, 0x35	; 53
- d06:	8f 7d       	andi	r24, 0xDF	; 223
- d08:	85 bf       	out	0x35, r24	; 53
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:260
+ d32:	85 b7       	in	r24, 0x35	; 53
+ d34:	80 62       	ori	r24, 0x20	; 32
+ d36:	85 bf       	out	0x35, r24	; 53
+ d38:	88 95       	sleep
+ d3a:	85 b7       	in	r24, 0x35	; 53
+ d3c:	8f 7d       	andi	r24, 0xDF	; 223
+ d3e:	85 bf       	out	0x35, r24	; 53
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:255
     
     // and now we are awake again
     ADCSRA = adcsra_was;
- d0a:	96 b9       	out	0x06, r25	; 6
+ d40:	96 b9       	out	0x06, r25	; 6
 loop():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:268
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:263
 
 void loop() {
     bool use_sleep = !(rf.get(REG_STATUS) & _BV(STAT_PWR_ON));
     if (use_sleep) {
         sleep250();
         doTickWork();      
- d0c:	31 db       	rcall	.-2462   	; 0x370 <doTickWork()>
- d0e:	e2 cf       	rjmp	.-60     	; 0xcd4 <main+0x15c>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:270
+ d42:	16 db       	rcall	.-2516   	; 0x370 <doTickWork()>
+ d44:	e2 cf       	rjmp	.-60     	; 0xd0a <main+0x15c>
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:265
     } else {
         wdt_reset();
- d10:	a8 95       	wdr
+ d46:	a8 95       	wdr
 millis():
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:167
   }
@@ -3059,226 +3201,226 @@ C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\co
   {
     unsigned long m;
     uint8_t oldSREG = SREG;
- d12:	2f b7       	in	r18, 0x3f	; 63
+ d48:	2f b7       	in	r18, 0x3f	; 63
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:171
 
     // disable interrupts while we read millis_timer_millis or we might get an
     // inconsistent value (e.g. in the middle of a write to millis_timer_millis)
     cli();
- d14:	f8 94       	cli
+ d4a:	f8 94       	cli
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:172
     m = millis_timer_millis;
- d16:	80 91 a7 00 	lds	r24, 0x00A7	; 0x8000a7 <millis_timer_millis>
- d1a:	90 91 a8 00 	lds	r25, 0x00A8	; 0x8000a8 <millis_timer_millis+0x1>
- d1e:	a0 91 a9 00 	lds	r26, 0x00A9	; 0x8000a9 <millis_timer_millis+0x2>
- d22:	b0 91 aa 00 	lds	r27, 0x00AA	; 0x8000aa <millis_timer_millis+0x3>
+ d4c:	80 91 a7 00 	lds	r24, 0x00A7	; 0x8000a7 <millis_timer_millis>
+ d50:	90 91 a8 00 	lds	r25, 0x00A8	; 0x8000a8 <millis_timer_millis+0x1>
+ d54:	a0 91 a9 00 	lds	r26, 0x00A9	; 0x8000a9 <millis_timer_millis+0x2>
+ d58:	b0 91 aa 00 	lds	r27, 0x00AA	; 0x8000aa <millis_timer_millis+0x3>
 C:\Users\ericw\AppData\Local\Arduino15\packages\ATTinyCore\hardware\avr\1.4.1\cores\tiny/wiring.c:173
     SREG = oldSREG;
- d26:	2f bf       	out	0x3f, r18	; 63
+ d5c:	2f bf       	out	0x3f, r18	; 63
 loop():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:272
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:267
         bool new_tick = (millis() >= next_tick);
         if (new_tick) {
- d28:	40 91 ab 00 	lds	r20, 0x00AB	; 0x8000ab <next_tick>
- d2c:	50 91 ac 00 	lds	r21, 0x00AC	; 0x8000ac <next_tick+0x1>
- d30:	60 91 ad 00 	lds	r22, 0x00AD	; 0x8000ad <next_tick+0x2>
- d34:	70 91 ae 00 	lds	r23, 0x00AE	; 0x8000ae <next_tick+0x3>
- d38:	84 17       	cp	r24, r20
- d3a:	95 07       	cpc	r25, r21
- d3c:	a6 07       	cpc	r26, r22
- d3e:	b7 07       	cpc	r27, r23
- d40:	a8 f0       	brcs	.+42     	; 0xd6c <main+0x1f4>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:273
+ d5e:	40 91 ab 00 	lds	r20, 0x00AB	; 0x8000ab <next_tick>
+ d62:	50 91 ac 00 	lds	r21, 0x00AC	; 0x8000ac <next_tick+0x1>
+ d66:	60 91 ad 00 	lds	r22, 0x00AD	; 0x8000ad <next_tick+0x2>
+ d6a:	70 91 ae 00 	lds	r23, 0x00AE	; 0x8000ae <next_tick+0x3>
+ d6e:	84 17       	cp	r24, r20
+ d70:	95 07       	cpc	r25, r21
+ d72:	a6 07       	cpc	r26, r22
+ d74:	b7 07       	cpc	r27, r23
+ d76:	a8 f0       	brcs	.+42     	; 0xda2 <main+0x1f4>
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:268
             doTickWork();
- d42:	16 db       	rcall	.-2516   	; 0x370 <doTickWork()>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:274
+ d78:	fb da       	rcall	.-2570   	; 0x370 <doTickWork()>
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:269
             next_tick += MILLIS_PER_TICK;
- d44:	80 91 ab 00 	lds	r24, 0x00AB	; 0x8000ab <next_tick>
- d48:	90 91 ac 00 	lds	r25, 0x00AC	; 0x8000ac <next_tick+0x1>
- d4c:	a0 91 ad 00 	lds	r26, 0x00AD	; 0x8000ad <next_tick+0x2>
- d50:	b0 91 ae 00 	lds	r27, 0x00AE	; 0x8000ae <next_tick+0x3>
- d54:	86 50       	subi	r24, 0x06	; 6
- d56:	9f 4f       	sbci	r25, 0xFF	; 255
- d58:	af 4f       	sbci	r26, 0xFF	; 255
- d5a:	bf 4f       	sbci	r27, 0xFF	; 255
- d5c:	80 93 ab 00 	sts	0x00AB, r24	; 0x8000ab <next_tick>
- d60:	90 93 ac 00 	sts	0x00AC, r25	; 0x8000ac <next_tick+0x1>
- d64:	a0 93 ad 00 	sts	0x00AD, r26	; 0x8000ad <next_tick+0x2>
- d68:	b0 93 ae 00 	sts	0x00AE, r27	; 0x8000ae <next_tick+0x3>
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:276
+ d7a:	80 91 ab 00 	lds	r24, 0x00AB	; 0x8000ab <next_tick>
+ d7e:	90 91 ac 00 	lds	r25, 0x00AC	; 0x8000ac <next_tick+0x1>
+ d82:	a0 91 ad 00 	lds	r26, 0x00AD	; 0x8000ad <next_tick+0x2>
+ d86:	b0 91 ae 00 	lds	r27, 0x00AE	; 0x8000ae <next_tick+0x3>
+ d8a:	86 50       	subi	r24, 0x06	; 6
+ d8c:	9f 4f       	sbci	r25, 0xFF	; 255
+ d8e:	af 4f       	sbci	r26, 0xFF	; 255
+ d90:	bf 4f       	sbci	r27, 0xFF	; 255
+ d92:	80 93 ab 00 	sts	0x00AB, r24	; 0x8000ab <next_tick>
+ d96:	90 93 ac 00 	sts	0x00AC, r25	; 0x8000ac <next_tick+0x1>
+ d9a:	a0 93 ad 00 	sts	0x00AD, r26	; 0x8000ad <next_tick+0x2>
+ d9e:	b0 93 ae 00 	sts	0x00AE, r27	; 0x8000ae <next_tick+0x3>
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:271
         }
         delay(MILLIS_PER_TICK / 10);
- d6c:	69 e1       	ldi	r22, 0x19	; 25
- d6e:	70 e0       	ldi	r23, 0x00	; 0
- d70:	80 e0       	ldi	r24, 0x00	; 0
- d72:	90 e0       	ldi	r25, 0x00	; 0
- d74:	9f da       	rcall	.-2754   	; 0x2b4 <delay>
- d76:	ae cf       	rjmp	.-164    	; 0xcd4 <main+0x15c>
+ da2:	69 e1       	ldi	r22, 0x19	; 25
+ da4:	70 e0       	ldi	r23, 0x00	; 0
+ da6:	80 e0       	ldi	r24, 0x00	; 0
+ da8:	90 e0       	ldi	r25, 0x00	; 0
+ daa:	84 da       	rcall	.-2808   	; 0x2b4 <delay>
+ dac:	ae cf       	rjmp	.-164    	; 0xd0a <main+0x15c>
 
-00000d78 <_GLOBAL__sub_I_vhits>:
+00000dae <_GLOBAL__sub_I_vhits>:
 _ZN9regfile_cImLj12EEC2Ev():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/regfile.h:34
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/regfile.h:34
             }
         }
 
     public:
         regfile_c() {
           ser = 0;
- d78:	af ea       	ldi	r26, 0xAF	; 175
- d7a:	b0 e0       	ldi	r27, 0x00	; 0
- d7c:	d1 96       	adiw	r26, 0x31	; 49
- d7e:	1c 92       	st	X, r1
- d80:	1e 92       	st	-X, r1
- d82:	d0 97       	sbiw	r26, 0x30	; 48
+ dae:	af ea       	ldi	r26, 0xAF	; 175
+ db0:	b0 e0       	ldi	r27, 0x00	; 0
+ db2:	d1 96       	adiw	r26, 0x31	; 49
+ db4:	1c 92       	st	X, r1
+ db6:	1e 92       	st	-X, r1
+ db8:	d0 97       	sbiw	r26, 0x30	; 48
 _ZN11adcReader_cI9regfile_cImLj12EELh1ELh16EEC2ERS1_():
-C:\Users\ericw\DOCUME~1\MobaXterm\slash\var\log\xwin\arduino_build_464465\sketch/adcReader.h:20
+C:\Users\ericw\AppData\Local\Temp\arduino_build_531670\sketch/adcReader.h:20
         ema_c <uint16_t, uint32_t, EMA_ALPHA, EMA_DENOM> avg_vcc_sw;
         ema_c <uint16_t, uint32_t, EMA_ALPHA, EMA_DENOM> avg_vcc33;
         ema_c <uint16_t, uint32_t, EMA_ALPHA, EMA_DENOM> avg_vbat;
         ema_c <uint16_t, uint32_t, EMA_ALPHA, EMA_DENOM> avg_temp;
     public:
         adcReader_c(RF_TYPE &irf) : next(0), rf(irf) { };
- d84:	ea e8       	ldi	r30, 0x8A	; 138
- d86:	f0 e0       	ldi	r31, 0x00	; 0
- d88:	10 82       	st	Z, r1
- d8a:	b2 83       	std	Z+2, r27	; 0x02
- d8c:	a1 83       	std	Z+1, r26	; 0x01
+ dba:	ea e8       	ldi	r30, 0x8A	; 138
+ dbc:	f0 e0       	ldi	r31, 0x00	; 0
+ dbe:	10 82       	st	Z, r1
+ dc0:	b2 83       	std	Z+2, r27	; 0x02
+ dc2:	a1 83       	std	Z+1, r26	; 0x01
 _GLOBAL__sub_I_vhits():
-C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:281
+C:\Users\ericw\Documents\GitHub\pidog2\attiny84_sketch\pidog2/pidog2.ino:276
     }
 }
 
 
 ISR(BADISR_vect)  { }
- d8e:	08 95       	ret
+ dc4:	08 95       	ret
 
-00000d90 <__udivmodqi4>:
+00000dc6 <__udivmodqi4>:
 __udivmodqi4():
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1346
- d90:	99 1b       	sub	r25, r25
+ dc6:	99 1b       	sub	r25, r25
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1347
- d92:	79 e0       	ldi	r23, 0x09	; 9
+ dc8:	79 e0       	ldi	r23, 0x09	; 9
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1348
- d94:	04 c0       	rjmp	.+8      	; 0xd9e <__udivmodqi4_ep>
+ dca:	04 c0       	rjmp	.+8      	; 0xdd4 <__udivmodqi4_ep>
 
-00000d96 <__udivmodqi4_loop>:
+00000dcc <__udivmodqi4_loop>:
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1350
- d96:	99 1f       	adc	r25, r25
+ dcc:	99 1f       	adc	r25, r25
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1351
- d98:	96 17       	cp	r25, r22
+ dce:	96 17       	cp	r25, r22
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1352
- d9a:	08 f0       	brcs	.+2      	; 0xd9e <__udivmodqi4_ep>
+ dd0:	08 f0       	brcs	.+2      	; 0xdd4 <__udivmodqi4_ep>
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1353
- d9c:	96 1b       	sub	r25, r22
+ dd2:	96 1b       	sub	r25, r22
 
-00000d9e <__udivmodqi4_ep>:
+00000dd4 <__udivmodqi4_ep>:
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1355
- d9e:	88 1f       	adc	r24, r24
+ dd4:	88 1f       	adc	r24, r24
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1356
- da0:	7a 95       	dec	r23
+ dd6:	7a 95       	dec	r23
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1357
- da2:	c9 f7       	brne	.-14     	; 0xd96 <__udivmodqi4_loop>
+ dd8:	c9 f7       	brne	.-14     	; 0xdcc <__udivmodqi4_loop>
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1358
- da4:	80 95       	com	r24
+ dda:	80 95       	com	r24
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1360
- da6:	08 95       	ret
+ ddc:	08 95       	ret
 
-00000da8 <__udivmodsi4>:
+00000dde <__udivmodsi4>:
 __udivmodsi4():
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1638
- da8:	a1 e2       	ldi	r26, 0x21	; 33
+ dde:	a1 e2       	ldi	r26, 0x21	; 33
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1639
- daa:	1a 2e       	mov	r1, r26
+ de0:	1a 2e       	mov	r1, r26
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1640
- dac:	aa 1b       	sub	r26, r26
+ de2:	aa 1b       	sub	r26, r26
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1641
- dae:	bb 1b       	sub	r27, r27
+ de4:	bb 1b       	sub	r27, r27
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1642
- db0:	fd 01       	movw	r30, r26
+ de6:	fd 01       	movw	r30, r26
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1644
- db2:	0d c0       	rjmp	.+26     	; 0xdce <__udivmodsi4_ep>
+ de8:	0d c0       	rjmp	.+26     	; 0xe04 <__udivmodsi4_ep>
 
-00000db4 <__udivmodsi4_loop>:
+00000dea <__udivmodsi4_loop>:
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1646
- db4:	aa 1f       	adc	r26, r26
+ dea:	aa 1f       	adc	r26, r26
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1647
- db6:	bb 1f       	adc	r27, r27
+ dec:	bb 1f       	adc	r27, r27
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1648
- db8:	ee 1f       	adc	r30, r30
+ dee:	ee 1f       	adc	r30, r30
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1649
- dba:	ff 1f       	adc	r31, r31
+ df0:	ff 1f       	adc	r31, r31
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1650
- dbc:	a2 17       	cp	r26, r18
+ df2:	a2 17       	cp	r26, r18
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1651
- dbe:	b3 07       	cpc	r27, r19
+ df4:	b3 07       	cpc	r27, r19
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1652
- dc0:	e4 07       	cpc	r30, r20
+ df6:	e4 07       	cpc	r30, r20
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1653
- dc2:	f5 07       	cpc	r31, r21
+ df8:	f5 07       	cpc	r31, r21
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1654
- dc4:	20 f0       	brcs	.+8      	; 0xdce <__udivmodsi4_ep>
+ dfa:	20 f0       	brcs	.+8      	; 0xe04 <__udivmodsi4_ep>
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1655
- dc6:	a2 1b       	sub	r26, r18
+ dfc:	a2 1b       	sub	r26, r18
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1656
- dc8:	b3 0b       	sbc	r27, r19
+ dfe:	b3 0b       	sbc	r27, r19
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1657
- dca:	e4 0b       	sbc	r30, r20
+ e00:	e4 0b       	sbc	r30, r20
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1658
- dcc:	f5 0b       	sbc	r31, r21
+ e02:	f5 0b       	sbc	r31, r21
 
-00000dce <__udivmodsi4_ep>:
+00000e04 <__udivmodsi4_ep>:
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1660
- dce:	66 1f       	adc	r22, r22
+ e04:	66 1f       	adc	r22, r22
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1661
- dd0:	77 1f       	adc	r23, r23
+ e06:	77 1f       	adc	r23, r23
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1662
- dd2:	88 1f       	adc	r24, r24
+ e08:	88 1f       	adc	r24, r24
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1663
- dd4:	99 1f       	adc	r25, r25
+ e0a:	99 1f       	adc	r25, r25
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1664
- dd6:	1a 94       	dec	r1
+ e0c:	1a 94       	dec	r1
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1665
- dd8:	69 f7       	brne	.-38     	; 0xdb4 <__udivmodsi4_loop>
+ e0e:	69 f7       	brne	.-38     	; 0xdea <__udivmodsi4_loop>
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1667
- dda:	60 95       	com	r22
+ e10:	60 95       	com	r22
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1668
- ddc:	70 95       	com	r23
+ e12:	70 95       	com	r23
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1669
- dde:	80 95       	com	r24
+ e14:	80 95       	com	r24
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1670
- de0:	90 95       	com	r25
+ e16:	90 95       	com	r25
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1672
- de2:	9b 01       	movw	r18, r22
+ e18:	9b 01       	movw	r18, r22
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1674
- de4:	ac 01       	movw	r20, r24
+ e1a:	ac 01       	movw	r20, r24
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1676
- de6:	bd 01       	movw	r22, r26
+ e1c:	bd 01       	movw	r22, r26
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1678
- de8:	cf 01       	movw	r24, r30
+ e1e:	cf 01       	movw	r24, r30
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:1680
- dea:	08 95       	ret
+ e20:	08 95       	ret
 
-00000dec <__tablejump2__>:
+00000e22 <__tablejump2__>:
 __tablejump2__():
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2296
- dec:	ee 0f       	add	r30, r30
+ e22:	ee 0f       	add	r30, r30
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2297
- dee:	ff 1f       	adc	r31, r31
+ e24:	ff 1f       	adc	r31, r31
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2328
- df0:	05 90       	lpm	r0, Z+
+ e26:	05 90       	lpm	r0, Z+
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2329
- df2:	f4 91       	lpm	r31, Z
+ e28:	f4 91       	lpm	r31, Z
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2330
- df4:	e0 2d       	mov	r30, r0
+ e2a:	e0 2d       	mov	r30, r0
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2331
- df6:	09 94       	ijmp
+ e2c:	09 94       	ijmp
 
-00000df8 <_exit>:
+00000e2e <_exit>:
 exit():
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2278
- df8:	f8 94       	cli
+ e2e:	f8 94       	cli
 
-00000dfa <__stop_program>:
+00000e30 <__stop_program>:
 __stop_program():
 /home/jenkins-mingw32/workspace/avr-gcc-staging/label/Ubuntu14.04x64-mingw32/gcc-build/avr/avr25/libgcc/../../../../gcc/libgcc/config/avr/lib1funcs.S:2280
- dfa:	ff cf       	rjmp	.-2      	; 0xdfa <__stop_program>
+ e30:	ff cf       	rjmp	.-2      	; 0xe30 <__stop_program>

@@ -71,17 +71,6 @@ class regfile_c {
             return o;
         }
 
-        /**
-        REGW gethl(uint8_t addr, register_half_t half) {
-            REGW v = registers[addr % REG_COUNT];
-            size_t sz = sizeof(REGW);
-            if (half != register_bottom) {
-                v >>= (sz * 4);
-            }
-            v &= ~(0x0) >> (sz * 4);
-            return v;
-        }
-        **/
         REGW gethl(uint8_t addr, register_half_t half) {
             REGW v = registers[addr % REG_COUNT];
             size_t sz = sizeof(REGW);

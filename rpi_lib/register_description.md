@@ -2,7 +2,7 @@
 
 The PiDog behaves like a SPI slave with a 5 byte (40b) register.
 
-The PiDog has 10 accessible registers. Each time the Pi accesses the PiDog, it shifts in 5 bytes and simultaneously shifts out 5 bytes. The first byte shifted in contains the register address (4b) as well as bits to indicate the action (write the register, set bits, clear bits, or read). The remaining four bytes shifted in are the bits to be written, set, or cleared. In the case of a read, they are ignored.
+The PiDog has 12 accessible registers. Each time the Pi accesses the PiDog, it shifts in 5 bytes and simultaneously shifts out 5 bytes. The first byte shifted in contains the register address (4b) as well as bits to indicate the action (write the register, set bits, clear bits, or read). The remaining four bytes shifted in are the bits to be written, set, or cleared. In the case of a read, they are ignored.
 
 Five bytes are also shifted out. The first byte is the register that was read or written. The remaining four are the register value.
 
@@ -32,13 +32,15 @@ as well as bits you can set to drive outputs
 
 | bit | name | purpose |
 | --- | --- | --- |
-| 0 | wdog_en | set this to enable the countdown timer for firing the watchdog and turning off the Pi power. You can write a zero this this bit to stop the PiDog from counting down. Reset default is on. |
-| 1 |  wdog_fired | this will be set if the watchdog has expired,                          and it will stay set until it is cleared manually. This leaves evidence for the Pi to know if the watchdog has fired. This bit also controls the output on the fired LED (D30_1)
+| 0 | wdog_en | Set this to enable the countdown timer for firing the watchdog and turning off the Pi power. You can write a zero this this bit to stop the PiDog from counting down. Reset default is on. |
+| 1 |  wdog_fired | This will be set if the watchdog has expired,                          and it will stay set until it is cleared manually. This leaves evidence for the Pi to know if the watchdog has fired. This bit also controls the output on the fired LED (D30_1)
 | 2 | `na` | This bit is reserved. |
-| 3 | wake_en | set to enable the countdown timer for turning the power back on. If this bit is cleared, a PiDog that is currently off will never turn on.  On reset this is set. |
-| 4 | power_on | This bit reflects the current power status of  the PiDog. The PiDog will clear this bit if the  watchdog fires or set it of the wake timer fires. You can set or clear this bit manually, too. Note that if you clear this bit, your Pi will lose power immediately unless you are powering it some other way! |
-| 5 | led_warn | PiDog sets this to 1 if the watchdog or the wake timer will fire in the next 30 seconds. (This is hard-coded in the firmware.) It drives LED D30_2, as an indicator that the state will change soon. |
-| 31-6 | `na` | Reserved |
+| 3 | wake_en | Set to enable the countdown timer for turning the power back on. If this bit is cleared, a PiDog that is currently off will never turn on.  On reset this is set. |
+| 4 | wake_fired | Set when the pi is powered on and cleared when it is powered off.
+| 5 | power_on | This bit reflects the current power status of  the PiDog. The PiDog will clear this bit if the  watchdog fires or set it of the wake timer fires. You can set or clear this bit manually, too. Note that if you clear this bit, your Pi will lose power immediately unless you are powering it some other way! |
+| 6 | led_warn | PiDog sets this to 1 if the watchdog or the wake timer will fire in the next 30 seconds. (This is hard-coded in the firmware.) It drives LED D30_2, as an indicator that the state will change soon. |
+|8-7| fire_code | Used to indicate why the watchdog last fired. Codes are: 0 - on-remaining timer expired, 1 - vsensa dropped below threshold, 2 - vesensb dropped below threshold, 3 - both vsensa and vsensb dropped below threshold
+| 31-9 | `na` | Reserved |
 
 # Python Library Use
 

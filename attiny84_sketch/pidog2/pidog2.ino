@@ -9,8 +9,8 @@
 #include "adcReader.h"
 #include "spi_reg_names.h"
 
-#define SERIAL_DEBUG 1
-#define NO_PATIENCE_DEBUG 1
+//#define SERIAL_DEBUG 1
+//#define NO_PATIENCE_DEBUG 1
 
 #ifdef SERIAL_DEBUG
   #include "SoftwareSerial_tx.h"
@@ -93,13 +93,17 @@ void doSecondWork() {
         reg_t on_rem = rf.get(REG_ON_REMAINING);
         reg_t a_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_top);
         reg_t b_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_bottom);
-        if ( !on_rem ||
-             (a_off_thresh && ((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) < a_off_thresh) || 
-             (b_off_thresh && (rf.get(REG_VSENSA_VSENSB) & 0xffff) < b_off_thresh)) {
+        bool a_under = a_off_thresh && (rf.gethl(REG_VSENSA_VSENSB,register_top) < a_off_thresh);
+        bool b_under = b_off_thresh && (rf.gethl(REG_VSENSA_VSENSB,register_bottom) < b_off_thresh);
+        if ( !on_rem || a_under || b_under) {
             #ifdef SERIAL_DEBUG
             srl.println("Powering off pi.");
             #endif
             s |=  _BV(STAT_WDOG_FIRED);
+            s &= ~(_BV(STAT_WDOG_FIRE_CODE) | _BV(STAT_WDOG_FIRE_CODE+1));                        //00b - on-remaining timer expired 
+            if (a_under && b_under) s |= (_BV(STAT_WDOG_FIRE_CODE) | _BV(STAT_WDOG_FIRE_CODE+1)); //11b - vsensb & vsensb dropped below threshold 
+            else if (a_under)       s |= _BV(STAT_WDOG_FIRE_CODE);                                //01b - vsensa dropped below threshold
+            else if (b_under)       s |= _BV(STAT_WDOG_FIRE_CODE+1);                              //10b - vsensb dropped below threshold
             s &= ~_BV(STAT_WAKE_FIRED);
             s &= ~_BV(STAT_PWR_ON);
             s &= ~_BV(STAT_LED_WARN);
@@ -133,6 +137,7 @@ void doSecondWork() {
                 rf.sethl(REG_FIRECOUNTS,rf.gethl(REG_FIRECOUNTS,register_top)+1,register_top);
             } else if ( a_on_thresh || b_on_thresh ) {
               rf.set(REG_OFF_REMAINING,rf.get(REG_OFF_REM_RESETVAL));
+              s &= ~_BV(STAT_LED_WARN);
             }
         } else {
             if (off_rem < WARN_SECS) s |= _BV(STAT_LED_WARN);
