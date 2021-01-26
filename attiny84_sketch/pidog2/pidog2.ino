@@ -50,8 +50,8 @@ const reg_t VSENSE_OFF_THRESHOLD  = 0;
 const reg_t DEFAULT_ON_TIME       = 900;
 const reg_t DEFAULT_OFF_TIME      = 900;
 const reg_t WARN_SECS             = 30;
-const reg_t VSENSE_ON_THRESHOLD   = 0; //Disables this function
-const reg_t VSENSE_OFF_THRESHOLD  = 0; //Disables this function
+const reg_t VSENSE_ON_THRESHOLD   = 0; //On theshold in millivolts. Zero disables this function.
+const reg_t VSENSE_OFF_THRESHOLD  = 0; //Off theshold in millivolts. Zero disables this function.
 #endif
 
 const size_t rf_size = 12;
