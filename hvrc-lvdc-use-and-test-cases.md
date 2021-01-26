@@ -21,10 +21,11 @@ selected with the following considerations:
 
 > **_Notes_**
 >
->	*The values shown in the tables above represent the ADC values that are set in the vsense_on_threshold and vsense_of_threshold registers using the 'dogcmd.py' script. The tables shows the values that are written to these registers for an ON threshold of 12.3 V and an OFF threshold of 10.0 V for the cases where only VSENSA is monitored, only VSENSB is monitored, and where both VSENSA and VSENSB are monitored. The ADC values are calculated using the voltage divider formula: round((1024 * 6.8 kohms / sum(6.8 kohms, 91.0 kohms)) * voltage / (1000 * 1.1)); where 1024 is the range of the ADC, the resistor values are those used in the voltage divider circuit of hardware revision 0.7, voltage is the threshold voltage (12300 mV or 10000 mV), 1000 is the mV divider and 1.1 is the ATTiny's reference voltage. There is a convenience function in pidog.py called getAdcValue(name, value) that accepts the name of the voltage monitor (vsensa or vsensb) and the voltage threshold expressed in mV. It returns the ADC value that should be written to the registers vsense_on_threshold and vsense_off_threshold using the pidog.set() function. See the example.py script for details.*
->	*All test cases are performed with the rpi jumper in place and the following constants defined in the sketch:*
->	*SERIAL_DEBUG 1*
->	*NO_PATIENCE_DEBUG 1*
+>	*The values shown in the tables above represent the ADC values that are set in the vsense_on_threshold and vsense_off_threshold registers using the 'dogcmd.py' script. The table shows the values that are written to these registers for an ON threshold of 12.3 V and an OFF threshold of 10.0 V for the cases where only VSENSA is monitored, only VSENSB is monitored, and where both VSENSA and VSENSB are monitored.* 
+>	*The ADC values are calculated using the voltage divider formula: round((1024 * 6.8 kohms / sum(6.8 kohms, 91.0 kohms)) * voltage / (1000 * 1.1)); where 1024 is the range of the ADC, the resistor values are those used in the voltage divider circuit of hardware revision 0.7, voltage is the threshold voltage (12300 mV or 10000 mV), 1000 is the mV divider and 1.1 is the ATTiny's reference voltage.*
+>
+> *There is a convenience function in pidog.py called getAdcValue(name, value) that accepts the name of the voltage monitor (vsensa or vsensb) and the voltage threshold expressed in mV. It returns the ADC value that should be written to the registers vsense_on_threshold and vsense_off_threshold using the pidog.set() function. See the example.py script for details.*
+>	*All test cases are performed with the rpi jumper in place and the following constants defined in the sketch: SERIAL_DEBUG 1 and NO_PATIENCE_DEBUG 1*
 >	
 >	*The jumper allows the Pi to stay powered regardless of whether the PiDog wants it on -- this is very useful when testing and bringing up new code. Serial debug makes it easier to know what's happening, and "no patience" debug simply shortens the default on and off times so that testing can proceed faster.*
 
