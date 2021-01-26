@@ -9,8 +9,8 @@
 #include "adcReader.h"
 #include "spi_reg_names.h"
 
-//#define SERIAL_DEBUG 0
-//#define NO_PATIENCE_DEBUG 0
+//#define SERIAL_DEBUG 1
+//#define NO_PATIENCE_DEBUG 1
 
 #ifdef SERIAL_DEBUG
   #include "SoftwareSerial_tx.h"
@@ -50,8 +50,8 @@ const reg_t VSENSE_OFF_THRESHOLD  = 0;
 const reg_t DEFAULT_ON_TIME       = 900;
 const reg_t DEFAULT_OFF_TIME      = 900;
 const reg_t WARN_SECS             = 30;
-const reg_t VSENSE_ON_THRESHOLD   = 0; //Disables this function
-const reg_t VSENSE_OFF_THRESHOLD  = 0; //Disables this function
+const reg_t VSENSE_ON_THRESHOLD   = 0; //On theshold in mV. Zero disables this function.
+const reg_t VSENSE_OFF_THRESHOLD  = 0; //Off theshold in mV. Zero disables this function.
 #endif
 
 const size_t rf_size = 12;
@@ -91,17 +91,19 @@ void doSecondWork() {
     uint32_t s = rf.get(REG_STATUS);
     if ((s & _BV(STAT_WDOG_EN)) && (s & _BV(STAT_PWR_ON))) {
         reg_t on_rem = rf.get(REG_ON_REMAINING);
-        //reg_t a_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_top); <-- This always works.
-        //reg_t b_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_bottom);<-- This only works when the top 16 bits are 0. Otherwise, this call returns all 32 bits.
-        reg_t a_off_thresh = (rf.get(REG_VSENSE_OFF_THRESHOLD) >> 16) & 0xffff;
-        reg_t b_off_thresh = rf.get(REG_VSENSE_OFF_THRESHOLD) & 0xffff;
-        if ( !on_rem ||
-             (a_off_thresh && ((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) < a_off_thresh) || 
-             (b_off_thresh && (rf.get(REG_VSENSA_VSENSB) & 0xffff) < b_off_thresh)) {
+        reg_t a_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_top);
+        reg_t b_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_bottom);
+        bool a_under = a_off_thresh && (rf.gethl(REG_VSENSA_VSENSB,register_top) < a_off_thresh);
+        bool b_under = b_off_thresh && (rf.gethl(REG_VSENSA_VSENSB,register_bottom) < b_off_thresh);
+        if ( !on_rem || a_under || b_under) {
             #ifdef SERIAL_DEBUG
             srl.println("Powering off pi.");
             #endif
             s |=  _BV(STAT_WDOG_FIRED);
+            s &= ~(_BV(STAT_WDOG_FIRE_CODE) | _BV(STAT_WDOG_FIRE_CODE+1));                        //00b - on-remaining timer expired 
+            if (a_under && b_under) s |= (_BV(STAT_WDOG_FIRE_CODE) | _BV(STAT_WDOG_FIRE_CODE+1)); //11b - vsensb & vsensb dropped below threshold 
+            else if (a_under)       s |= _BV(STAT_WDOG_FIRE_CODE);                                //01b - vsensa dropped below threshold
+            else if (b_under)       s |= _BV(STAT_WDOG_FIRE_CODE+1);                              //10b - vsensb dropped below threshold
             s &= ~_BV(STAT_WAKE_FIRED);
             s &= ~_BV(STAT_PWR_ON);
             s &= ~_BV(STAT_LED_WARN);
@@ -115,22 +117,14 @@ void doSecondWork() {
     if ((s & _BV(STAT_WAKE_EN)) && (~s & _BV(STAT_PWR_ON))) {
         reg_t off_rem = rf.get(REG_OFF_REMAINING);
         if (!off_rem) {
-            //reg_t a_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_top); <-- This always works.
-            //reg_t b_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_bottom); <-- This only works when the top 16 bits are 0. Otherwise, this call returns all 32 bits.
-            reg_t a_on_thresh = (rf.get(REG_VSENSE_ON_THRESHOLD) >> 16) & 0xffff;
-            reg_t b_on_thresh = rf.get(REG_VSENSE_ON_THRESHOLD) & 0xffff;
-            bool enable = false;
-            if ( ! ( a_on_thresh || b_on_thresh ) ) {
-                enable = true;
-            } else if ( a_on_thresh && b_on_thresh && (((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) >= a_on_thresh ) &&
-                                                       ((rf.get(REG_VSENSA_VSENSB) & 0xffff) >= b_on_thresh) ) {
-                enable = true;
-            } else if ( a_on_thresh && ! b_on_thresh && (((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) >= a_on_thresh ) ) {
-                enable = true;
-            } else if ( ! a_on_thresh && b_on_thresh && ((rf.get(REG_VSENSA_VSENSB) & 0xffff) >= b_on_thresh) ) {
-                enable = true;
-            }
-
+            reg_t a_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_top);
+            reg_t b_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_bottom); 
+            bool a_over = rf.gethl(REG_VSENSA_VSENSB,register_top) >= a_on_thresh;
+            bool b_over = rf.gethl(REG_VSENSA_VSENSB,register_bottom) >= b_on_thresh;
+            bool enable = (!a_on_thresh && !b_on_thresh)                   || 
+                          (a_on_thresh && a_over && b_on_thresh && b_over) || 
+                          (a_on_thresh && a_over && !b_on_thresh)          || 
+                          (b_on_thresh && b_over && !a_on_thresh);
             if (enable == true) {
                 #ifdef SERIAL_DEBUG
                 srl.println("Powering on pi.");
@@ -143,6 +137,7 @@ void doSecondWork() {
                 rf.sethl(REG_FIRECOUNTS,rf.gethl(REG_FIRECOUNTS,register_top)+1,register_top);
             } else if ( a_on_thresh || b_on_thresh ) {
               rf.set(REG_OFF_REMAINING,rf.get(REG_OFF_REM_RESETVAL));
+              s &= ~_BV(STAT_LED_WARN);
             }
         } else {
             if (off_rem < WARN_SECS) s |= _BV(STAT_LED_WARN);

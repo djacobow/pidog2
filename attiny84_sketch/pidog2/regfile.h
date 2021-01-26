@@ -77,7 +77,9 @@ class regfile_c {
             if (half != register_bottom) {
                 v >>= (sz * 4);
             }
-            v &= ~(0x0) >> (sz * 4);
+            REGW halfmask = ~(0x0);
+            halfmask >>= (sz * 4);
+            v &= halfmask;
             return v;
         }
 

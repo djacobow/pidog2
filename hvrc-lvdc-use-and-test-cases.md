@@ -1,16 +1,22 @@
-# LVDC and HVDC USE CASE OVERVIEW
-The requirement behind this use case is to have the pidog act not only as a hardware watchdog, protecting against rpi lockups, but to also monitor the the supply voltage that keeps the pidog and rpi running. To support this capability, two new features have been added to pidog: Low-Voltage Disconnect (LVDC) and High-Voltage Reconnect (HVRC).
+# LVDC and HVRC USE CASE OVERVIEW
+The requirement behind this use case is to have the pidog act not only as a time-based hardware watchdog, protecting against rpi lockups, but to also monitor the the supply voltage that keeps the pidog and rpi running. To support this capability, two new features have been added to pidog: Low-Voltage Disconnect (LVDC) and High-Voltage Reconnect (HVRC).
 
 Supporting these features are two new user-configurable registers, 'vsense_on_threshold' and 'vsense_off_threshold'. Each is a 32-bit register where the upper 16 bits define thresholds for vsensa and the lower 16 bits define threholds for vsensb. The 'vsense_on_threshold' thresholds specify voltage levels that when the monitored voltage level(s) (vsensa or vsensb) are greater or equal to the threshold then the pidog will reconnect power to the rpi after the off-remaining timer expires. The 'vsense_off_threshold' thresholds specify voltage levels that when the monitored voltage level(s) (vsensa or vsensb) are less than the threshold then the pidog will immediately disconnect power from the rpi.
 
-The LVDC and HVDC features are mutually exclusive and are disabled when the thresholds are set to zero (default). When LVDC and HVDC are disabled, the pidog power state changes are driven by the timers only. If either feature is enabled for both vsensa or vsensb, the pidog state changes will occur if either vsensa or vsensb crosses the associated feature threshold. That is, if both vsensa and vsensb are being monitored for LVDC and either voltage drops below the defined threshold, the pidog would power of the pi immediately. In practice there is probably no good reason to use one feature and not the other, but the flexibility exists nonetheless. More likely, you would use both features to control the on/off states of the rpi based on only one of the voltage levels and not both. 
+The status register has been expanded to include fire_code, a 2-bit register used to indicate why the watchdog last fired. Codes are: 
+	*0 - on-remaining timer expired
+	*1 - vsensa dropped below threshold
+	*2 - vesensb dropped below threshold
+	*3 - both vsensa and vsensb dropped below threshold
 
-A remote rpi installation might use a solar panel and battery charger to power the system. Typical solar panel arrays output voltages in the range of 0-30v and the storage battery is most commonly 12v, although some installations will series connect batteries for 48v operation. The intent is to use the pidog to monitor a 12v battery with vsensa and the solar array with vsensb. Note that this will require changing the pidog voltage divider circuit for vsensb as the 0.7 hardware revision maxes out the ADC at 16v. The values used for the low-voltage disconnect and high-voltage disconnect should be
+The LVDC and HVRC features are mutually exclusive and are disabled when the thresholds are set to zero (default). When LVDC and HVRC are disabled, the pidog power state changes are driven by the timers only. If either feature is enabled for both vsensa or vsensb, the pidog state changes will occur if either vsensa or vsensb crosses the associated feature threshold. That is, if both vsensa and vsensb are being monitored for LVDC and either voltage drops below the defined threshold, the pidog would power of the pi immediately. In practice there is probably no good reason to use one feature and not the other, but the flexibility exists nonetheless. More likely, you would use both features to control the on/off states of the rpi based on only one of the voltage levels and not both. 
+
+A remote rpi installation might use a solar panel and battery charger to power the system. Typical solar panel arrays output voltages in the range of 0-30v and the storage battery is most commonly 12v, although some installations will series connect batteries for 48v operation. The intent is to use the pidog to monitor a 12v battery with vsensa and the solar array with vsensb. Note that this will require changing the pidog voltage divider circuit for vsensb as the 0.7 hardware revision maxes out the ADC at 16v. The values used for the low-voltage disconnect and high-voltage reconnect should be
 selected with the following considerations:
-	a) Low voltage disconnect threshold should be based on the battery data sheet and set high enough that the battery will not be damaged when discharged to this level.
-	b) High-voltage reconnect should be set high enough that when the load is reconnected the voltage drop that might result does not drop back down below the
-		low-voltage cutoff.
-	c)	Software on the rpi should use the supplied pidog/rpi library to monitor the battery voltage and detect when it is less than the high-voltage reconnect threshold and greater than the low-voltage disconnect threshold. The rpi should check the level often enough that it will have time to perform a safe shutdown before the disconnect threshold is reached. Note that once the rpi shuts down, the load on the battery will drop. This might well mean that the battery voltage	never drops down to bellow the disconnect threshold. Fortunately, once the rpi shuts itself down, it will stop feeding the pidog and eventually have the power disconnected. 
+	* Low voltage disconnect threshold should be based on the battery data sheet and set high enough that the battery will not be damaged when discharged to this level.
+	* It is important that the high-voltage reconnect threshold is set sufficiently higher than the turn-off voltage threshold, in order to create some hysteresis and avoid potential oscillation. Consider that when the load is disconnected, the voltage will likely rise immediately, even though the battery hasn't charged. Similarly, when the load is reconnected the voltage will likely drop. If the difference between the high and low thresholds is too small, the rpi will be repeatedly switched off and on possibly causing damage. Note however that the high threshold cannot be greater than the battery's fully charged voltage, as the rpi will never be switched on. If during development testing one finds that the selection of the low and high voltage thresholds results in oscillation, one remedy is to increase the battery storage (Ah) capacity.
+	* Software on the rpi should use the supplied pidog/rpi library to monitor the battery voltage and detect when it is less than the high-voltage reconnect threshold and greater than the low-voltage disconnect threshold. The rpi should check the level often enough that it will have time to perform a safe shutdown before the disconnect threshold is reached. As part of the shutdown routine, the pidog's on-remaining timer should be set to short enough a value that ensures the power will be disconnected soon after the pi is safely shutdown.
+	
 # TEST CASES
 
 ## LVDC-HVRC TEST CASE PARAMETERS
@@ -19,10 +25,15 @@ selected with the following considerations:
 |ON (12.3v)|0x3200000 (52428800d)|0x320 (800d)|0x3200320 (52429600d)|
 |OFF (10.0v)|0x2870000 (42401792d)|0x287 (647d)|0x2870287 (42402439d)|
 
-> **_Note_** *All test cases performed with the rpi jumper in place and the following constants defined in the sketch:*
- 
-	*SERIAL_DEBUG 1*
-	*NO_PATIENCE_DEBUG 1*
+> **_Notes_**
+>
+>	*The values shown in the tables above represent the ADC values that are set in the vsense_on_threshold and vsense_off_threshold registers using the 'dogcmd.py' script. The table shows the values that are written to these registers for an ON threshold of 12.3 V and an OFF threshold of 10.0 V for the cases where only VSENSA is monitored, only VSENSB is monitored, and where both VSENSA and VSENSB are monitored.* 
+>
+>	*The ADC values are calculated using the voltage divider formula: round((1024 * 6.8 kohms / sum(6.8 kohms, 91.0 kohms)) * voltage / (1000 * 1.1)); where 1024 is the range of the ADC, the resistor values are those used in the voltage divider circuit of hardware revision 0.7, voltage is the threshold voltage (12300 mV or 10000 mV), 1000 is the mV divider and 1.1 is the ATTiny's reference voltage.*
+>
+> *There is a convenience function in pidog.py called getAdcValue(name, value) that accepts the name of the voltage monitor (vsensa or vsensb) and the voltage threshold expressed in mV. It returns the ADC value that should be written to the registers vsense_on_threshold and vsense_off_threshold using the pidog.set() function. See the example.py script for details.*
+>
+>	*All test cases are performed with the rpi jumper in place and the following constants defined in the sketch: SERIAL_DEBUG 1 and NO_PATIENCE_DEBUG 1. The jumper allows the Pi to stay powered regardless of whether the PiDog wants it on -- this is very useful when testing and bringing up new code. Serial debug makes it easier to know what's happening, and "no patience" debug simply shortens the default on and off times so that testing can proceed faster.*
 
 ## TC-1 Verify LVDC & HVRC due to voltage changes on VSENSA only.
 
