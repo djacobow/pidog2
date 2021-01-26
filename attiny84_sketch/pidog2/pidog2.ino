@@ -9,8 +9,8 @@
 #include "adcReader.h"
 #include "spi_reg_names.h"
 
-//#define SERIAL_DEBUG 0
-//#define NO_PATIENCE_DEBUG 0
+#define SERIAL_DEBUG 1
+#define NO_PATIENCE_DEBUG 1
 
 #ifdef SERIAL_DEBUG
   #include "SoftwareSerial_tx.h"
@@ -50,8 +50,8 @@ const reg_t VSENSE_OFF_THRESHOLD  = 0;
 const reg_t DEFAULT_ON_TIME       = 900;
 const reg_t DEFAULT_OFF_TIME      = 900;
 const reg_t WARN_SECS             = 30;
-const reg_t VSENSE_ON_THRESHOLD   = 0; //On theshold in millivolts. Zero disables this function.
-const reg_t VSENSE_OFF_THRESHOLD  = 0; //Off theshold in millivolts. Zero disables this function.
+const reg_t VSENSE_ON_THRESHOLD   = 0; //On theshold in mV. Zero disables this function.
+const reg_t VSENSE_OFF_THRESHOLD  = 0; //Off theshold in mV. Zero disables this function.
 #endif
 
 const size_t rf_size = 12;
@@ -91,10 +91,8 @@ void doSecondWork() {
     uint32_t s = rf.get(REG_STATUS);
     if ((s & _BV(STAT_WDOG_EN)) && (s & _BV(STAT_PWR_ON))) {
         reg_t on_rem = rf.get(REG_ON_REMAINING);
-        //reg_t a_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_top); <-- This always works.
-        //reg_t b_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_bottom);<-- This only works when the top 16 bits are 0. Otherwise, this call returns all 32 bits.
-        reg_t a_off_thresh = (rf.get(REG_VSENSE_OFF_THRESHOLD) >> 16) & 0xffff;
-        reg_t b_off_thresh = rf.get(REG_VSENSE_OFF_THRESHOLD) & 0xffff;
+        reg_t a_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_top);
+        reg_t b_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_bottom);
         if ( !on_rem ||
              (a_off_thresh && ((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) < a_off_thresh) || 
              (b_off_thresh && (rf.get(REG_VSENSA_VSENSB) & 0xffff) < b_off_thresh)) {
@@ -115,22 +113,14 @@ void doSecondWork() {
     if ((s & _BV(STAT_WAKE_EN)) && (~s & _BV(STAT_PWR_ON))) {
         reg_t off_rem = rf.get(REG_OFF_REMAINING);
         if (!off_rem) {
-            //reg_t a_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_top); <-- This always works.
-            //reg_t b_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_bottom); <-- This only works when the top 16 bits are 0. Otherwise, this call returns all 32 bits.
-            reg_t a_on_thresh = (rf.get(REG_VSENSE_ON_THRESHOLD) >> 16) & 0xffff;
-            reg_t b_on_thresh = rf.get(REG_VSENSE_ON_THRESHOLD) & 0xffff;
-            bool enable = false;
-            if ( ! ( a_on_thresh || b_on_thresh ) ) {
-                enable = true;
-            } else if ( a_on_thresh && b_on_thresh && (((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) >= a_on_thresh ) &&
-                                                       ((rf.get(REG_VSENSA_VSENSB) & 0xffff) >= b_on_thresh) ) {
-                enable = true;
-            } else if ( a_on_thresh && ! b_on_thresh && (((rf.get(REG_VSENSA_VSENSB) >> 16) & 0xffff) >= a_on_thresh ) ) {
-                enable = true;
-            } else if ( ! a_on_thresh && b_on_thresh && ((rf.get(REG_VSENSA_VSENSB) & 0xffff) >= b_on_thresh) ) {
-                enable = true;
-            }
-
+            reg_t a_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_top);
+            reg_t b_on_thresh = rf.gethl(REG_VSENSE_ON_THRESHOLD,register_bottom); 
+            bool a_over = rf.gethl(REG_VSENSA_VSENSB,register_top) >= a_on_thresh;
+            bool b_over = rf.gethl(REG_VSENSA_VSENSB,register_bottom) >= b_on_thresh;
+            bool enable = (!a_on_thresh && !b_on_thresh)                   || 
+                          (a_on_thresh && a_over && b_on_thresh && b_over) || 
+                          (a_on_thresh && a_over && !b_on_thresh)          || 
+                          (b_on_thresh && b_over && !a_on_thresh);
             if (enable == true) {
                 #ifdef SERIAL_DEBUG
                 srl.println("Powering on pi.");
