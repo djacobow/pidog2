@@ -9,7 +9,7 @@
 #include "adcReader.h"
 #include "spi_reg_names.h"
 
-//#define SERIAL_DEBUG 1
+#define SERIAL_DEBUG 1
 //#define NO_PATIENCE_DEBUG 1
 
 #ifdef SERIAL_DEBUG
@@ -148,11 +148,20 @@ void doSecondWork() {
     rf.set(REG_STATUS,s);
 
     if (true) {
-        // NB the power pin has negative polarity
-        digitalWrite(PIN_PWR,      !(s & _BV(STAT_PWR_ON)));
+          // NB the power pin has negative polarity
+          if (~s & _BV(STAT_PWR_ON)) { digitalWrite(PIN_PWR, 1); } //Turn power off
+          else { //Feather the power pin on
+            uint32_t dummy = 0;
+            for (uint8_t i=0;i<255;i++) {
+                PORTA |= B10000000; //OFF
+                for (uint8_t j=0;j<i;j++) { dummy++; } //Increasing delay
+                PORTA &= B01111111; //ON
+                for (uint8_t j=i;j<255;j++) { dummy++; } //Decreasing delay
+            }
+          }
 #ifndef SERIAL_DEBUG
-        digitalWrite(PIN_LED_0,    s & _BV(STAT_LED_WARN));
-        digitalWrite(PIN_LED_1,    rf.gethl(REG_FIRECOUNTS,register_bottom) > 0);
+          digitalWrite(PIN_LED_0,    s & _BV(STAT_LED_WARN));
+          digitalWrite(PIN_LED_1,    rf.gethl(REG_FIRECOUNTS,register_bottom) > 0);
 #endif
     }
 
@@ -182,6 +191,7 @@ void doTickWork() {
 
 void setup() {
 
+    uint8_t mcusrwas = MCUSR;
     // disable the watchdog
     MCUSR = 0;
     wdt_enable(WDTO_2S);
@@ -208,6 +218,9 @@ void setup() {
 #ifdef SERIAL_DEBUG
     srl.begin(38400);
     srl.println("hello!");
+    srl.print("MCUSR was: ");
+    srl.print(mcusrwas, BIN);
+    srl.println("b.");
     rf.set_debug(&srl);
 #endif
     rf.set(rf_size - 1, HW_VERSION);
