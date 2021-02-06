@@ -1,6 +1,8 @@
 #ifndef _SPI_REG_NAMES_H
 #define _SPI_REG_NAMES_H
 
+#define REGISTER_COUNT (14)
+
 typedef enum reg_names_t {
     REG_STATUS                = 0,
     REG_ON_REMAINING          = 1,
@@ -13,9 +15,20 @@ typedef enum reg_names_t {
     REG_V5_V5SWTCH            = 7,
 
     REG_FIRECOUNTS            = 8,
-    REG_VSENSE_ON_THRESHOLD   = 9,
-    
-    REG_VSENSE_OFF_THRESHOLD  = 10,
+    REG_DEVICE_ID             = 9,
+
+    REG_VSENSE_ON_THRESHOLD   = 10,
+    REG_VSENSE_OFF_THRESHOLD  = 11,
+
+    // These scratch registers do not do anything.
+    // The Pi can write and read them, and they will
+    // persis between Pi powerdowns (as long as the
+    // PiDog itself has not reset) so can be used to
+    // forward information from one boot of the Pi
+    // to another.
+    REG_SCRATCH_0             = 12,
+    REG_SCRATCH_1             = 13,
+
     _REG_INVALID              = 255,
 } reg_names_t;
 
