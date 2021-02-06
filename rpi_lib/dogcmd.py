@@ -25,6 +25,8 @@ usage = """
         hw_rev
         vsense_on_threshold
         vsense_off_threshold
+        scratch0
+        scratch1
 
     If the command was "set", then a value to write must also
     be specified. You can use decimal or hex preceded with "0x"

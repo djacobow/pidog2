@@ -119,27 +119,35 @@ class PiDog:
                     'wake_events': lambda v: top16(v),
                 },
             },
-            'vsense_on_threshold'       : {
+            'hw_rev'           : {
                 'addr': 9,
+                'decode': {
+                    'device_id': lambda v: [ (v >> 24) & 0xff, (v >> 16) & 0xff ],
+                    'version_minor': lambda v: (v & 0xff) + 0,
+                    'version_major': lambda v: ((v >> 8)& 0xff) + 0,
+                },
+            },
+            'vsense_on_threshold'       : {
+                'addr': 10,
                 'decode': {
                     'vsensa_on_threshold': lambda v: mulRatio('vsensa',top16(v)),
                     'vsensb_on_threshold': lambda v: mulRatio('vsensb',bot16(v)),
                 },
             },
             'vsense_off_threshold'       : {
-                'addr': 10,
+                'addr': 11,
                 'decode': {
                     'vsensa_off_threshold': lambda v: mulRatio('vsensa',top16(v)),
                     'vsensb_off_threshold': lambda v: mulRatio('vsensb',bot16(v)),
                 },
             },
-            'hw_rev'           : {
-                'addr': 11,
-                'decode': {
-                    'device_id': lambda v: [ (v >> 24) & 0xff, (v >> 16) & 0xff ],
-                    'version_minor': lambda v: (v & 0xff) + 0,
-                    'version_major': lambda v: ((v >> 8)& 0xff) + 0,
-                },
+            'scratch0'       : {
+                'addr': 12,
+                'decode': { },
+            },
+            'scratch1'       : {
+                'addr': 13,
+                'decode': { },
             },
         }
 

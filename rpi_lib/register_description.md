@@ -24,6 +24,10 @@ If you use the pidog.py library, this is handled for you.  The Pidog library als
 | 7 | v5_v5switch | Like register 6, but reading the 5V input voltage (always on) and the 5V output voltage (switched). When the output is turned on, the output voltage should be almost the same as the input voltage, minus a voltage drop through the power transistor. You can write to this register, but it will be reset by the PiDog almost immediately. |
 | 8 | fire_counts | Contains two 16b values that tell the number of times that the watchdog has fired (turned off) and the wake has fired (turned on). This can be useful for long-term debugging and tracking. You can write to this register to clear it. |
 | 9 | device_id | This register contains the value 0x706402xx. The upper 16b are a device ID that will not change. Bits 15-8 are a major version (2) and bits 7-0 are a minor version, which will vary. Writes to this register are ignored.
+| 10 | vsense_on_threshold | This voltage value above which the the pidog will turn on the pi via the vsense measurements |
+| 11 | vsense_off_threshold | This voltage value below which the the pidog will turn off the pi via the vsense measurements |
+| 12 | scratch0 | A generic scratch register which the Pi can use to store information between boots. |
+| 13 | scratch1 | A generic scratch register which the Pi can use to store information between boots. |
 
 # Status Register Bits
 

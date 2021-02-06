@@ -9,7 +9,7 @@
 #include "adcReader.h"
 #include "spi_reg_names.h"
 
-//#define SERIAL_DEBUG 1
+#define SERIAL_DEBUG 1
 //#define NO_PATIENCE_DEBUG 1
 
 #ifdef SERIAL_DEBUG
@@ -39,6 +39,16 @@ const reg_t   HW_VERSION        =
     (VERSION_MAJOR << 8) | 
     VERSION_MINOR;
 
+const reg_t   SCRATCH0_RESET_VAL =
+    ((reg_t)'s' << 24)   |
+    ((reg_t)'c' << 16)   |
+    ((reg_t)'r' <<  8)   |
+    ((reg_t)'a' <<  0);
+
+const reg_t   SCRATCH1_RESET_VAL =
+    ((reg_t)'t' << 24)   |
+    ((reg_t)'c' << 16)   |
+    ((reg_t)'h' <<  8);
 
 #ifdef NO_PATIENCE_DEBUG
 const reg_t DEFAULT_ON_TIME       = 30;
@@ -54,7 +64,7 @@ const reg_t VSENSE_ON_THRESHOLD   = 0; //On theshold in mV. Zero disables this f
 const reg_t VSENSE_OFF_THRESHOLD  = 0; //Off theshold in mV. Zero disables this function.
 #endif
 
-const size_t rf_size = 12;
+const size_t rf_size = REGISTER_COUNT;
 
 typedef regfile_c<reg_t, rf_size> myregfile_c;
 
@@ -66,7 +76,7 @@ reg_t handleCommand(uint8_t cmd, reg_t indata) {
     uint8_t insn = (cmd & 0xc0) >> 6;
     reg_names_t reg = (reg_names_t)(cmd & 0xf);
 
-    if (reg >= rf_size - 1) insn = 0;
+    if (reg == REG_DEVICE_ID) insn = 0;
     switch (insn) {
         case 0:
            odata = rf.get(reg);
@@ -210,7 +220,9 @@ void setup() {
     srl.println("hello!");
     rf.set_debug(&srl);
 #endif
-    rf.set(rf_size - 1, HW_VERSION);
+    rf.set(REG_SCRATCH_0, SCRATCH0_RESET_VAL);
+    rf.set(REG_SCRATCH_1, SCRATCH1_RESET_VAL);
+    rf.set(REG_DEVICE_ID, HW_VERSION);
     rf.set(REG_ON_REMAINING, DEFAULT_ON_TIME);
     rf.set(REG_OFF_REMAINING, DEFAULT_OFF_TIME);
     rf.set(REG_OFF_REM_RESETVAL, DEFAULT_OFF_TIME);
