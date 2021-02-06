@@ -6,15 +6,12 @@ import json
 
 usage = """
 
-    dogcmd.py set|get|reset <regname> <value>
+    dogcmd.py getall|reset|hard_reset
+    dogcmd.py set <regname> <value>
+    dogcmd.py get <regname>
 
-    The first argument is set, get, or reset.
-
-    Unless the first argument is reset, the second argument is 
-    the name of the register you want to affect. One of:
-
-
-    Regname is a register name, and must be one of:
+    For set and get you need to specify the register by
+    name:
 
         status
         on_remaining
@@ -30,7 +27,7 @@ usage = """
         vsense_off_threshold
 
     If the command was "set", then a value to write must also
-    be specified.
+    be specified. You can use decimal or hex preceded with "0x"
      
 """
 
@@ -44,6 +41,10 @@ def getArgs():
 
     if cmd == 'reset':
         return { 'cmd': 'reset' }
+    elif cmd == 'hard_reset':
+        return { 'cmd': 'hard_reset' }
+    elif cmd == 'getall':
+        return { 'cmd': 'getall' }
     elif cmd == 'get':
         if len(sys.argv)<3:
             print('Err -- no register named')
@@ -80,6 +81,10 @@ if __name__ == '__main__':
 
     if cmd == 'reset':
         rv = pd.reset()
+    elif cmd == 'hard_reset':
+        rv = pd.hard_reset()
+    elif cmd == 'getall':
+        rv = pd.getAll()
     elif cmd == 'get':
         rv = pd.get(args.get('rname',None))
     elif cmd == 'set':

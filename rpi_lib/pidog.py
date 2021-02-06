@@ -90,7 +90,7 @@ class PiDog:
             'temp_v33'             : {
                 'addr': 5,
                 'decode': {
-                    # needs formula
+                    # needs formula, this is just the millivolt reading!
                     'temp_C': lambda v: top16(v) + 0,
                     'v33': lambda v: mulRatio('v33',bot16(v)),
                 },
@@ -241,6 +241,11 @@ class PiDog:
             m = ~m
         return m
 
+    def hard_reset(self):
+        self.spi.assert_reset(True)
+        time.sleep(0.1)
+        self.spi.assert_reset(False)
+        return True
 
     def setBits(self, name, pattern):
         return self.set(name,pattern, 1)
@@ -366,6 +371,15 @@ class bbSPI:
         GPIO.setup(23,GPIO.OUT) # CK
         GPIO.setup(24,GPIO.OUT) # SS
 
+    def assert_reset(self, reset=False):
+        if reset:
+            GPIO.setup(18,GPIO.OUT)
+            GPIO.output(18,GPIO.HIGH)
+            self.in_reset = True
+        elif self.in_reset:
+            GPIO.output(18,GPIO.LOW)
+            GPIO.cleanup(18)
+            
     def xfer2(self, oblist):
         iblist = []
         GPIO.output(24,GPIO.LOW)
