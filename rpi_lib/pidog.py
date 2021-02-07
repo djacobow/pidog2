@@ -91,7 +91,7 @@ class PiDog:
             'temp_v33'             : {
                 'addr': 5,
                 'decode': {
-                    # needs formula
+                    # needs formula, this is just the millivolt reading!
                     'temp_C': lambda v: top16(v) + 0,
                     'v33': lambda v: mulRatio('v33',bot16(v)),
                 },
@@ -120,27 +120,35 @@ class PiDog:
                     'wake_events': lambda v: top16(v),
                 },
             },
-            'vsense_on_threshold'       : {
+            'hw_rev'           : {
                 'addr': 9,
+                'decode': {
+                    'device_id': lambda v: [ (v >> 24) & 0xff, (v >> 16) & 0xff ],
+                    'version_minor': lambda v: (v & 0xff) + 0,
+                    'version_major': lambda v: ((v >> 8)& 0xff) + 0,
+                },
+            },
+            'vsense_on_threshold'       : {
+                'addr': 10,
                 'decode': {
                     'vsensa_on_threshold': lambda v: mulRatio('vsensa',top16(v)),
                     'vsensb_on_threshold': lambda v: mulRatio('vsensb',bot16(v)),
                 },
             },
             'vsense_off_threshold'       : {
-                'addr': 10,
+                'addr': 11,
                 'decode': {
                     'vsensa_off_threshold': lambda v: mulRatio('vsensa',top16(v)),
                     'vsensb_off_threshold': lambda v: mulRatio('vsensb',bot16(v)),
                 },
             },
-            'hw_rev'           : {
-                'addr': 11,
-                'decode': {
-                    'device_id': lambda v: [ (v >> 24) & 0xff, (v >> 16) & 0xff ],
-                    'version_minor': lambda v: (v & 0xff) + 0,
-                    'version_major': lambda v: ((v >> 8)& 0xff) + 0,
-                },
+            'scratch0'       : {
+                'addr': 12,
+                'decode': { },
+            },
+            'scratch1'       : {
+                'addr': 13,
+                'decode': { },
             },
         }
 
@@ -242,6 +250,11 @@ class PiDog:
             m = ~m
         return m
 
+    def hard_reset(self):
+        self.spi.assert_reset(True)
+        time.sleep(0.1)
+        self.spi.assert_reset(False)
+        return True
 
     def setBits(self, name, pattern):
         return self.set(name,pattern, 1)
@@ -367,6 +380,15 @@ class bbSPI:
         GPIO.setup(23,GPIO.OUT) # CK
         GPIO.setup(24,GPIO.OUT) # SS
 
+    def assert_reset(self, reset=False):
+        if reset:
+            GPIO.setup(18,GPIO.OUT)
+            GPIO.output(18,GPIO.HIGH)
+            self.in_reset = True
+        elif self.in_reset:
+            GPIO.output(18,GPIO.LOW)
+            GPIO.cleanup(18)
+            
     def xfer2(self, oblist):
         iblist = []
         GPIO.output(24,GPIO.LOW)

@@ -34,3 +34,14 @@ and return them as little JSON structs.
 Speaking of shell scripts,`shutdown_example.sh` is an example of a script that uses`dogcmd.py to set up the PiDog to shutdown and wakeup after a certain period, then it shuts down the Pi gracefully before the PiDog cuts the power.
 
 I know this documentation is minimal, but the code is pretty small, too. It was my intention to keep it very simple so that it could also be reliable.
+
+## Firmware version & upgrade
+
+The firmware sketch and the rpi code should always be compatible from the same commit.  But as the code in this repo
+advances, it may become incompatible with the existing firmware that is on your PiDog. This is especially likely if
+you bought your PiDog from Amazon; it was sent to their warehouses awhile ago, so could be out of date.
+
+If you run into issues using your PiDog, its firmware may be out of date. Updating is easy, however, and you do not
+need a programmer. Instructions are in [flashing/flashing_instructions.md](./flashing/flashing_instructions.md)
+
+
