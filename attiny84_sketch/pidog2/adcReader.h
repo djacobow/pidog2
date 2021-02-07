@@ -34,7 +34,7 @@ class adcReader_c {
                     r = REG_TEMP_V33;
                     h = register_bottom;
                     analogReference(INTERNAL1V1);
-                    v = avg_vcc_sw.update(analogRead(A3));
+                    v = avg_vcc33.update(analogRead(A3));
                     break;
                 case 2 :
                     r = REG_VSENSA_VSENSB;

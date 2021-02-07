@@ -55,6 +55,8 @@ You can get a firmware image directly form this repo (in `firmware_images/`, or 
 
 4. Check that the programmer can talk to the device
 
+    (There is a script supplied to do this for you, `quick_test.sh`.)
+
     ```
     sudo avrdude -C avrdude-gpio.conf -c rpi_pidog_gpio -p t84
     ```
@@ -82,6 +84,9 @@ You can get a firmware image directly form this repo (in `firmware_images/`, or 
     ```
 
     The first command adjusts the "fuse" bytes and primarily sets the clock to 8 MHz. The second command stores the firmware. On subsequent firmware updates, only the first command is needed.
+
+    If you just want to flash the firmware associated with the commit you have checked out, then just run this script:
+    `reflash.sh`
 
  6. Remember that you removed removed the power from the PiDog or attached a jumper on the Vcc pins. Shutdown the Pi, remove the jumper (or reattach the USB cable to the PiDog) and restart.
 
