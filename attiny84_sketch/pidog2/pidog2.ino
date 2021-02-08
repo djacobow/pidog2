@@ -99,6 +99,16 @@ reg_t handleCommand(uint8_t cmd, reg_t indata) {
 
 void doSecondWork() {
     uint32_t s = rf.get(REG_STATUS);
+    bool pwr_state = s & _BV(STAT_PWR_ON);
+    // Clear these status register bits and copy in the lower half of the MCUSR
+    s &= ~(_BV(STAT_WDRF) | _BV(STAT_BORF) | _BV(STAT_EXTRF) | _BV(STAT_PORF));
+    if ( s & _BV(STAT_WDCLR)) { // rpi wants us to clear MCUSR
+      MCUSR =0;
+      s &= ~_BV(STAT_WDCLR);
+    } else { // write the MCUSR low bits to the status register
+      s |= uint32_t ((MCUSR & 0xF) << STAT_PORF);
+    }
+    
     if ((s & _BV(STAT_WDOG_EN)) && (s & _BV(STAT_PWR_ON))) {
         reg_t on_rem = rf.get(REG_ON_REMAINING);
         reg_t a_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_top);
@@ -111,7 +121,7 @@ void doSecondWork() {
             #endif
             s |=  _BV(STAT_WDOG_FIRED);
             s &= ~(_BV(STAT_WDOG_FIRE_CODE) | _BV(STAT_WDOG_FIRE_CODE+1));                        //00b - on-remaining timer expired 
-            if (a_under && b_under) s |= (_BV(STAT_WDOG_FIRE_CODE) | _BV(STAT_WDOG_FIRE_CODE+1)); //11b - vsensb & vsensb dropped below threshold 
+            if (a_under && b_under) s |= (_BV(STAT_WDOG_FIRE_CODE) | _BV(STAT_WDOG_FIRE_CODE+1)); //11b - vsensa & vsensb dropped below threshold 
             else if (a_under)       s |= _BV(STAT_WDOG_FIRE_CODE);                                //01b - vsensa dropped below threshold
             else if (b_under)       s |= _BV(STAT_WDOG_FIRE_CODE+1);                              //10b - vsensb dropped below threshold
             s &= ~_BV(STAT_WAKE_FIRED);
@@ -157,23 +167,25 @@ void doSecondWork() {
 
     rf.set(REG_STATUS,s);
 
-    if (true) {
+    // Only write to the power status registers if needed.
+    if (pwr_state != bool(s & _BV(STAT_PWR_ON))) {
           // NB the power pin has negative polarity
           if (~s & _BV(STAT_PWR_ON)) { digitalWrite(PIN_PWR, 1); } //Turn power off
-          else { //Feather the power pin on
+          else if (s & _BV(STAT_SOFT_START)) { //Feather the power pin on           
             uint32_t dummy = 0;
             for (uint8_t i=0;i<255;i++) {
-                PORTA |= B10000000; //OFF
-                for (uint8_t j=0;j<i;j++) { dummy++; } //Increasing delay
                 PORTA &= B01111111; //ON
+                for (uint8_t j=0;j<i;j++) { dummy++; } //Increasing delay
+                PORTA |= B10000000; //OFF
                 for (uint8_t j=i;j<255;j++) { dummy++; } //Decreasing delay
             }
-          }
-#ifndef SERIAL_DEBUG
-          digitalWrite(PIN_LED_0,    s & _BV(STAT_LED_WARN));
-          digitalWrite(PIN_LED_1,    rf.gethl(REG_FIRECOUNTS,register_bottom) > 0);
-#endif
+            PORTA &= B01111111; // Leave it ON
+          } else { digitalWrite(PIN_PWR, 0); } //Switch power on immediately
     }
+#ifndef SERIAL_DEBUG
+    digitalWrite(PIN_LED_0,    s & _BV(STAT_LED_WARN));
+    digitalWrite(PIN_LED_1,    rf.gethl(REG_FIRECOUNTS,register_bottom) > 0);
+#endif
 
     rf.dump();
 };
@@ -187,7 +199,7 @@ void doTickWork() {
     static uint8_t tick_count;
     bool second = ! (tick_count % TICKS_PER_SECOND);
     tick_count += 1;
-
+    
     if (second) { 
         doSecondWork();
         return;
@@ -201,9 +213,8 @@ void doTickWork() {
 
 void setup() {
 
-    uint8_t mcusrwas = MCUSR;
+    //MCUSR = 0;
     // disable the watchdog
-    MCUSR = 0;
     wdt_enable(WDTO_2S);
     wdt_reset();
     // WDTCSR = _BV(WDCE) | _BV(WDIE);
@@ -228,9 +239,6 @@ void setup() {
 #ifdef SERIAL_DEBUG
     srl.begin(38400);
     srl.println("hello!");
-    srl.print("MCUSR was: ");
-    srl.print(mcusrwas, BIN);
-    srl.println("b.");
     rf.set_debug(&srl);
 #endif
     rf.set(REG_SCRATCH_0, SCRATCH0_RESET_VAL);
@@ -248,7 +256,7 @@ void setup() {
     );
     rf.set(REG_VSENSE_ON_THRESHOLD,VSENSE_ON_THRESHOLD);
     rf.set(REG_VSENSE_OFF_THRESHOLD,VSENSE_OFF_THRESHOLD);
-
+    
     spislave_c *spi = spislave_c::getInstance();
     spi->setCmdHandler(&handleCommand);
     spi->init();
