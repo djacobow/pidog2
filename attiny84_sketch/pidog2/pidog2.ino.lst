@@ -3491,7 +3491,7 @@ C:\Users\ericw\AppData\Local\Temp\arduino_build_985276\sketch/regfile.h:99
      dd4:	90 93 3e 01 	sts	0x013E, r25	; 0x80013e <rf+0x35>
      dd8:	a0 93 3f 01 	sts	0x013F, r26	; 0x80013f <rf+0x36>
      ddc:	b0 93 40 01 	sts	0x0140, r27	; 0x800140 <rf+0x37>
-     de0:	86 e0       	ldi	r24, 0x06	; 6
+     de0:	87 e0       	ldi	r24, 0x07	; 7
      de2:	92 e0       	ldi	r25, 0x02	; 2
      de4:	a4 e6       	ldi	r26, 0x64	; 100
      de6:	b0 e7       	ldi	r27, 0x70	; 112
