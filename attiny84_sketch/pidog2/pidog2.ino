@@ -9,7 +9,7 @@
 #include "adcReader.h"
 #include "spi_reg_names.h"
 
-#define SERIAL_DEBUG 1
+//#define SERIAL_DEBUG 1
 //#define NO_PATIENCE_DEBUG 1
 
 #ifdef SERIAL_DEBUG
