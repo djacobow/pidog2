@@ -44,7 +44,13 @@ as well as bits you can set to drive outputs
 | 5 | power_on | This bit reflects the current power status of  the PiDog. The PiDog will clear this bit if the  watchdog fires or set it of the wake timer fires. You can set or clear this bit manually, too. Note that if you clear this bit, your Pi will lose power immediately unless you are powering it some other way! |
 | 6 | led_warn | PiDog sets this to 1 if the watchdog or the wake timer will fire in the next 30 seconds. (This is hard-coded in the firmware.) It drives LED D30_2, as an indicator that the state will change soon. |
 |8-7| fire_code | Used to indicate why the watchdog last fired. Codes are: 0 - on-remaining timer expired, 1 - vsensa dropped below threshold, 2 - vesensb dropped below threshold, 3 - both vsensa and vsensb dropped below threshold
-| 31-9 | `na` | Reserved |
+| 9 | soft-start |  This register controls how the pidog switches power on. When set to 0 (default), the power is switched on using the digitalWrite() function and is immediate. When set to 1, the power is feathered on using a duty cycle that ramps from 0% to 100%. This was implemented to mitigate a pidog brownout that occurs fairly constantly when using a Raspberry Pi4. 
+| 10 | porf | Indicates that the pidog reset was caused by power on.
+| 11 | extrf | Indicates that the pidog reset was caused externally (e.g. firmware update)
+| 12 | borf | Indicates that the pidog reset was caused by a brownout
+| 13 | wdrf | Indicates that the pidog reset was caused by the pidog's watchdog.
+| 14 | wdclr | When this bit is set, the pidog will clear it's MCUSR 
+| 31-15 | `na` | Reserved |
 
 # Python Library Use
 
@@ -135,3 +141,17 @@ might return:
 
 Which is telling you that the input voltage and output voltages are approximately 5.2V. This is consistent with the Pi being "on".
 
+If you want to enable the soft-start feature, 
+```python
+    pd.set('status', pd.mask('soft_start'), 1)
+```
+
+If you want to clear the ATTiny's MCUSR, 
+```python
+    pd.set('status', pd.mask('wdog_clear'), 1)
+```
+
+If you want to enable voltage monitoring of VSENSA so that it will only power on when the level is greater than 12.8 VDC and power off if the level drops below 10.5 VDC,
+```python
+    pd.set(name='vsense_on_threshold', val=(pd.getAdcValue('vsensa', 12800) << 16 | 0x0), mode=1)
+    pd.set(name='vsense_off_threshold', val=(pd.getAdcValue('vsensa', 10500) << 16 | 0x0), mode=1)
