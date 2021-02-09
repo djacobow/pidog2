@@ -143,15 +143,15 @@ Which is telling you that the input voltage and output voltages are approximatel
 
 If you want to enable the soft-start feature, 
 ```python
-	pd.set('status', pd.mask('soft_start'), 1)
+    pd.set('status', pd.mask('soft_start'), 1)
 ```
 
 If you want to clear the ATTiny's MCUSR, 
 ```python
-	pd.set('status', pd.mask('wdog_clear'), 1)
+    pd.set('status', pd.mask('wdog_clear'), 1)
 ```
 
 If you want to enable voltage monitoring of VSENSA so that it will only power on when the level is greater than 12.8 VDC and power off if the level drops below 10.5 VDC,
 ```python
-	pd.set(name='vsense_on_threshold', val=(pd.getAdcValue('vsensa', 12800) << 16 | 0x0), mode=1)
-	pd.set(name='vsense_off_threshold', val=(pd.getAdcValue('vsensa', 10500) << 16 | 0x0), mode=1)
+    pd.set(name='vsense_on_threshold', val=(pd.getAdcValue('vsensa', 12800) << 16 | 0x0), mode=1)
+    pd.set(name='vsense_off_threshold', val=(pd.getAdcValue('vsensa', 10500) << 16 | 0x0), mode=1)
