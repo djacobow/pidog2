@@ -49,11 +49,11 @@ class PiDog:
             'led_led_warn'     : 0x40,
             'fire_code'          : 0x180,
             'soft_start'          : 0x200,
-            'poweron_reset'   : 0x400,
-            'external_reset'    : 0x800,
-            'brownout_reset'  : 0x1000,
-            'wdog_reset'       : 0x2000,
-            'wdog_clear'       : 0x4000,
+            'at_resetcause_poweron'   : 0x400,
+            'at_resetcause_external'    : 0x800,
+            'at_resetcause_brownout'  : 0x1000,
+            'at_resetcause_watchdog'       : 0x2000,
+            'clear_at_resetcause'       : 0x4000,
         }
 
         self.regs_by_name = {
@@ -69,11 +69,11 @@ class PiDog:
                     'led_warn'         : lambda v: True if v & 0x40 else False,
                     'fire_code'         : lambda v: (v & 0x180) + 0,
                     'soft_start'         : lambda v: True if v & 0x200 else False,
-                    'poweron_reset'  : lambda v: True if v & 0x400 else False,
-                    'external_reset'   : lambda v: True if v & 0x800 else False,
-                    'brownout_reset' : lambda v: True if v & 0x1000 else False,
-                    'wdog_reset'      : lambda v: True if v & 0x2000 else False,
-                    'wdog_clear'      : lambda v: True if v & 0x4000 else False,
+                    'at_resetcause_poweron'  : lambda v: True if v & 0x400 else False,
+                    'at_resetcause_external'   : lambda v: True if v & 0x800 else False,
+                    'at_resetcause_brownout' : lambda v: True if v & 0x1000 else False,
+                    'at_resetcause_watchdog'      : lambda v: True if v & 0x2000 else False,
+                    'clear_at_resetcause'      : lambda v: True if v & 0x4000 else False,
                 },
             },
             'on_remaining'     : {
