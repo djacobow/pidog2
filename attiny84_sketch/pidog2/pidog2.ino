@@ -100,14 +100,7 @@ reg_t handleCommand(uint8_t cmd, reg_t indata) {
 void doSecondWork() {
     uint32_t s = rf.get(REG_STATUS);
     bool pwr_state = s & _BV(STAT_PWR_ON);
-    // Clear these status register bits and copy in the lower half of the MCUSR
-    s &= ~(_BV(STAT_WDRF) | _BV(STAT_BORF) | _BV(STAT_EXTRF) | _BV(STAT_PORF));
-    if ( s & _BV(STAT_WDCLR)) { // rpi wants us to clear MCUSR
-      MCUSR =0;
-      s &= ~_BV(STAT_WDCLR);
-    } else { // write the MCUSR low bits to the status register
-      s |= uint32_t ((MCUSR & 0xF) << STAT_PORF);
-    }
+    read_or_clear_resetcause(s);
     
     if ((s & _BV(STAT_WDOG_EN)) && (s & _BV(STAT_PWR_ON))) {
         reg_t on_rem = rf.get(REG_ON_REMAINING);
@@ -168,20 +161,7 @@ void doSecondWork() {
     rf.set(REG_STATUS,s);
 
     // Only write to the power status registers if needed.
-    if (pwr_state != bool(s & _BV(STAT_PWR_ON))) {
-          // NB the power pin has negative polarity
-          if (~s & _BV(STAT_PWR_ON)) { digitalWrite(PIN_PWR, 1); } //Turn power off
-          else if (s & _BV(STAT_SOFT_START)) { //Feather the power pin on           
-            uint32_t dummy = 0;
-            for (uint8_t i=0;i<255;i++) {
-                PORTA &= B01111111; //ON
-                for (uint8_t j=0;j<i;j++) { dummy++; } //Increasing delay
-                PORTA |= B10000000; //OFF
-                for (uint8_t j=i;j<255;j++) { dummy++; } //Decreasing delay
-            }
-            PORTA &= B01111111; // Leave it ON
-          } else { digitalWrite(PIN_PWR, 0); } //Switch power on immediately
-    }
+    if (pwr_state != bool(s & _BV(STAT_PWR_ON))) { setPiPower(s & _BV(STAT_PWR_ON), s & _BV(STAT_SOFT_START)); }
 #ifndef SERIAL_DEBUG
     digitalWrite(PIN_LED_0,    s & _BV(STAT_LED_WARN));
     digitalWrite(PIN_LED_1,    rf.gethl(REG_FIRECOUNTS,register_bottom) > 0);
@@ -190,6 +170,45 @@ void doSecondWork() {
     rf.dump();
 };
 
+// feather creates a "soft" start by pwm'ing the power pin from
+// completely off to completely on. This reduces inrush current,
+// and consequently reduces voltage dip on the 5V rail. Your
+// application many or may not benefit from soft-start depending
+// on the stiffness of your 5V supply and the load and capacitance
+// on the switched side.
+void setPiPower(bool on, bool feather) {
+    if (on) {
+        if (feather) {
+            uint32_t dummy = 0;
+            for (uint8_t i=0;i<255;i++) {
+                PORTA &= B01111111; //ON
+                for (uint8_t j=0;j<i;j++) { dummy++; } //Increasing delay
+                PORTA |= B10000000; //OFF
+                for (uint8_t j=i;j<255;j++) { dummy++; } //Decreasing delay
+            }
+            PORTA &= B01111111; // Leave it ON
+        } else {
+            digitalWrite(PIN_PWR,0);
+        }
+    } else {
+        digitalWrite(PIN_PWR,1);
+    }
+}
+
+// Update and optionally clear the MCUSR register, which indicates *why* the
+// attiny was reset. This is useful if your PiDog is resetting and you do not know
+// why.
+void read_or_clear_resetcause(uint32_t &s) {
+    // Clear these status bits associated with the MCUSR register:
+    s &= ~(_BV(STAT_WDRF) | _BV(STAT_BORF) | _BV(STAT_EXTRF) | _BV(STAT_PORF));
+    // then either clear the MCUSR if requested or reload them from the MCUSR:
+    if ( s & _BV(STAT_WDCLR)) { // rpi wants us to clear MCUSR
+      MCUSR =0;
+      s &= ~_BV(STAT_WDCLR);
+    } else { // write the MCUSR low bits to the status register
+      s |= uint32_t ((MCUSR & 0xF) << STAT_PORF);
+    }
+}
 
 const uint8_t TICKS_PER_SECOND = 4;
 const uint32_t MILLIS_PER_TICK = (1e3 / TICKS_PER_SECOND);
@@ -213,7 +232,6 @@ void doTickWork() {
 
 void setup() {
 
-    //MCUSR = 0;
     // disable the watchdog
     wdt_enable(WDTO_2S);
     wdt_reset();
