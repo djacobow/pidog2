@@ -118,7 +118,7 @@ The PiDog connects the following pins on the RPi;
 
 4. a 2x3 AVR-style programming header (JICSP). If you want to use  an AVR programmer, you can do so from this connector, though you probably will never need to, since the firmware can be upgraded from the Pi itself.
 
-5. A debug header (JDBG). The output pins that drive the two programmable LEDs (D30_1 and D30_2) can double as serial debug pins. This is enabled by setting a macro in the firmware sketch, recompiling, and reprogramming. Obviously, the LEDs will no longer function normally in this mode. This can be very useful for firmwaredevelopment.
+5. A debug header (JDBG). The output pins that drive the two programmable LEDs (D30_1 and D30_2) can double as serial debug pins. This is enabled by setting a macro in the firmware sketch, recompiling, and reprogramming. Obviously, the LEDs will no longer function normally in this mode. This can be very useful for firmware development.
 
     Of course, you can use these pins for anything else you want, too, if you are willing to change the firmware.
 
@@ -150,6 +150,8 @@ in-situ firmware updates, and even remote firmware updates if you dare!
 PiDog2 is based on an earlier piece of hardware that I have  deployed in various remote sensing applications. The main change with this version is adding voltage measurement, switching to an AtTiny (from a 328p) and switching to SPI from i2c.
 
  * HW version v0.7, SW version : 0.0.1
+ * HW version v0.7, SW version : 2.6 - added support for turning on/off based on configurable levels of VSENSA and VSENSB
+ * HW version v0.7, SW version : 2.7 - added support for soft-start power-on and reading and clearing the ATTiny's reset registers.
 
 
 

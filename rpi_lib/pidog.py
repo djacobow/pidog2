@@ -5,6 +5,7 @@ import time
 import random
 import json
 import RPi.GPIO as GPIO
+import logging
 
 PDELAY = 0.0005
 
@@ -39,28 +40,40 @@ class PiDog:
         self.spi = spi
 
         self.masks = {
-            'wdog_en'     : 0x01,
-            'wdog_fired'  : 0x02,
-            'wdog_soon'   : 0x04,
-            'wake_en'     : 0x08,
-            'wake_fired'  : 0x10,
-            'power_on'    : 0x20,
-            'led_led_warn': 0x40,
-            'fire_code'     : 0x180,
+            'wdog_en'          : 0x01,
+            'wdog_fired'        : 0x02,
+            'wdog_soon'        : 0x04,
+            'wake_en'           : 0x08,
+            'wake_fired'        : 0x10,
+            'power_on'         : 0x20,
+            'led_led_warn'     : 0x40,
+            'fire_code'          : 0x180,
+            'soft_start'          : 0x200,
+            'at_resetcause_poweron'   : 0x400,
+            'at_resetcause_external'    : 0x800,
+            'at_resetcause_brownout'  : 0x1000,
+            'at_resetcause_watchdog'       : 0x2000,
+            'clear_at_resetcause'       : 0x4000,
         }
 
         self.regs_by_name = {
             'status'           : {
                 'addr': 0,
                 'decode': {
-                    'wdog_en'     : lambda v: True if v & 0x1  else False,
-                    'wdog_fired'  : lambda v: True if v & 0x2  else False,
-                    'wdog_soon'   : lambda v: True if v & 0x4  else False,
-                    'wake_en  '   : lambda v: True if v & 0x8  else False,
-                    'wake_fired'  : lambda v: True if v & 0x10 else False,
-                    'power_on  '  : lambda v: True if v & 0x20 else False,
-                    'led_warn'    : lambda v: True if v & 0x40 else False,
-                    'fire_code'    : lambda v: (v & 0x180) + 0,
+                    'wdog_en'          : lambda v: True if v & 0x1  else False,
+                    'wdog_fired'       : lambda v: True if v & 0x2  else False,
+                    'wdog_soon'       : lambda v: True if v & 0x4  else False,
+                    'wake_en  '        : lambda v: True if v & 0x8  else False,
+                    'wake_fired'       : lambda v: True if v & 0x10 else False,
+                    'power_on  '      : lambda v: True if v & 0x20 else False,
+                    'led_warn'         : lambda v: True if v & 0x40 else False,
+                    'fire_code'         : lambda v: (v & 0x180) + 0,
+                    'soft_start'         : lambda v: True if v & 0x200 else False,
+                    'at_resetcause_poweron'  : lambda v: True if v & 0x400 else False,
+                    'at_resetcause_external'   : lambda v: True if v & 0x800 else False,
+                    'at_resetcause_brownout' : lambda v: True if v & 0x1000 else False,
+                    'at_resetcause_watchdog'      : lambda v: True if v & 0x2000 else False,
+                    'clear_at_resetcause'      : lambda v: True if v & 0x4000 else False,
                 },
             },
             'on_remaining'     : {
@@ -175,14 +188,14 @@ class PiDog:
 
     def _read_reg(self,idx):
         r = self._inout(idx & 0xf, 0)
-        # print(' [read from {0:x}] r: {1:x}, c: {2:x}'.format(idx,r[1],r[0]))
+        # logging.debug(' [read from {0:x}] r: {1:x}, c: {2:x}'.format(idx,r[1],r[0]))
         r = self._inout(0, 0)
-        # print(' [read from {0:x}] r: {1:x}, c: {2:x}'.format(idx,r[1],r[0]))
+        # logging.debug(' [read from {0:x}] r: {1:x}, c: {2:x}'.format(idx,r[1],r[0]))
         return r[1]
 
     def _half_read_reg(self,idx):
         r = self._inout(idx & 0xf, 0)
-        print(' [read from {0:x}] r: {1:x}, c: {2:x}'.format(idx,r[1],r[0]))
+        logging.debug(' [read from {0:x}] r: {1:x}, c: {2:x}'.format(idx,r[1],r[0]))
         return r[1]
 
    
@@ -190,7 +203,7 @@ class PiDog:
        
         mode = (mode & 0x3) << 6
         r = self._inout(mode | (idx & 0xf), v)
-        print(' [write {0:x} to {1:x} mode {2} ] result: {3:x}, result_cmd: {4:x}'.format(v,idx,mode,r[1],r[0]))
+        logging.debug(' [write {0:x} to {1:x} mode {2} ] result: {3:x}, result_cmd: {4:x}'.format(v,idx,mode,r[1],r[0]))
         return r[1]
 
     def fastGetList(self,l):
@@ -244,7 +257,7 @@ class PiDog:
     def mask(self,mname,invert = False):
         m = self.masks.get(mname.lower(),None)
         if m is None:
-            print('Warning: unknown bitmask: "' + mname + '"')
+            logging.warning('Warning: unknown bitmask: "' + mname + '"')
         elif invert:
             m = ~m
         return m
@@ -262,7 +275,7 @@ class PiDog:
         return self.set(name,~pattern, 2)
 
     def feed(self):
-        self.set('on_remaining',self.get('on_rem_resetval')['__raw'])
+        return self.set('on_remaining',self.get('on_rem_resetval')['__raw'])
 
     def reset(self):
         hw = self.get('hw_rev')
@@ -276,8 +289,8 @@ class PiDog:
                 self.mask('power_on')
             )
             return True
-        print('PiDog2 initialization failed or device not present.')
-        print(hw)
+        logging.critical('PiDog2 initialization failed or device not present.')
+        logging.critical(hw)
         return None
 
     # modes: 0 = read, 1 = logical_OR (set bits), 2 = logical_AND (for clearing bits), 0x3 = set
@@ -327,7 +340,7 @@ def crazy_testing_stuff():
             av = a[i]
             bv = b[i]
             if av != bv:
-                print('ERR r{0:x} {1:x} != {2:x}'.format(i,av,bv))
+                logging.error('ERR r{0:x} {1:x} != {2:x}'.format(i,av,bv))
 
     if False:
         while True:
@@ -344,12 +357,12 @@ def crazy_testing_stuff():
         count = 0
         while count < 10:
             x = pd.getAll()
-            print('\n'.join([ '{0}: {1:x}'.format(n,x[n]) for n in x]))
+            logging.debug('\n'.join([ '{0}: {1:x}'.format(n,x[n]) for n in x]))
             count += 1
 
     if True:
         def jsd(x):
-            print(json.dumps(x,indent=2,sort_keys=True))
+            logging.debug(json.dumps(x,indent=2,sort_keys=True))
 
         x = pd.getAll()
         jsd(x)
@@ -395,12 +408,12 @@ class bbSPI:
         for obyte in oblist:
             ibyte = self._xfer8(obyte)
             if ibyte > 0xff:
-                print('ERROR byte is not a byte!')
+                logging.error('ERROR byte is not a byte!')
             iblist.append(ibyte)
         GPIO.output(24,GPIO.HIGH)
         time.sleep(5*PDELAY)
-        # print('==> ' + ','.join([ '{0:x}'.format(x) for x in oblist]))
-        # print('<== ' + ','.join([ '{0:x}'.format(x) for x in iblist]))
+        # logging.debug('==> ' + ','.join([ '{0:x}'.format(x) for x in oblist]))
+        # logging.debug('<== ' + ','.join([ '{0:x}'.format(x) for x in iblist]))
         return iblist
 
     def _xfer8(self,obyte):
@@ -422,7 +435,7 @@ class bbSPI:
 
 
     def close(self):
-        print('closing and setting as inputs');
+        logging.debug('closing and setting as inputs');
         GPIO.setup(19,GPIO.IN)
         GPIO.setup(21,GPIO.IN)
         GPIO.setup(23,GPIO.IN)

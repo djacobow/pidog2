@@ -32,7 +32,7 @@ SoftwareSerialTX srl(PIN_LED_0);
 #endif
 
 #define VERSION_MAJOR 0x02
-#define VERSION_MINOR 0x06
+#define VERSION_MINOR 0x07
 const reg_t   HW_VERSION        = 
     ((reg_t)'p' << 24)   |
     ((reg_t)'d' << 16)   |
@@ -99,6 +99,9 @@ reg_t handleCommand(uint8_t cmd, reg_t indata) {
 
 void doSecondWork() {
     uint32_t s = rf.get(REG_STATUS);
+    bool pwr_state = s & _BV(STAT_PWR_ON);
+    read_or_clear_resetcause(s);
+    
     if ((s & _BV(STAT_WDOG_EN)) && (s & _BV(STAT_PWR_ON))) {
         reg_t on_rem = rf.get(REG_ON_REMAINING);
         reg_t a_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_top);
@@ -111,7 +114,7 @@ void doSecondWork() {
             #endif
             s |=  _BV(STAT_WDOG_FIRED);
             s &= ~(_BV(STAT_WDOG_FIRE_CODE) | _BV(STAT_WDOG_FIRE_CODE+1));                        //00b - on-remaining timer expired 
-            if (a_under && b_under) s |= (_BV(STAT_WDOG_FIRE_CODE) | _BV(STAT_WDOG_FIRE_CODE+1)); //11b - vsensb & vsensb dropped below threshold 
+            if (a_under && b_under) s |= (_BV(STAT_WDOG_FIRE_CODE) | _BV(STAT_WDOG_FIRE_CODE+1)); //11b - vsensa & vsensb dropped below threshold 
             else if (a_under)       s |= _BV(STAT_WDOG_FIRE_CODE);                                //01b - vsensa dropped below threshold
             else if (b_under)       s |= _BV(STAT_WDOG_FIRE_CODE+1);                              //10b - vsensb dropped below threshold
             s &= ~_BV(STAT_WAKE_FIRED);
@@ -157,18 +160,55 @@ void doSecondWork() {
 
     rf.set(REG_STATUS,s);
 
-    if (true) {
-        // NB the power pin has negative polarity
-        digitalWrite(PIN_PWR,      !(s & _BV(STAT_PWR_ON)));
+    // Only write to the power status registers if needed.
+    if (pwr_state != bool(s & _BV(STAT_PWR_ON))) { setPiPower(s & _BV(STAT_PWR_ON), s & _BV(STAT_SOFT_START)); }
 #ifndef SERIAL_DEBUG
-        digitalWrite(PIN_LED_0,    s & _BV(STAT_LED_WARN));
-        digitalWrite(PIN_LED_1,    rf.gethl(REG_FIRECOUNTS,register_bottom) > 0);
+    digitalWrite(PIN_LED_0,    s & _BV(STAT_LED_WARN));
+    digitalWrite(PIN_LED_1,    rf.gethl(REG_FIRECOUNTS,register_bottom) > 0);
 #endif
-    }
 
     rf.dump();
 };
 
+// feather creates a "soft" start by pwm'ing the power pin from
+// completely off to completely on. This reduces inrush current,
+// and consequently reduces voltage dip on the 5V rail. Your
+// application many or may not benefit from soft-start depending
+// on the stiffness of your 5V supply and the load and capacitance
+// on the switched side.
+void setPiPower(bool on, bool feather) {
+    if (on) {
+        if (feather) {
+            uint32_t dummy = 0;
+            for (uint8_t i=0;i<255;i++) {
+                PORTA &= B01111111; //ON
+                for (uint8_t j=0;j<i;j++) { dummy++; } //Increasing delay
+                PORTA |= B10000000; //OFF
+                for (uint8_t j=i;j<255;j++) { dummy++; } //Decreasing delay
+            }
+            PORTA &= B01111111; // Leave it ON
+        } else {
+            digitalWrite(PIN_PWR,0);
+        }
+    } else {
+        digitalWrite(PIN_PWR,1);
+    }
+}
+
+// Update and optionally clear the MCUSR register, which indicates *why* the
+// attiny was reset. This is useful if your PiDog is resetting and you do not know
+// why.
+void read_or_clear_resetcause(uint32_t &s) {
+    // Clear these status bits associated with the MCUSR register:
+    s &= ~(_BV(STAT_WDRF) | _BV(STAT_BORF) | _BV(STAT_EXTRF) | _BV(STAT_PORF));
+    // then either clear the MCUSR if requested or reload them from the MCUSR:
+    if ( s & _BV(STAT_WDCLR)) { // rpi wants us to clear MCUSR
+      MCUSR =0;
+      s &= ~_BV(STAT_WDCLR);
+    } else { // write the MCUSR low bits to the status register
+      s |= uint32_t ((MCUSR & 0xF) << STAT_PORF);
+    }
+}
 
 const uint8_t TICKS_PER_SECOND = 4;
 const uint32_t MILLIS_PER_TICK = (1e3 / TICKS_PER_SECOND);
@@ -178,7 +218,7 @@ void doTickWork() {
     static uint8_t tick_count;
     bool second = ! (tick_count % TICKS_PER_SECOND);
     tick_count += 1;
-
+    
     if (second) { 
         doSecondWork();
         return;
@@ -193,7 +233,6 @@ void doTickWork() {
 void setup() {
 
     // disable the watchdog
-    MCUSR = 0;
     wdt_enable(WDTO_2S);
     wdt_reset();
     // WDTCSR = _BV(WDCE) | _BV(WDIE);
@@ -235,7 +274,7 @@ void setup() {
     );
     rf.set(REG_VSENSE_ON_THRESHOLD,VSENSE_ON_THRESHOLD);
     rf.set(REG_VSENSE_OFF_THRESHOLD,VSENSE_OFF_THRESHOLD);
-
+    
     spislave_c *spi = spislave_c::getInstance();
     spi->setCmdHandler(&handleCommand);
     spi->init();

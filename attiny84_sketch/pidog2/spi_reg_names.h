@@ -40,7 +40,33 @@ typedef enum status_bits_t {
     STAT_WAKE_FIRED = 4,
     STAT_PWR_ON     = 5,
     STAT_LED_WARN   = 6,
+
+    // Fire code is 2-bits wide
     STAT_WDOG_FIRE_CODE = 7,
+    
+    // This register controls how the pidog switches 
+    // power on. When set to 0 (default), the power is
+    // switched on using the digitalWrite() function
+    // and is immediate. When set to 1, the power is 
+    // feathered on using a duty cycle that ramps from
+    // 0% to 100%. This was implemented to mitigate a
+    // pidog brownout that occurs fairly constantly
+    // when using a Raspberry Pi4. 
+    STAT_SOFT_START     = 9,
+    
+    // The following status bits are copied directly from
+    // bits 0-3 of the ATTiny MCU status register to indicate
+    // the reason for the last pidog reset:
+    //  PORF  - the reset was caused by power on
+    //  EXTRF - the reset was caused externaly
+    //  BORF  - the reset was caused vy a voltage brownout
+    //  WDRF  - the reset was caused by the ATTiny watchdog
+    //  WDCLR - when set by the rpi, the pidog will clear the ATTtiny's MCUSR
+    STAT_PORF           = 10,
+    STAT_EXTRF          = 11,
+    STAT_BORF           = 12,
+    STAT_WDRF           = 13,
+    STAT_WDCLR          = 14,
 } status_bits_t;
 
 #endif
