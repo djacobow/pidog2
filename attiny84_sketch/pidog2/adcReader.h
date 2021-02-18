@@ -14,11 +14,23 @@ class adcReader_c {
         ema_c <uint16_t, uint32_t, EMA_ALPHA, EMA_DENOM> avg_vcc;
         ema_c <uint16_t, uint32_t, EMA_ALPHA, EMA_DENOM> avg_vcc_sw;
         ema_c <uint16_t, uint32_t, EMA_ALPHA, EMA_DENOM> avg_vcc33;
-        ema_c <uint16_t, uint32_t, EMA_ALPHA, EMA_DENOM> avg_vbat;
+        ema_c <uint16_t, uint32_t, EMA_ALPHA, EMA_DENOM> avg_vbat_a;
+        ema_c <uint16_t, uint32_t, EMA_ALPHA, EMA_DENOM> avg_vbat_b;
         ema_c <uint16_t, uint32_t, EMA_ALPHA, EMA_DENOM> avg_temp;
+        
     public:
         adcReader_c(RF_TYPE &irf) : next(0), rf(irf) { };
 ;
+        void doInit() {
+            avg_vcc.init(readOwnVCC());
+            avg_temp.init(readOwnTemp());
+            analogReference(INTERNAL1V1);
+            avg_vcc_sw.init(analogRead(A2));
+            avg_vcc33.init(analogRead(A3));
+            avg_vbat_a.init(analogRead(A1));
+            avg_vbat_b.init(analogRead(A0));
+        }
+        
         uint8_t doRead() {
             reg_names_t r = _REG_INVALID;
             reg_t v       = 0xdeadbeef;
@@ -40,13 +52,13 @@ class adcReader_c {
                     r = REG_VSENSA_VSENSB;
                     h = register_top;
                     analogReference(INTERNAL1V1);
-                    v = avg_vbat.update(analogRead(A0));
+                    v = avg_vbat_b.update(analogRead(A0));
                     break;
                 case 3 :
                     r = REG_VSENSA_VSENSB;
                     h = register_bottom;
                     analogReference(INTERNAL1V1);
-                    v = avg_vbat.update(analogRead(A1));
+                    v = avg_vbat_a.update(analogRead(A1));
                     break;
                 case 4 :
                     r = REG_V5_V5SWTCH;
@@ -101,4 +113,3 @@ class adcReader_c {
 
 };
 #endif
-

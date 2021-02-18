@@ -1,7 +1,7 @@
 #ifndef __EMA_H
 #define __EMA_H
 
-#define DEBUG_EMA 1
+//#define DEBUG_EMA 1
 
 template <typename SAMP_TYPE, typename STORE_TYPE,
       uint32_t ALPHA, uint32_t DENOM>
@@ -38,4 +38,3 @@ class ema_c {
 };
 
 #endif
-

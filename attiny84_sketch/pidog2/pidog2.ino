@@ -9,7 +9,7 @@
 #include "adcReader.h"
 #include "spi_reg_names.h"
 
-//#define SERIAL_DEBUG 1
+#define SERIAL_DEBUG 1
 //#define NO_PATIENCE_DEBUG 1
 
 #ifdef SERIAL_DEBUG
@@ -69,7 +69,7 @@ const size_t rf_size = REGISTER_COUNT;
 typedef regfile_c<reg_t, rf_size> myregfile_c;
 
 myregfile_c rf;
-adcReader_c <myregfile_c, 1, 16> adcreader(rf);
+adcReader_c <myregfile_c, 1, 128> adcreader(rf);
 
 reg_t handleCommand(uint8_t cmd, reg_t indata) {
     reg_t odata = 0;
@@ -106,10 +106,20 @@ void doSecondWork() {
         reg_t on_rem = rf.get(REG_ON_REMAINING);
         reg_t a_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_top);
         reg_t b_off_thresh = rf.gethl(REG_VSENSE_OFF_THRESHOLD,register_bottom);
-        bool a_under = a_off_thresh && (rf.gethl(REG_VSENSA_VSENSB,register_top) < a_off_thresh);
-        bool b_under = b_off_thresh && (rf.gethl(REG_VSENSA_VSENSB,register_bottom) < b_off_thresh);
+        reg_t vsensa = rf.gethl(REG_VSENSA_VSENSB,register_top);
+        reg_t vsensb = rf.gethl(REG_VSENSA_VSENSB,register_bottom);
+        bool a_under = a_off_thresh && (vsensa < a_off_thresh);
+        bool b_under = b_off_thresh && (vsensb < b_off_thresh);
+        //bool a_under = a_off_thresh && (rf.gethl(REG_VSENSA_VSENSB,register_top) < a_off_thresh);
+        //bool b_under = b_off_thresh && (rf.gethl(REG_VSENSA_VSENSB,register_bottom) < b_off_thresh);
         if ( !on_rem || a_under || b_under) {
             #ifdef SERIAL_DEBUG
+            srl.println("on_rem\t\ta_off_t\t\tb_off_t\t\tvsensa\t\tvsensb");
+            srl.print(a_off_thresh, HEX); srl.print("\t\t");
+            srl.print(b_off_thresh, HEX); srl.print("\t\t");
+            srl.print(vsensa, HEX);       srl.print("\t\t");
+            srl.print(vsensb, HEX);       srl.print("\t\t");
+            srl.println();
             srl.println("Powering off pi.");
             #endif
             s |=  _BV(STAT_WDOG_FIRED);
@@ -283,6 +293,7 @@ void setup() {
 #endif
 
     interrupts();
+    adcreader.doInit();
 #ifdef SERIAL_DEBUG
     srl.println("setup complete");
 #endif
