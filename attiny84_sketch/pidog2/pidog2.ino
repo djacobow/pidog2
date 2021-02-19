@@ -9,7 +9,7 @@
 #include "adcReader.h"
 #include "spi_reg_names.h"
 
-#define SERIAL_DEBUG 1
+//#define SERIAL_DEBUG 1
 //#define NO_PATIENCE_DEBUG 1
 
 #ifdef SERIAL_DEBUG
@@ -32,7 +32,7 @@ SoftwareSerialTX srl(PIN_LED_0);
 #endif
 
 #define VERSION_MAJOR 0x02
-#define VERSION_MINOR 0x07
+#define VERSION_MINOR 0x08
 const reg_t   HW_VERSION        = 
     ((reg_t)'p' << 24)   |
     ((reg_t)'d' << 16)   |
@@ -69,7 +69,7 @@ const size_t rf_size = REGISTER_COUNT;
 typedef regfile_c<reg_t, rf_size> myregfile_c;
 
 myregfile_c rf;
-adcReader_c <myregfile_c, 1, 128> adcreader(rf);
+adcReader_c <myregfile_c, 1, 32> adcreader(rf);
 
 reg_t handleCommand(uint8_t cmd, reg_t indata) {
     reg_t odata = 0;
@@ -115,6 +115,7 @@ void doSecondWork() {
         if ( !on_rem || a_under || b_under) {
             #ifdef SERIAL_DEBUG
             srl.println("on_rem\t\ta_off_t\t\tb_off_t\t\tvsensa\t\tvsensb");
+            srl.print(on_rem, HEX);       srl.print("\t\t");
             srl.print(a_off_thresh, HEX); srl.print("\t\t");
             srl.print(b_off_thresh, HEX); srl.print("\t\t");
             srl.print(vsensa, HEX);       srl.print("\t\t");
