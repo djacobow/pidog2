@@ -32,7 +32,9 @@ SoftwareSerialTX srl(PIN_LED_0);
 #endif
 
 #define VERSION_MAJOR 0x02
+
 #define VERSION_MINOR 0x08
+
 const reg_t   HW_VERSION        = 
     ((reg_t)'p' << 24)   |
     ((reg_t)'d' << 16)   |
