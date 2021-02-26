@@ -152,7 +152,7 @@ PiDog2 is based on an earlier piece of hardware that I have  deployed in various
  * HW version v0.7, SW version : 0.0.1
  * HW version v0.7, SW version : 2.6 - added support for turning on/off based on configurable levels of VSENSA and VSENSB
  * HW version v0.7, SW version : 2.7 - added support for soft-start power-on and reading and clearing the ATTiny's reset registers.
- * HW version v0.7, SW version : 2.8 - added support for EMA filter of ADC derived voltage measurements V5, V5switch, V33, and VSENSA to average out occasional erroneous ADC readings, which might result in an unintentional rpi shutdown. The convergence time for a 1V change on VSENSA is several minutes so VSENSA should not be used for instantaneous readings. VSENSB is not filtered and should not be used as a trigger to shutdown the rpi. 
+ * HW version v0.7, SW version : 2.8 - added support for EMA filter of ADC derived voltage measurements V5, V5switch, V33, and VSENSA to average out occasional erroneous ADC readings that might result in an unintentional rpi shutdown. The convergence time for a 1V change on VSENSA is several minutes so VSENSA should not be used for instantaneous readings. VSENSB is not filtered and should not be used as a trigger to shutdown the rpi. 
 
 
 
