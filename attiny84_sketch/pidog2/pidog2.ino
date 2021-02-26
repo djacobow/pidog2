@@ -112,8 +112,6 @@ void doSecondWork() {
         reg_t vsensb = rf.gethl(REG_VSENSA_VSENSB,register_bottom);
         bool a_under = a_off_thresh && (vsensa < a_off_thresh);
         bool b_under = b_off_thresh && (vsensb < b_off_thresh);
-        //bool a_under = a_off_thresh && (rf.gethl(REG_VSENSA_VSENSB,register_top) < a_off_thresh);
-        //bool b_under = b_off_thresh && (rf.gethl(REG_VSENSA_VSENSB,register_bottom) < b_off_thresh);
         if ( !on_rem || a_under || b_under) {
             #ifdef SERIAL_DEBUG
             srl.println("on_rem\t\ta_off_t\t\tb_off_t\t\tvsensa\t\tvsensb");

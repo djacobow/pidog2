@@ -58,7 +58,6 @@ class adcReader_c {
                     r = REG_VSENSA_VSENSB;
                     h = register_bottom;
                     analogReference(INTERNAL1V1);
-                    //v = avg_vbat_b.update(analogRead(A1));
                     v = analogRead(A1); // Don't average VSENSB
                     break;
                 case 4 :
