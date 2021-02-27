@@ -43,8 +43,8 @@ woken again after a period.
 
  * Wake-dog: wait a period of time and then turn the device back on again.
 
- * Provides voltage measurements to the Pi of the 5V input, the 5V output,
-   the Pi's 3.3V rail, and up to do separate measurements, intended for 
+ * Provides filtered voltage measurements to the Pi of the 5V input, the 5V output,
+   the Pi's 3.3V rail, and up to two separate measurements, intended for 
    measurement of a 12V battery and ... anything else that comes to mind.
 
 
@@ -63,7 +63,7 @@ woken again after a period.
    status, etc, and depending on conditions shut itself down again or
    continue normally.
 
- * monitor battery and charging system health. Provie that info to
+ * monitor battery and charging system health. Provide that info to
    a Pi so that it can decide to shut itself down, etc.
 
 ## Hardware
@@ -152,6 +152,7 @@ PiDog2 is based on an earlier piece of hardware that I have  deployed in various
  * HW version v0.7, SW version : 0.0.1
  * HW version v0.7, SW version : 2.6 - added support for turning on/off based on configurable levels of VSENSA and VSENSB
  * HW version v0.7, SW version : 2.7 - added support for soft-start power-on and reading and clearing the ATTiny's reset registers.
+ * HW version v0.7, SW version : 2.8 - added support for EMA filter of ADC derived voltage measurements V5, V5switch, V33, and VSENSA to average out occasional erroneous ADC readings that might result in an unintentional rpi shutdown. The convergence time for a 1V change on VSENSA is several minutes so VSENSA should not be used for instantaneous readings. VSENSB is not filtered and should not be used as a trigger to shutdown the rpi. 
 
 
 
