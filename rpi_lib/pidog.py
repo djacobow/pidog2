@@ -4,10 +4,17 @@ import time
 # import spidev
 import random
 import json
-import RPi.GPIO as GPIO
 import logging
 
+USING_LEPOTATO = False
+
+if USING_LEPOTATO:
+    import LePotatoPi.GPIO as GPIO
+else:
+    import RPi.GPIO as GPIO
+
 PDELAY = 0.0005
+
 
 RESISTORS = {
     'v5swtch' : [2.4, 9.1],
@@ -385,32 +392,41 @@ def crazy_testing_stuff():
 
 
 class bbSPI:
+    g = GPIO.GPIO if USING_LEPOTATO else GPIO
+    pins = {
+        'MOSI': 10 if USING_LEPOTATO else 19,
+        'MISO':  9 if USING_LEPOTATO else 21,
+        'CK':   11 if USING_LEPOTATO else 23,
+        'SS':    8 if USING_LEPOTATO else 24,
+        'RST':  24 if USING_LEPOTATO else 18,
+    }
+
     def __init__(self):
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(19,GPIO.OUT) # MOSI
-        GPIO.setup(21,GPIO.IN)  # MISO
-        GPIO.setup(23,GPIO.OUT) # CK
-        GPIO.setup(24,GPIO.OUT) # SS
+        self.g.setmode(self.g.BCM if USING_LEPOTATO else self.g.BOARD)
+        self.g.setup(self.pins['MOSI'],self.g.OUT) # MOSI
+        self.g.setup(self.pins['MISO'],self.g.IN)  # MISO
+        self.g.setup(self.pins['CK'],self.g.OUT) # CK
+        self.g.setup(self.pins['SS'],self.g.OUT) # SS
 
     def assert_reset(self, reset=False):
         if reset:
-            GPIO.setup(18,GPIO.OUT)
-            GPIO.output(18,GPIO.HIGH)
+            self.g.setup(self.pins['RST'],self.g.OUT)
+            self.g.output(self.pins['RST'],self.g.HIGH)
             self.in_reset = True
         elif self.in_reset:
-            GPIO.output(18,GPIO.LOW)
-            GPIO.cleanup(18)
+            self.g.output(self.pins['RST'],self.g.LOW)
+            self.g.cleanup(self.pins['RST'])
             
     def xfer2(self, oblist):
         iblist = []
-        GPIO.output(24,GPIO.LOW)
+        self.g.output(self.pins['SS'],self.g.LOW)
         time.sleep(PDELAY)
         for obyte in oblist:
             ibyte = self._xfer8(obyte)
             if ibyte > 0xff:
                 logging.error('ERROR byte is not a byte!')
             iblist.append(ibyte)
-        GPIO.output(24,GPIO.HIGH)
+        self.g.output(self.pins['SS'],self.g.HIGH)
         time.sleep(5*PDELAY)
         # logging.debug('==> ' + ','.join([ '{0:x}'.format(x) for x in oblist]))
         # logging.debug('<== ' + ','.join([ '{0:x}'.format(x) for x in iblist]))
@@ -420,11 +436,11 @@ class bbSPI:
         ibyte = 0
         for i in range(8):
             obit = obyte & 0x80
-            GPIO.output(19, GPIO.HIGH if obit else GPIO.LOW)
+            self.g.output(self.pins['MOSI'], self.g.HIGH if obit else self.g.LOW)
             time.sleep(PDELAY)
-            ibit = 1 if GPIO.input(21) else 0
-            GPIO.output(23, GPIO.HIGH)
-            GPIO.output(23, GPIO.LOW)
+            ibit = 1 if self.g.input(self.pins['MISO']) else 0
+            self.g.output(self.pins['CK'], self.g.HIGH)
+            self.g.output(self.pins['CK'], self.g.LOW)
             time.sleep(PDELAY)
             ibyte |= ibit
             if i < 7:
@@ -436,10 +452,10 @@ class bbSPI:
 
     def close(self):
         logging.debug('closing and setting as inputs');
-        GPIO.setup(19,GPIO.IN)
-        GPIO.setup(21,GPIO.IN)
-        GPIO.setup(23,GPIO.IN)
-        GPIO.setup(24,GPIO.IN)
+        self.g.setup(self.pins['MOSI'],self.g.IN)
+        self.g.setup(self.pins['MISO'],self.g.IN)
+        self.g.setup(self.pins['CK'],self.g.IN)
+        self.g.setup(self.pins['SS'],self.g.IN)
 
 
 if __name__ == '__main__':

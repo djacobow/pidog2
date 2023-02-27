@@ -40,7 +40,39 @@ You can get a firmware image directly form this repo (in `firmware_images/`, or 
       mosi  = 10;
       miso  = 9;
     ;
+
+
+    programmer
+      id    = "potato_pidog_gpio";
+      desc  = "Program a PiDog from the LePotato GPIO lines";
+      type  = "linuxgpio";
+      reset = ~495;
+      sck   = 491;
+      mosi  = 488;
+      miso  = 489;
+   ;
+
     ```
+
+    Note: because of the scarcity of Raspbery Pi's, I have experimented with other cheap SBCs. Right now, a great low-cost choice is a Le Potato from Libre computing.  I have added pins for that platform as well. However, to use it you will have to build your own AVRdude from source, as the stock avrdude rejects those pin numbers in the 400's.
+    This is the diff:
+
+    ```diff
+diff --git a/src/libavrdude.h b/src/libavrdude.h
+index b5ba923..ced6e6b 100644
+--- a/src/libavrdude.h
++++ b/src/libavrdude.h
+@@ -428,7 +428,7 @@ enum {
+ #ifdef HAVE_LINUXGPIO
+ /* Embedded systems might have a lot more gpio than only 0-31 */
+ #undef PIN_MAX
+-#define PIN_MAX     400 /* largest allowed pin number */
++#define PIN_MAX     1000 /* largest allowed pin number */
+ #endif
+ 
+ /** Number of pins in each element of the bitfield */
+    ```
+
 
 3. Disable the actual power switching
 
